@@ -7,11 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class AuthPageComponent {
+  constructor() {}
 }

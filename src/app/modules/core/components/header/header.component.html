@@ -1,0 +1,30 @@
+<div class="header">
+
+  <div class="title">
+    <mat-icon>business</mat-icon>
+    <h1>{{'header.title' | translate}}</h1>
+  </div>
+
+  <div class = "headerIcons">
+    <button>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button>
+      <mat-icon>assistant</mat-icon>
+    </button>
+    <button>
+      <mat-icon matBadge="15" matBadgeColor="warn">notifications_none</mat-icon>
+    </button>
+    <button class="changeLang" mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>translate</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" yPosition="below">
+      <button class="changeLang" mat-menu-item (click)="changeLang('en')">en</button>
+      <button class="changeLang" mat-menu-item (click)="changeLang('ru')">ru</button>
+    </mat-menu>
+  </div>
+
+</div>
+
+
+

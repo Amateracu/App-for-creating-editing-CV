@@ -6,11 +6,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./employees-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeesPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class EmployeesPageComponent {
+  constructor() {}
 }
