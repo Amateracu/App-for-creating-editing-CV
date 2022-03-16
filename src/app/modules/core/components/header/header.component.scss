@@ -1,25 +1,13 @@
-.header {
-  display: flex;
+mat-toolbar {
   justify-content: space-between;
-  background-color: black;
-  color: aliceblue;
-  align-items: center;
+  color: #f0f2f5;
+  background-color: #001529;
 }
-h1 {
-  margin: 0px;
+
+.header {
+  justify-content: start;
 }
-.title {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 10px;
-}
-.headerIcons {
-  display: flex;
-  justify-content: flex-end;
-}
-button {
-  background-color: black;
-  color: aliceblue;
-  border: 0;
+
+.navbar {
+  justify-content: end;
 }

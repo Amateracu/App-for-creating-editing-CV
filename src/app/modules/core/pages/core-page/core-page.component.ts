@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-core-page',
@@ -7,5 +8,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CorePageComponent {
+  public isToogle = false;
+  public toogle() {
+    this.isToogle = !this.isToogle;
+  }
   constructor() {}
 }

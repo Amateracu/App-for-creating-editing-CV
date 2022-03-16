@@ -1,0 +1,15 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <button><mat-icon>slow_motion_video</mat-icon>Dashboard</button>
+    <button><mat-icon>edit</mat-icon>Employees</button>
+    <button><mat-icon>dns</mat-icon>Projects</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<mat-toolbar>
+  <button (click)="opened = !opened">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
