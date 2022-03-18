@@ -14,14 +14,15 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { BreadcrumbsModule } from './components/breadcrumbs/breadrumbs.module';
 
 @NgModule({
-  declarations: [CorePageComponent, HeaderComponent, SideBarComponent, BreadcrumbsComponent],
+  declarations: [CorePageComponent, HeaderComponent, SideBarComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,
     HttpClientModule,
+    BreadcrumbsModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
