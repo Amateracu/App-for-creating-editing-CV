@@ -1,0 +1,12 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  position: absolute;
+  width: 360px;
+  height: 276px;
+  left: calc(50% - 360px / 2 + 14px);
+  top: calc(50% - 276px / 2 - 92px);
+}

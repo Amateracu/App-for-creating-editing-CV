@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ICv } from 'src/app/shared/interfaces/cv.interface';
 
 @Component({
   selector: 'app-projects-page',
@@ -8,4 +9,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class ProjectsPageComponent {
   constructor() {}
+  public cvElements: ICv[] = [
+    {
+      firstName: 'Danik',
+      lastName: 'Vasin',
+      email: 'd@mail.ru',
+      department: 'JavaScript',
+      specialization: 'Angular',
+    },
+  ];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'department', 'specialization'];
+  clickedRows = new Set<ICv>();
 }

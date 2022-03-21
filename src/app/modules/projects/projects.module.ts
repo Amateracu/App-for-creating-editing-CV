@@ -4,10 +4,19 @@ import { ProjectsPageComponent } from './pages/projects-page/projects-page.compo
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectInfoComponent } from './pages/project-info/project-info.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ProjectsPageComponent, ProjectInfoComponent],
-  imports: [CommonModule, ProjectsRoutingModule, BreadcrumbModule],
+  imports: [
+    CommonModule,
+    ProjectsRoutingModule,
+    BreadcrumbModule,
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [],
   providers: [],
 })
