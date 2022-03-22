@@ -6,6 +6,7 @@ import { ProjectInfoComponent } from './pages/project-info/project-info.componen
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputModule } from 'src/app/shared/controls/input/input.module';
 
 @NgModule({
   declarations: [ProjectsPageComponent, ProjectInfoComponent],
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
+    InputModule,
   ],
   exports: [],
   providers: [],

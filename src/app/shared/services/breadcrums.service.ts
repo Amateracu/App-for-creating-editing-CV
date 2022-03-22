@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 export class BreadcrumbsService {
   private subject = new Subject<string>();
 
-  onUpdate(): Observable<string> {
+  getBreadCrumbs(): Observable<string> {
     return this.subject.asObservable();
   }
 

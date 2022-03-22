@@ -1,24 +1,6 @@
 <form class="info" [formGroup]="form" (ngSubmit)="submit()">
   <div class="form-group">
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('name')?.touched && form.get('name')?.invalid}"
-      >
-      <label for="name">Name:</label>
-      <input
-        type="text"
-        id="name"
-        formControlName="name"
-        >
-      <div
-        *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('name')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
+    <app-input></app-input>
     <div
       class="form-control"
       [ngClass]="{invalid: form.get('startDate')?.touched && form.get('startDate')?.invalid}"

@@ -5,12 +5,12 @@ export let IMenu: INavItem[] = [
   {
     displayName: 'Dashboard',
     iconName: 'dashboard',
-    route: DASHBOARD_ROUTE,
+    route: DASHBOARD_ROUTE.path,
   },
   {
     displayName: 'Employees',
     iconName: 'edit',
-    route: EMPLOYEES_ROUTE,
+    route: EMPLOYEES_ROUTE.path,
     children: [
       {
         displayName: 'View Employee',
@@ -22,7 +22,7 @@ export let IMenu: INavItem[] = [
   {
     displayName: 'Projects',
     iconName: 'dns',
-    route: PROJECTS_ROUTE,
+    route: PROJECTS_ROUTE.path,
     children: [
       {
         displayName: 'Project Info',

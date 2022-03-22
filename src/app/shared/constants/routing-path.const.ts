@@ -1,7 +1,10 @@
-export const AUTH_ROUTE = `auth`;
+import { IRouting } from '../interfaces/routing.interface';
 
-export const DASHBOARD_ROUTE = `dashboard`;
+export const AUTH_ROUTE: IRouting = { path: `auth`, breadCrumb: 'Auth' };
 
-export const EMPLOYEES_ROUTE = `employees`;
+export const DASHBOARD_ROUTE: IRouting = { path: `dashboard`, breadCrumb: 'Dashboard' };
 
-export const PROJECTS_ROUTE = `projects`;
+export const EMPLOYEES_ROUTE: IRouting = { path: `employees`, breadCrumb: 'Employees' };
+
+export const PROJECTS_ROUTE: IRouting = { path: `projects`, breadCrumb: 'Projects' };
+export const PROJECTS_INFO: IRouting = { path: '', breadCrumb: 'Info' };

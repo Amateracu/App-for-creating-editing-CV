@@ -4,7 +4,7 @@ import { AUTH_ROUTE } from './shared/constants/routing-path.const';
 
 const routes: Routes = [
   {
-    path: AUTH_ROUTE,
+    path: AUTH_ROUTE.path,
     loadChildren: () => import('./modules/auth/auth.module').then((module) => module.AuthModule),
   },
   {

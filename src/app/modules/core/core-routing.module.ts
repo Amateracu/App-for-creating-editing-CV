@@ -13,24 +13,24 @@ const routes: Routes = [
     component: CorePageComponent,
     children: [
       {
-        path: DASHBOARD_ROUTE,
+        path: DASHBOARD_ROUTE.path,
         loadChildren: () =>
           import('../dashboard/dashboard.module').then((module) => module.DashboardModule),
       },
       {
-        path: EMPLOYEES_ROUTE,
+        path: EMPLOYEES_ROUTE.path,
         loadChildren: () =>
           import('../employees/employee.module').then((module) => module.EmployeeModule),
       },
       {
-        path: PROJECTS_ROUTE,
+        path: PROJECTS_ROUTE.path,
         loadChildren: () =>
           import('../projects/projects.module').then((module) => module.ProjectsModule),
       },
-      { path: '**', redirectTo: DASHBOARD_ROUTE },
+      { path: '**', redirectTo: DASHBOARD_ROUTE.path },
     ],
   },
-  { path: '**', redirectTo: DASHBOARD_ROUTE },
+  { path: '**', redirectTo: DASHBOARD_ROUTE.path },
 ];
 
 @NgModule({

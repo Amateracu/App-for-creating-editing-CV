@@ -16,12 +16,12 @@ export class SideBarComponent {
   public opened = false;
   constructor(private router: Router) {}
   dashboard() {
-    this.router.navigate([DASHBOARD_ROUTE]);
+    this.router.navigate([DASHBOARD_ROUTE.path]);
   }
   employees() {
-    this.router.navigate([EMPLOYEES_ROUTE]);
+    this.router.navigate([EMPLOYEES_ROUTE.path]);
   }
   projects() {
-    this.router.navigate([PROJECTS_ROUTE]);
+    this.router.navigate([PROJECTS_ROUTE.path]);
   }
 }

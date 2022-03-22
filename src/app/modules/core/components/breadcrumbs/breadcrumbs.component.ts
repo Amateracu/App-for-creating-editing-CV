@@ -43,7 +43,7 @@ export class BreadcrumbsComponent implements OnInit {
   }
 
   private listenForBreadcrumbUpdate() {
-    this.breadcrumbService.onUpdate().subscribe((str: string) => {
+    this.breadcrumbService.getBreadCrumbs().subscribe((str: string) => {
       this.handleBreadcrumbUpdate(str);
     });
   }

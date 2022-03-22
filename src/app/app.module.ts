@@ -8,9 +8,11 @@ import { CoreModule } from './modules/core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { DatepickerComponent } from './shared/controls/datepicker/datepicker.component';
+import { InputComponent } from './shared/controls/input/input.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DatepickerComponent],
   imports: [
     BrowserModule,
     FormsModule,

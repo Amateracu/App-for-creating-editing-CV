@@ -1,0 +1,16 @@
+<div
+  class="formControl"
+  [ngClass]="{invalid: control?.touched && control?.invalid}"
+  >
+  <label for="name">Name:</label>
+  <input type="text" >
+
+  <div
+    *ngIf="control?.touched && control?.invalid"
+    class="validation"
+  >
+    <small
+      *ngIf="control?.errors?.required"
+    >Please, specify the field</small>
+  </div>
+</div>
