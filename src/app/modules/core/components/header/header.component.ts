@@ -1,6 +1,4 @@
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

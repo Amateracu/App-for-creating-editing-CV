@@ -21,10 +21,5 @@ export class EmpoyeesProfileInfoComponent implements OnInit {
     });
   }
 
-  submit() {
-    if (this.form.invalid) {
-      return;
-    }
-    this.submitted = true;
-  }
+  submit() {}
 }

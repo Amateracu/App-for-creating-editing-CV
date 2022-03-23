@@ -7,6 +7,8 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputModule } from 'src/app/shared/controls/input/input.module';
+import { DatepickerModule } from 'src/app/shared/controls/datepicker/datepicker.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ProjectsPageComponent, ProjectInfoComponent],
@@ -18,6 +20,8 @@ import { InputModule } from 'src/app/shared/controls/input/input.module';
     FormsModule,
     ReactiveFormsModule,
     InputModule,
+    DatepickerModule,
+    TranslateModule,
   ],
   exports: [],
   providers: [],

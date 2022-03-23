@@ -1,5 +1,42 @@
 {
   "header": {
     "title": "Ант Дизайн"
+  },
+  "project-info": {
+    "name": "Имя",
+    "start-date": "Дата старта",
+    "end-date": "Дата конца",
+    "team-size": "Размер команды",
+    "tech-stack": "Используемые технологии",
+    "roles": "Роли",
+    "description": "Описание",
+    "responsibilities": "Обязанности",
+    "button-save": "Сохранить",
+    "button-cancel": "Отмена"
+  },
+  "project-page": {
+    "first-name": "Имя",
+    "last-name": "Фамилия",
+    "email": "Почта",
+    "department": "Отделение",
+    "specialization": "Специализация"
+  },
+  "side-bar": {
+    "dashboard": "Панель управления",
+    "employees": "Сотрудники",
+    "projects": "Проекты"
+  },
+  "employees-profile": {
+    "info": "Информация",
+    "cv": "Резюме"
+  },
+  "employees-profile-info": {
+    "first-name": "Имя",
+    "last-name": "Фамилия",
+    "email": "Почта",
+    "specialization": "Специализация",
+    "department": "Отделение",
+    "button-save": "Сохранить",
+    "button-cancel": "Отмена"
   }
 }

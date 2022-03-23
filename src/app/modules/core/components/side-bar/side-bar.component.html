@@ -1,8 +1,8 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-    <button (click)="dashboard()"><mat-icon>slow_motion_video</mat-icon>Dashboard</button>
-    <button (click)="employees()"><mat-icon>edit</mat-icon>Employees</button>
-    <button (click)="projects()"><mat-icon>dns</mat-icon>Projects</button>
+    <button (click)="dashboard()"><mat-icon>slow_motion_video</mat-icon>{{"side-bar.dashboard" | translate}}</button>
+    <button (click)="employees()"><mat-icon>edit</mat-icon>{{"side-bar.employees" | translate}}</button>
+    <button (click)="projects()"><mat-icon>dns</mat-icon>{{"side-bar.projects" | translate}}</button>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-breadcrumbs></app-breadcrumbs>

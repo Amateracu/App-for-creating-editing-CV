@@ -1,5 +1,42 @@
 {
   "header": {
     "title": "Ant Design"
+  },
+  "project-info": {
+    "name": "Name",
+    "start-date": "Start Date",
+    "end-date": "End Date",
+    "team-size": "Team Size",
+    "tech-stack": "Tech Stack",
+    "roles": "Roles",
+    "description": "Description",
+    "responsibilities": "Responsibilities",
+    "button-save": "Save",
+    "button-cancel": "Cancel"
+  },
+  "project-page": {
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "email": "Email",
+    "department": "Department",
+    "specialization": "Specialization"
+  },
+  "side-bar": {
+    "dashboard": "Dashboard",
+    "employees": "Employees",
+    "projects": "Projects"
+  },
+  "employees-profile": {
+    "info": "Info",
+    "cv": "CV"
+  },
+  "employees-profile-info": {
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "email": "Email",
+    "specialization": "Specialization",
+    "department": "Department",
+    "button-save": "Save",
+    "button-cancel": "Cancel"
   }
 }

@@ -2,9 +2,10 @@
   class="formControl"
   [ngClass]="{invalid: control?.touched && control?.invalid}"
   >
-  <label for="name">Name:</label>
-  <input type="text" >
-
+  <label for="name">{{label}}</label>
+  <mat-form-field>
+    <input matInput type="text" [formControl]="control">
+  </mat-form-field>
   <div
     *ngIf="control?.touched && control?.invalid"
     class="validation"

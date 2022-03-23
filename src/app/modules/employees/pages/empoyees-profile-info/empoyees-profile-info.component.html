@@ -1,109 +1,16 @@
 <form class="info" [formGroup]="form" (ngSubmit)="submit()">
   <div class="form-group">
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('firstName')?.touched && form.get('firstName')?.invalid}"
-      >
-      <label for="firstName">FirstName:</label>
-      <input
-        type="text"
-        id="firstName"
-        formControlName="firstName"
-        >
-      <div
-        *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('firstName')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('lastName')?.touched && form.get('lastName')?.invalid}"
-      >
-      <label for="lastName">LastName:</label>
-      <input
-        type="text"
-        id="lastName"
-        formControlName="lastName"
-        >
-      <div
-        *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('lastName')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('email')?.touched && form.get('email')?.invalid}"
-      >
-      <label for="email">Email:</label>
-      <input
-        type="text"
-        id="email"
-        formControlName="email"
-        >
-      <div
-        *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
-        class="email"
-      >
-        <small
-          *ngIf="form.get('email')?.errors?.required"
-        >Please, specify the field</small>
-        <small
-        *ngIf="form.get('email')?.errors?.email"
-      >Incorrect Email</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('specialization')?.touched && form.get('specialization')?.invalid}"
-      >
-      <label for="specialization">Specialization:</label>
-      <input
-        type="text"
-        id="specialization"
-        formControlName="specialization"
-        >
-      <div
-        *ngIf="form.get('specialization')?.touched && form.get('specialization')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('specialization')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('departament')?.touched && form.get('departament')?.invalid}"
-      >
-      <label for="departament">Departament:</label>
-      <input
-        type="text"
-        id="departament"
-        formControlName="departament"
-        >
-      <div
-        *ngIf="form.get('departament')?.touched && form.get('departament')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('departament')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
+    <app-input formControlName="firstName" [label]="'employees-profile-info.first-name' | translate"></app-input>
+    <app-input formControlName="lastName" [label]="'employees-profile-info.last-name' | translate"></app-input>
+    <app-input formControlName="email" [label]="'employees-profile-info.email' | translate"></app-input>
+    <app-input formControlName="specialization" [label]="'employees-profile-info.specialization' | translate"></app-input>
+    <app-input formControlName="departament" [label]="'employees-profile-info.department' | translate"></app-input>
     <button
       type="submit"
       [disabled]="form.invalid || submitted"
-      >Save</button>
+      >{{'employees-profile-info.button-save' | translate}}</button>
     <button
       type="button"
-    >Cancel</button>
+    >{{'employees-profile-info.button-cancel' | translate}}</button>
   </div>
 </form>

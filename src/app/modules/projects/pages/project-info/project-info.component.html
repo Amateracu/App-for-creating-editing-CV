@@ -1,145 +1,19 @@
 <form class="info" [formGroup]="form" (ngSubmit)="submit()">
   <div class="form-group">
-    <app-input></app-input>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('startDate')?.touched && form.get('startDate')?.invalid}"
-      >
-      <label for="startDate">Start date:</label>
-      <input
-        type="date"
-        id="startDate"
-        formControlName="startDate"
-        >
-      <div
-        *ngIf="form.get('startDate')?.touched && form.get('startDate')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('startDate')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('endDate')?.touched && form.get('endDate')?.invalid}"
-      >
-      <label for="endDate">End date:</label>
-      <input
-        type="date"
-        id="endDate"
-        formControlName="endDate"
-        >
-      <div
-        *ngIf="form.get('endDate')?.touched && form.get('endDate')?.invalid"
-        class="endDate"
-      >
-        <small
-          *ngIf="form.get('endDate')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('teamSize')?.touched && form.get('teamSize')?.invalid}"
-      >
-      <label for="teamSize">Team Size:</label>
-      <input
-        type="text"
-        id="teamSize"
-        formControlName="teamSize"
-        >
-      <div
-        *ngIf="form.get('teamSize')?.touched && form.get('teamSize')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('teamSize')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('techStack')?.touched && form.get('techStack')?.invalid}"
-      >
-      <label for="techStack">Tech Stack:</label>
-      <input
-        type="text"
-        id="techStack"
-        formControlName="techStack"
-        >
-      <div
-        *ngIf="form.get('techStack')?.touched && form.get('techStack')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('techStack')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('roles')?.touched && form.get('roles')?.invalid}"
-      >
-      <label for="techStack">Roles:</label>
-      <input
-        type="text"
-        id="roles"
-        formControlName="roles"
-        >
-      <div
-        *ngIf="form.get('roles')?.touched && form.get('roles')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('roles')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('description')?.touched && form.get('description')?.invalid}"
-      >
-      <label for="description">Description:</label>
-      <input
-        type="text"
-        id="description"
-        formControlName="description"
-        >
-      <div
-        *ngIf="form.get('description')?.touched && form.get('description')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('description')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('responsibilities')?.touched && form.get('responsibilities')?.invalid}"
-      >
-      <label for="responsibilities">Responsibilities:</label>
-      <input
-        type="text"
-        id="responsibilities"
-        formControlName="responsibilities"
-        >
-      <div
-        *ngIf="form.get('responsibilities')?.touched && form.get('responsibilities')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('responsibilities')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
+    <app-input formControlName="name" [label]="'project-info.name' | translate"></app-input>
+    <app-datepicker formControlName="startDate" [label]="'project-info.start-date' | translate"></app-datepicker>
+    <app-datepicker formControlName="endDate" [label]="'project-info.end-date' | translate"></app-datepicker>
+    <app-input formControlName="teamSize" [label]="'project-info.team-size' | translate"></app-input>
+    <app-input formControlName="techStack" [label]="'project-info.tech-stack' | translate"></app-input>
+    <app-input formControlName="roles" [label]="'project-info.roles' | translate"></app-input>
+    <app-input formControlName="description" [label]="'project-info.description' | translate"></app-input>
+    <app-input formControlName="responsibilities" [label]="'project-info.responsibilities' | translate"></app-input>
     <button
       type="submit"
       [disabled]="form.invalid || submitted"
-      >Save</button>
+      >{{'project-info.button-save' | translate}}</button>
     <button
       type="button"
-    >Cancel</button>
+    >{{'project-info.button-cancel' | translate}}</button>
   </div>
 </form>
