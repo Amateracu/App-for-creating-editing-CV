@@ -1,6 +1,6 @@
 export interface IBreadCrumbs {
-  name: string;
-  url?: string;
+  label: string;
+  url: string;
   queryParams?: any;
   pauseDisplay?: boolean;
 }

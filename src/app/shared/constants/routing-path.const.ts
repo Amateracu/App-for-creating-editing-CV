@@ -7,4 +7,5 @@ export const DASHBOARD_ROUTE: IRouting = { path: `dashboard`, breadCrumb: 'Dashb
 export const EMPLOYEES_ROUTE: IRouting = { path: `employees`, breadCrumb: 'Employees' };
 
 export const PROJECTS_ROUTE: IRouting = { path: `projects`, breadCrumb: 'Projects' };
-export const PROJECTS_INFO: IRouting = { path: '', breadCrumb: 'Info' };
+export const PROJECTS_INFO_ROUTE: IRouting = { path: `info`, breadCrumb: 'Info' };
+export const CORE_ROUTE: IRouting = { path: '', breadCrumb: 'Home' };

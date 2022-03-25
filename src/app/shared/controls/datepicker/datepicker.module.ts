@@ -5,6 +5,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
 import { DatepickerComponent } from './datepicker.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { DatepickerComponent } from './datepicker.component';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    TranslateModule,
   ],
   exports: [DatepickerComponent],
 })

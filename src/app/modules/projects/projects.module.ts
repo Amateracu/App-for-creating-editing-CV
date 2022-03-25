@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputModule } from 'src/app/shared/controls/input/input.module';
 import { DatepickerModule } from 'src/app/shared/controls/datepicker/datepicker.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [ProjectsPageComponent, ProjectInfoComponent],

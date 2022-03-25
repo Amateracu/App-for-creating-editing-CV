@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { PROJECTS_INFO_ROUTE } from 'src/app/shared/constants/routing-path.const';
 import { ICv } from 'src/app/shared/interfaces/cv.interface';
 
 @Component({
@@ -9,6 +10,7 @@ import { ICv } from 'src/app/shared/interfaces/cv.interface';
 })
 export class ProjectsPageComponent {
   constructor() {}
+  public projectInfoRoute = '/' + PROJECTS_INFO_ROUTE.path;
   public cvElements: ICv[] = [
     {
       firstName: 'Danik',

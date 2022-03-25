@@ -38,5 +38,14 @@
     "department": "Department",
     "button-save": "Save",
     "button-cancel": "Cancel"
+  },
+  "auth-page": {
+    "username": "Login",
+    "password": "Password",
+    "checkbox": "Remember me",
+    "button-login": "Login"
+  },
+  "control-validation": {
+    "required": "Please, specify the field"
   }
 }

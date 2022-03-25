@@ -32,7 +32,7 @@
   <tr
       mat-row
       (click)="clickedRows.add(row)"
-      [routerLink]="['info']"
+      [routerLink]="projectInfoRoute"
       [class.demo-row-is-clicked]="clickedRows.has(row)"
       *matRowDef="let row; columns: displayedColumns;"
   ></tr>

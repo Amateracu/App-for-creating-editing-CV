@@ -1,67 +1,24 @@
 <form class="auth" [formGroup]="form" (ngSubmit)="submit()">
-  <h2>Ant Design</h2>
-
-  <!-- <div class="alert alert-danger" *ngIf="auth.error$ |async as error">
-    {{error}}
-  </div>
-  <div class="alert alert-info" *ngIf="message">
-    {{message}}
-  </div> -->
-
+  <h2>{{'header.title'| translate}}</h2>
   <div class="form-group">
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('username')?.touched && form.get('username')?.invalid}"
-      >
-      <label for="username">UserName:</label>
-      <input
-        type="text"
-        id="username"
-        formControlName="username"
-        >
-      <div
-        *ngIf="form.get('username')?.touched && form.get('username')?.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="form.get('username')?.errors?.required"
-        >Please, specify the field</small>
-      </div>
-    </div>
-
-    <div
-      class="form-control"
-      [ngClass]="{invalid: form.get('password')?.touched && form.get('password')?.invalid}"
-      >
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        >
-      <div
-        class="validation"
-        *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
-      >
-        <small *ngIf="form.get('password')?.errors?.required">
-          Please, specify the field
-        </small>
-        <small *ngIf="form.get('password')?.errors?.minlength">
-          Password must be more than 6 characters
-        </small>
-      </div>
-    </div>
-
+    <app-input formControlName="username" [label]="'auth-page.username' | translate"></app-input>
+    <app-input formControlName="password" [label]="'auth-page.password' | translate"></app-input>
     <button
       type="submit"
       class="btn btn-primary"
       [disabled]="form.invalid || submitted"
-      >Login</button>
+      >{{'auth-page.button-login' | translate}}</button>
   </div>
   <section class="example-section">
-    <mat-checkbox class="example-margin" [(ngModel)]="checked">Remember me</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="checked">{{'auth-page.checkbox' | translate}}</mat-checkbox>
   </section>
-
 </form>
+<button mat-icon-button class="example-icon" matBadgePosition="above" mat-button [matMenuTriggerFor]="menu">
+  <mat-icon>translate</mat-icon>
+</button>
+<mat-menu #menu="matMenu" yPosition="below">
+  <button class="mat-menu" mat-menu-item (click)="changeLang('en')">en</button>
+  <button class="mat-menu" mat-menu-item (click)="changeLang('ru')">ru</button>
+</mat-menu>
 
 

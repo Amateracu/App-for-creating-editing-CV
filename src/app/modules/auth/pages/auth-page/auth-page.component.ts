@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth-page',
@@ -13,7 +14,9 @@ export class AuthPageComponent implements OnInit {
   public submitted = false;
   public message!: string;
   public checked = false;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private translate: TranslateService) {
+    this.translate.setDefaultLang('en');
+  }
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -25,5 +28,8 @@ export class AuthPageComponent implements OnInit {
       return;
     }
     this.submitted = true;
+  }
+  changeLang(lang: string) {
+    this.translate.use(lang);
   }
 }

@@ -1,11 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, distinctUntilChanged } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
+import { distinctUntilChanged, filter } from 'rxjs';
 import { IBreadCrumbs } from 'src/app/shared/interfaces/breadcrumbs.interface';
-import { IMenu } from 'src/app/shared/interfaces/menu.interface';
-import { INavItem } from 'src/app/shared/interfaces/nav-item.interface';
-import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
-import { UrlService } from 'src/app/shared/services/url.service';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -14,147 +11,59 @@ import { UrlService } from 'src/app/shared/services/url.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbsComponent implements OnInit {
-  breadcrumbs: IBreadCrumbs[] = [];
-  currentUrl: string = '';
+  public breadcrumbs: IBreadCrumbs[];
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private urlService: UrlService,
-    private breadcrumbService: BreadcrumbsService,
-  ) {}
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+  }
 
   ngOnInit() {
-    this.setDefaultBreadcrumb();
-    this.listenForRouteChange();
-    this.listenForBreadcrumbUpdate();
-  }
-
-  private setDefaultBreadcrumb() {
-    this.setCurrentUrl();
-
-    if (this.currentUrl) {
-      let navItem: INavItem = this.findRoute();
-
-      if (navItem) {
-        let breadcrumb: IBreadCrumbs = { name: navItem.displayName, url: this.currentUrl };
-        this.breadcrumbs.push(breadcrumb);
-      }
-    }
-  }
-
-  private listenForBreadcrumbUpdate() {
-    this.breadcrumbService.getBreadCrumbs().subscribe((str: string) => {
-      this.handleBreadcrumbUpdate(str);
-    });
-  }
-
-  private handleBreadcrumbUpdate(str: string) {
-    let lastBreadcrumb: IBreadCrumbs = this.breadcrumbs[this.breadcrumbs.length - 1];
-
-    if (lastBreadcrumb.pauseDisplay) {
-      lastBreadcrumb.pauseDisplay = false;
-      lastBreadcrumb.name = str;
-    }
-  }
-
-  private listenForRouteChange() {
     this.router.events
       .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map(() => this.activatedRoute),
-        map((route) => {
-          while (route.firstChild) {
-            route = route.firstChild;
-          }
-          return route;
-        }),
+        filter((event: Event) => event instanceof NavigationEnd),
         distinctUntilChanged(),
       )
-      .subscribe((route: ActivatedRoute) => this.handleCurrentRoute(route));
-  }
-
-  private setCurrentUrl() {
-    let url: string = this.router.url;
-
-    if (url) {
-      this.currentUrl = this.urlService.shortenUrlIfNecessary(url.substring(1));
-    }
-  }
-
-  private handleCurrentRoute(route: ActivatedRoute) {
-    this.setCurrentUrl();
-
-    let navItem: INavItem = this.findRoute(IMenu);
-
-    if (navItem) {
-      this.handleTopLevelBreadcrumb(navItem);
-    } else {
-      this.addBreadcrumb(route);
-    }
-  }
-
-  private addBreadcrumb(route: ActivatedRoute) {
-    if (this.breadcrumbs.length < 6) {
-      let breadcrumb!: IBreadCrumbs;
-
-      route.data.subscribe((data: any) => {
-        breadcrumb = {
-          name: data.breadcrumb,
-          url: this.currentUrl,
-          pauseDisplay: data.pauseDisplay,
-        };
+      .subscribe(() => {
+        this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+        this.cdr.detectChanges();
       });
-
-      if (breadcrumb) {
-        if (breadcrumb.url != this.breadcrumbs[this.breadcrumbs.length - 1].url) {
-          route.queryParams.subscribe((queryParams: any) => {
-            if (queryParams) {
-              breadcrumb.queryParams = queryParams;
-            }
-          });
-
-          this.breadcrumbs.push(breadcrumb);
-        }
-      }
-    }
   }
 
-  private handleTopLevelBreadcrumb(navItem: INavItem) {
-    this.breadcrumbs = [];
+  buildBreadCrumb(
+    route: ActivatedRoute,
+    url: string = '',
+    breadcrumbs: IBreadCrumbs[] = [],
+  ): IBreadCrumbs[] {
+    let label =
+      route.routeConfig && route.routeConfig.data ? route.routeConfig.data.breadcrumb : '';
+    let isClickable =
+      route.routeConfig && route.routeConfig.data && route.routeConfig.data.isClickable;
+    let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
 
-    let breadcrumb: IBreadCrumbs = { name: navItem.displayName, url: navItem.route };
-
-    this.breadcrumbs.push(breadcrumb);
-  }
-
-  private findRoute(navItems?: INavItem[]): INavItem {
-    if (!navItems) navItems = IMenu;
-
-    let returnedItem!: INavItem;
-
-    if (this.currentUrl) {
-      for (let item of navItems) {
-        if (this.currentUrl == item.route) {
-          returnedItem = item;
-          break;
-        } else if (item.children) {
-          returnedItem = this.findRoute(item.children);
-          if (returnedItem != null) break;
-        }
-      }
+    const lastRoutePart = path?.split('/').pop();
+    const isDynamicRoute = lastRoutePart?.startsWith(':');
+    if (isDynamicRoute && !!route.snapshot) {
+      const paramName = lastRoutePart?.split(':')[1];
+      path = path?.replace(lastRoutePart!, route.snapshot.params[paramName!]);
+      label = route.snapshot.params[paramName!];
     }
 
-    return returnedItem;
-  }
+    const nextUrl = path ? `${url}/${path}` : url;
 
-  routeTo(index: number) {
-    if (index < this.breadcrumbs.length - 1) {
-      this.breadcrumbs.splice(index + 1);
+    const breadcrumb: IBreadCrumbs = {
+      label: label,
+      url: nextUrl,
+    };
+
+    const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
+    if (route.firstChild) {
+      return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
 
-    let breadcrumb: IBreadCrumbs = this.breadcrumbs[index];
-
-    let route = breadcrumb.url;
-    this.router.navigate([route], { queryParams: breadcrumb.queryParams });
+    return newBreadcrumbs;
   }
 }

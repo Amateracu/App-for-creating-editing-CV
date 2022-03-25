@@ -38,5 +38,14 @@
     "department": "Отделение",
     "button-save": "Сохранить",
     "button-cancel": "Отмена"
+  },
+  "auth-page": {
+    "username": "Логин",
+    "password": "Пароль",
+    "checkbox": "Запомнить меня",
+    "button-login": "Войти"
+  },
+  "control-validation": {
+    "required": "Пожалуйста, заполните поле"
   }
 }

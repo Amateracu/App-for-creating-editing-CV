@@ -14,14 +14,8 @@ import {
 })
 export class SideBarComponent {
   public opened = false;
+  public projectRoute = '/' + PROJECTS_ROUTE.path;
+  public dashboardRoute = '/' + DASHBOARD_ROUTE.path;
+  public employeesRoute = '/' + EMPLOYEES_ROUTE.path;
   constructor(private router: Router) {}
-  dashboard() {
-    this.router.navigate([DASHBOARD_ROUTE.path]);
-  }
-  employees() {
-    this.router.navigate([EMPLOYEES_ROUTE.path]);
-  }
-  projects() {
-    this.router.navigate([PROJECTS_ROUTE.path]);
-  }
 }
