@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -13,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent {
-  public opened = false;
+  public opened = true;
   public projectRoute = '/' + PROJECTS_ROUTE.path;
   public dashboardRoute = '/' + DASHBOARD_ROUTE.path;
   public employeesRoute = '/' + EMPLOYEES_ROUTE.path;

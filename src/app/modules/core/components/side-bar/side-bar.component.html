@@ -1,14 +1,14 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-    <button [routerLink]="dashboardRoute"><mat-icon>slow_motion_video</mat-icon>{{"side-bar.dashboard" | translate}}</button>
-    <button [routerLink]="employeesRoute"><mat-icon>edit</mat-icon>{{"side-bar.employees" | translate}}</button>
-    <button [routerLink]="projectRoute"><mat-icon>dns</mat-icon>{{"side-bar.projects" | translate}}</button>
+  <mat-sidenav #sidenav mode="side" (openedSideBar)="opened = !opened" opened class="example-sidenav">
+    <div class="btn-menu">
+      <button [routerLink]="dashboardRoute"><mat-icon>slow_motion_video</mat-icon>{{"side-bar.dashboard" | translate}}</button>
+      <button [routerLink]="employeesRoute"><mat-icon>edit</mat-icon>{{"side-bar.employees" | translate}}</button>
+      <button [routerLink]="projectRoute"><mat-icon>dns</mat-icon>{{"side-bar.projects" | translate}}</button>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
+    <app-breadcrumbs></app-breadcrumbs>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-<mat-toolbar>
-  <button (click)="opened = !opened">
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
+

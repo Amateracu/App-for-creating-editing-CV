@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: DashboardPageComponent,
     data: {
-      breadCrumb: DASHBOARD_ROUTE.breadCrumb,
+      breadCrumb: DASHBOARD_ROUTE.breadcrumb,
     },
   },
 ];

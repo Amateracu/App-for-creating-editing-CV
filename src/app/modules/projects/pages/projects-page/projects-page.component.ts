@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { PROJECTS_INFO_ROUTE } from 'src/app/shared/constants/routing-path.const';
-import { ICv } from 'src/app/shared/interfaces/cv.interface';
+import { Router } from '@angular/router';
+import { PROJECTS_INFO_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
+import { IInfo } from 'src/app/shared/interfaces/info.interface';
 
 @Component({
   selector: 'app-projects-page',
@@ -9,10 +10,10 @@ import { ICv } from 'src/app/shared/interfaces/cv.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsPageComponent {
-  constructor() {}
-  public projectInfoRoute = '/' + PROJECTS_INFO_ROUTE.path;
-  public cvElements: ICv[] = [
+  constructor(public router: Router) {}
+  public cvElements: IInfo[] = [
     {
+      id: 1232,
       firstName: 'Danik',
       lastName: 'Vasin',
       email: 'd@mail.ru',
@@ -21,5 +22,9 @@ export class ProjectsPageComponent {
     },
   ];
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'department', 'specialization'];
-  clickedRows = new Set<ICv>();
+  clickedRows = new Set<IInfo>();
+  public routeInfo(row: any) {
+    console.log(row);
+    this.router.navigate([PROJECTS_ROUTE.path, row.id]);
+  }
 }

@@ -1,16 +1,40 @@
+:host {
+  height: 100%;
+}
 mat-sidenav-container {
-  height: 80%;
+  height: 100%;
 }
 
 mat-sidenav {
   background-color: white;
   width: 201px;
 }
-button {
-  width: 200px;
-  background-color: white;
-  padding: 0px;
+
+.btn-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
+
+button {
+  background-color: white;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+mat-sidenav,
+button:focus {
+  color: #1890ff;
+}
+
 mat-toolbar {
   width: 200px;
+  background-color: white;
+}
+
+mat-sidenav-content {
+  background-color: #f0f2f5;
 }

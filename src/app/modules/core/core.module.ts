@@ -10,19 +10,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslateModule } from '@ngx-translate/core';
 import { DatepickerModule } from 'src/app/shared/controls/datepicker/datepicker.module';
 import { InputModule } from 'src/app/shared/controls/input/input.module';
-import { BreadcrumbsModule } from './components/breadcrumbs/breadrumbs.module';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { CorePageComponent } from './pages/core-page/core-page.component';
 
 @NgModule({
-  declarations: [CorePageComponent, HeaderComponent, SideBarComponent],
+  declarations: [CorePageComponent, HeaderComponent, SideBarComponent, BreadcrumbsComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,
     HttpClientModule,
-    BreadcrumbsModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,

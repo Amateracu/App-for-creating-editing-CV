@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: EmployeesPageComponent,
     data: {
-      breadCrumb: EMPLOYEES_ROUTE.breadCrumb,
+      breadCrumb: EMPLOYEES_ROUTE.breadcrumb,
     },
   },
 ];

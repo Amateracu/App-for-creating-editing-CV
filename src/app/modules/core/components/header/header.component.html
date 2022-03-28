@@ -1,7 +1,9 @@
 
 <mat-toolbar>
   <div class="header">
-      <mat-icon>menu</mat-icon>
+      <button (click)="opened()">
+        <mat-icon>menu</mat-icon>
+      </button>
     <span>{{'header.title' | translate}}</span>
   </div>
   <div class="navbar">

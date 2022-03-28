@@ -47,5 +47,13 @@
   },
   "control-validation": {
     "required": "Please, specify the field"
+  },
+  "breadcrumbs": {
+    "auth": "Auth",
+    "dashboard": "Dashboard",
+    "employees": "Employees",
+    "projects": "Projects",
+    "info": "Info",
+    "home": "Home"
   }
 }

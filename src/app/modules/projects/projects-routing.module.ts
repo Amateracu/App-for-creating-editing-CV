@@ -8,15 +8,13 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectsPageComponent,
-    children: [
-      {
-        path: PROJECTS_INFO_ROUTE.path,
-        component: ProjectInfoComponent,
-        data: {
-          breadcrumb: PROJECTS_INFO_ROUTE.breadCrumb,
-        },
-      },
-    ],
+  },
+  {
+    path: PROJECTS_INFO_ROUTE.path,
+    component: ProjectInfoComponent,
+    data: {
+      breadcrumb: PROJECTS_INFO_ROUTE.breadcrumb,
+    },
   },
 ];
 
