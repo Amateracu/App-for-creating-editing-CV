@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
 import { DatepickerModule } from 'src/app/shared/controls/datepicker/datepicker.module';
@@ -25,10 +26,11 @@ import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empo
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
     TranslateModule,
     InputModule,
     DatepickerModule,
+    MatButtonModule,
+    MatTableModule,
   ],
   exports: [],
   providers: [],

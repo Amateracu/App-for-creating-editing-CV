@@ -1,11 +1,15 @@
 mat-toolbar {
+  display: flex;
   justify-content: space-between;
   color: #f0f2f5;
   background-color: #001529;
 }
-
+span {
+  vertical-align: middle;
+}
 .header {
-  justify-content: start;
+  display: inline-block;
+  align-items: center;
 }
 
 .navbar {

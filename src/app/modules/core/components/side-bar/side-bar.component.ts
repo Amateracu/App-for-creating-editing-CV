@@ -14,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent {
-  public opened = true;
+  @Input() isToogle!: boolean;
   public projectRoute = '/' + PROJECTS_ROUTE.path;
   public dashboardRoute = '/' + DASHBOARD_ROUTE.path;
   public employeesRoute = '/' + EMPLOYEES_ROUTE.path;

@@ -1,9 +1,18 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" (openedSideBar)="opened = !opened" opened class="example-sidenav">
+  <mat-sidenav #sidenav mode="side" [(opened)]="isToogle">
     <div class="btn-menu">
-      <button [routerLink]="dashboardRoute"><mat-icon>slow_motion_video</mat-icon>{{"side-bar.dashboard" | translate}}</button>
-      <button [routerLink]="employeesRoute"><mat-icon>edit</mat-icon>{{"side-bar.employees" | translate}}</button>
-      <button [routerLink]="projectRoute"><mat-icon>dns</mat-icon>{{"side-bar.projects" | translate}}</button>
+      <button class="button-side-bar" [routerLink]="dashboardRoute">
+        <mat-icon>speed</mat-icon>
+        <p class="button-text">{{ 'side-bar.dashboard' | translate }}</p>
+      </button>
+      <button class="button-side-bar" [routerLink]="employeesRoute">
+        <mat-icon>edit</mat-icon>
+        <p class="button-text">{{ 'side-bar.employees' | translate }}</p>
+      </button>
+      <button class="button-side-bar" [routerLink]="projectRoute">
+        <mat-icon>storage</mat-icon>
+        <p class="button-text">{{ 'side-bar.projects' | translate }}</p>
+      </button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -11,4 +20,3 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

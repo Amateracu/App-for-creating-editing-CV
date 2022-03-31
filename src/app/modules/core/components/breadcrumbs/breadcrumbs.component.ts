@@ -43,6 +43,9 @@ export class BreadcrumbsComponent implements OnInit {
     let isClickable =
       route.routeConfig && route.routeConfig.data && route.routeConfig.data.isClickable;
     let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
+    let title = route.routeConfig && route.routeConfig.data ? route.routeConfig.data.label : '';
+    let labelDescription =
+      route.routeConfig && route.routeConfig.data ? route.routeConfig.data.description : '';
 
     const lastRoutePart = path?.split('/').pop();
     const isDynamicRoute = lastRoutePart?.startsWith(':');
@@ -57,13 +60,14 @@ export class BreadcrumbsComponent implements OnInit {
     const breadcrumb: IBreadCrumbs = {
       label: label,
       url: nextUrl,
+      title: title,
+      labelDescription: labelDescription,
     };
 
     const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
     if (route.firstChild) {
       return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
-
     return newBreadcrumbs;
   }
 }

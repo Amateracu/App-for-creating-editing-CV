@@ -54,6 +54,9 @@
     "employees": "Employees",
     "projects": "Projects",
     "info": "Info",
-    "home": "Home"
+    "home": "Home",
+    "label": "Projects",
+    "description-list": "Projects list",
+    "description-info": "Projects info"
   }
 }

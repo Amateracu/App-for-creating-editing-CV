@@ -1,37 +1,5 @@
-<table mat-table [dataSource]="cvElements" class="mat-elevation-z8 demo-table">
-  <!-- Position Column -->
-  <ng-container matColumnDef="firstName">
-    <th mat-header-cell *matHeaderCellDef>{{"project-page.first-name" | translate}}</th>
-    <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="lastName">
-    <th mat-header-cell *matHeaderCellDef>{{"project-page.last-name" | translate}}</th>
-    <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef>{{"project-page.email" | translate}}</th>
-    <td mat-cell *matCellDef="let element">{{element.email}}</td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="department">
-    <th mat-header-cell *matHeaderCellDef>{{"project-page.department" | translate}}</th>
-    <td mat-cell *matCellDef="let element">{{element.department}}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="specialization">
-    <th mat-header-cell *matHeaderCellDef>{{"project-page.specialization" | translate}}</th>
-    <td mat-cell *matCellDef="let element">{{element.specialization}}</td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns;"
-      (click)="routeInfo(row)"
-  ></tr>
-</table>
+<app-base-table
+  [data]="cvElements"
+  [columns]="columns"
+  (clickedRow)="openProjectInfo($event)"
+></app-base-table>

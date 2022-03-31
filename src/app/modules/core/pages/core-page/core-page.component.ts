@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CorePageComponent {
-  public isToogle = false;
+  public isToogle!: boolean;
   public toogle() {
     this.isToogle = !this.isToogle;
   }

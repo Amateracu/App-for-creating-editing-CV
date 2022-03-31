@@ -1,6 +1,7 @@
 :host {
   height: 100%;
 }
+
 mat-sidenav-container {
   height: 100%;
 }
@@ -16,17 +17,24 @@ mat-sidenav {
   align-items: flex-start;
 }
 
-button {
+.button-side-bar {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
   background-color: white;
   border: none;
-}
+  margin: 0;
 
-button:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+  .button-text {
+    margin: 0;
+  }
 }
 
 mat-sidenav,
-button:focus {
+.button-side-bar:focus {
   color: #1890ff;
 }
 
