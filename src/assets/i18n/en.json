@@ -58,5 +58,7 @@
     "label": "Projects",
     "description-list": "Projects list",
     "description-info": "Projects info"
-  }
+  },
+  "labels": {},
+  "descriptions": {}
 }

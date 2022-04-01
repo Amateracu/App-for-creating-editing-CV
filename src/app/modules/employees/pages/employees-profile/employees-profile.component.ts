@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 
 @Component({
   selector: 'app-employees-profile',
@@ -7,5 +8,5 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesProfileComponent {
-  constructor() {}
+  constructor(public breadrumbs: BreadcrumbsService) {}
 }

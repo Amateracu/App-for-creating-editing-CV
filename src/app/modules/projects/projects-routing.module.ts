@@ -8,19 +8,10 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectsPageComponent,
-    data: {
-      label: PROJECTS_ROUTE.label,
-      desription: PROJECTS_ROUTE.description,
-    },
   },
   {
     path: PROJECTS_INFO_ROUTE.path,
     component: ProjectInfoComponent,
-    data: {
-      breadcrumb: PROJECTS_INFO_ROUTE.breadcrumb,
-      label: PROJECTS_INFO_ROUTE.label,
-      desription: PROJECTS_INFO_ROUTE.description,
-    },
   },
 ];
 

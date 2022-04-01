@@ -12,4 +12,8 @@ export class BreadcrumbsService {
   updateBreadcrumb(str: string) {
     this.subject.next(str);
   }
+
+  clearBreacrumb() {
+    this.subject.next('');
+  }
 }

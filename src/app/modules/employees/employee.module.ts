@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
+import { BaseTableModule } from 'src/app/shared/components/base-table/base-table.module';
 import { DatepickerModule } from 'src/app/shared/controls/datepicker/datepicker.module';
 import { InputModule } from 'src/app/shared/controls/input/input.module';
 import { EmployeeRoutingModule } from './employee-routing.module';
@@ -31,6 +32,7 @@ import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empo
     DatepickerModule,
     MatButtonModule,
     MatTableModule,
+    BaseTableModule,
   ],
   exports: [],
   providers: [],

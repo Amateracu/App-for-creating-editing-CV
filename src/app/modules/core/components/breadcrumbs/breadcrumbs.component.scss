@@ -1,4 +1,4 @@
-.breadcrumb {
+.breadcrumb-wrapper {
   display: flex;
   column-gap: 0px;
   background-color: white;
@@ -11,30 +11,39 @@
   top: 0px;
   margin-bottom: 20px;
   border: none;
-
-  span {
-    color: darkgrey;
-    cursor: pointer;
+  .page-title {
+    font-size: 40px;
   }
-  span:hover {
-    color: black;
-    text-decoration: none;
+  .page-description {
+    font-size: 20px;
   }
-  li {
-    list-style: none;
-    float: left;
-    margin: 5px;
-  }
-  li:last-child span {
-    color: black;
-    margin-right: 20px;
-  }
-  li::after {
-    content: '/';
-    color: darkgrey;
-    margin: 5px;
-  }
-  li:last-child::after {
-    content: '';
+  .breadcrumb {
+    display: flex;
+    column-gap: 0px;
+    span {
+      color: darkgrey;
+      cursor: pointer;
+    }
+    span:hover {
+      color: black;
+      text-decoration: none;
+    }
+    li {
+      list-style: none;
+      float: left;
+      margin: 5px;
+    }
+    li:last-child span {
+      color: black;
+      margin-right: 20px;
+    }
+    li::after {
+      content: '/';
+      color: darkgrey;
+      margin: 5px;
+    }
+    li:last-child::after {
+      content: '';
+    }
   }
 }

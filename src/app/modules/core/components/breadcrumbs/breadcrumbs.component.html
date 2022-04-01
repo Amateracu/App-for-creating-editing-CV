@@ -1,9 +1,11 @@
-<ol class="breadcrumb">
-  <li *ngFor="let breadcrumb of breadcrumbs">
-    <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
-      {{ breadcrumb.label | translate }}
-    </span>
-    {{ breadcrumb.title | translate }}
-    {{ breadcrumb.labelDescription | translate }}
-  </li>
-</ol>
+<div class="breacrumb-wrapper">
+  <ol class="breadcrumb">
+    <li *ngFor="let breadcrumb of breadcrumbs">
+      <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+        {{ breadcrumb.label | translate }}
+      </span>
+    </li>
+  </ol>
+  <div class="page-title">{{ pageTitle | translate }}</div>
+  <div class="page-description">{{ pageDescription | translate }}</div>
+</div>

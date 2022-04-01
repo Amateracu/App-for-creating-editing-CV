@@ -15,9 +15,6 @@ const routes: Routes = [
   {
     path: EMPLOYEES_PROFILE_ROUTE.path,
     component: EmployeesProfileComponent,
-    data: {
-      breadcrumb: EMPLOYEES_PROFILE_ROUTE.breadcrumb,
-    },
   },
 ];
 

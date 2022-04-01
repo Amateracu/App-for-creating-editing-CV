@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 
 @Component({
   selector: 'app-project-info',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProjectInfoComponent implements OnInit {
   public form!: FormGroup;
   public submitted = false;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, public breadrumbs: BreadcrumbsService) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
