@@ -1,9 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IColumn } from 'src/app/shared/components/base-table/interfaces/column.interface';
-import { PROJECTS_INFO_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
+import {
+  PROJECTS_CREATE_ROUTE,
+  PROJECTS_INFO_ROUTE,
+  PROJECTS_ROUTE,
+} from 'src/app/shared/constants/routing-path.const';
+import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IInfo } from 'src/app/shared/interfaces/info.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
+import { UrlService } from 'src/app/shared/services/url.service';
 import { COLUMNS } from './constants/columns.const';
 
 @Component({
@@ -12,23 +18,31 @@ import { COLUMNS } from './constants/columns.const';
   styleUrls: ['./projects-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProjectsPageComponent {
-  public cvElements: IInfo[] = [
-    {
-      id: 1232,
-      firstName: 'Danik',
-      lastName: 'Vasin',
-      email: 'd@mail.ru',
-      department: 'JavaScript',
-      specialization: 'Angular',
-    },
-  ];
+export class ProjectsPageComponent implements OnInit {
+  public breadcrumb: IBreadCrumb = {
+    label: 'Project',
+    url: PROJECTS_ROUTE.path,
+    title: 'Project',
+    description: 'Project list',
+  };
+  public cvElements!: IInfo[];
 
   public columns: IColumn[] = COLUMNS;
 
-  constructor(public router: Router, public breadrumbs: BreadcrumbsService) {}
+  constructor(
+    public router: Router,
+    public breadcrumbs: BreadcrumbsService,
+    private urlService: UrlService,
+  ) {
+    this.cvElements = urlService.cvElements;
+  }
+  ngOnInit(): void {}
 
   public openProjectInfo(row: IInfo) {
     this.router.navigate([PROJECTS_ROUTE.path, row.id]);
+    this.breadcrumb.label = row.firstName;
+  }
+  public routeAddProject() {
+    this.router.navigate([PROJECTS_ROUTE.path, PROJECTS_CREATE_ROUTE.path]);
   }
 }

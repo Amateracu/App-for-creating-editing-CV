@@ -8,6 +8,7 @@ import {
 } from 'src/app/shared/constants/routing-path.const';
 import { IInfo } from 'src/app/shared/interfaces/info.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
+import { UrlService } from 'src/app/shared/services/url.service';
 
 @Component({
   selector: 'app-employees-page',
@@ -16,17 +17,15 @@ import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesPageComponent {
-  constructor(public router: Router, public breadrumbs: BreadcrumbsService) {}
-  public profileElements: IInfo[] = [
-    {
-      id: 4356,
-      firstName: 'Danik',
-      lastName: 'Vasin',
-      email: 'd@mail.ru',
-      department: 'JavaScript',
-      specialization: 'Angular',
-    },
-  ];
+  constructor(
+    public router: Router,
+    public breadrumbs: BreadcrumbsService,
+    private urlService: UrlService,
+  ) {
+    this.profileElements = urlService.cvElements;
+  }
+  public profileElements!: IInfo[];
+
   public columns: IColumn[] = COLUMNS;
   public openProfilePage(row: IInfo) {
     this.router.navigate([EMPLOYEES_ROUTE.path, row.id]);

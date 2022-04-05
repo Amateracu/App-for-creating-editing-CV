@@ -15,6 +15,9 @@ export const EMPLOYEES_PROFILE_ROUTE: IRouting = {
 export const PROJECTS_ROUTE: IRouting = {
   path: `projects`,
 };
+export const PROJECTS_CREATE_ROUTE: IRouting = {
+  path: `create`,
+};
 
 export const PROJECT_PARAM: string = 'projectId';
 export const PROJECTS_INFO_ROUTE: IRouting = {

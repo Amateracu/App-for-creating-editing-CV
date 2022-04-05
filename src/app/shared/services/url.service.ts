@@ -1,43 +1,16 @@
 import { Injectable } from '@angular/core';
+import { IInfo } from '../interfaces/info.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UrlService {
-  shortenUrlIfNecessary(returnUrl: string): string {
-    let questionMark = returnUrl.indexOf('?');
-
-    if (questionMark > -1) {
-      returnUrl = returnUrl.substring(0, questionMark);
-    }
-
-    return returnUrl;
-  }
-
-  getQueryParams(returnUrl: string): any {
-    let queryParams: any = {};
-
-    let questionMark = returnUrl.indexOf('?');
-    if (questionMark > -1) {
-      let paramString = returnUrl.substring(questionMark + 1, returnUrl.length);
-      let queryMap = this.getMapFromParamString(paramString);
-      queryParams.queryParams = queryMap;
-    }
-
-    return queryParams;
-  }
-
-  private getMapFromParamString(paramString: string): Map<string, string> {
-    let pairs: string[] = paramString.split('&');
-    const paramMap = new Map();
-
-    for (let i = 0; i < pairs.length; i++) {
-      let pair = pairs[i];
-      let map: string[] = pair.split('=');
-      let key: string = map[0];
-      let val: string = map[1];
-
-      paramMap.set(key, val);
-    }
-
-    return paramMap;
-  }
+  public cvElements: IInfo[] = [
+    {
+      id: 1232,
+      firstName: 'Danik',
+      lastName: 'Vasin',
+      email: 'd@mail.ru',
+      department: 'JavaScript',
+      specialization: 'Angular',
+    },
+  ];
 }
