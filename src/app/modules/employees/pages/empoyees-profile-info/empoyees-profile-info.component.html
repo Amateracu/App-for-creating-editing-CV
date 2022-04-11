@@ -1,16 +1,28 @@
 <form class="info" [formGroup]="form" (ngSubmit)="submit()">
   <div class="form-group">
-    <app-input formControlName="firstName" [label]="'employees-profile-info.first-name' | translate"></app-input>
-    <app-input formControlName="lastName" [label]="'employees-profile-info.last-name' | translate"></app-input>
-    <app-input formControlName="email" [label]="'employees-profile-info.email' | translate"></app-input>
-    <app-input formControlName="specialization" [label]="'employees-profile-info.specialization' | translate"></app-input>
-    <app-input formControlName="departament" [label]="'employees-profile-info.department' | translate"></app-input>
-    <button
-      type="submit"
-      [disabled]="form.invalid || submitted"
-      >{{'employees-profile-info.button-save' | translate}}</button>
-    <button
-      type="button"
-    >{{'employees-profile-info.button-cancel' | translate}}</button>
+    <app-input
+      formControlName="firstName"
+      [label]="'employees-profile-info.first-name' | translate"
+    ></app-input>
+    <app-input
+      formControlName="lastName"
+      [label]="'employees-profile-info.last-name' | translate"
+    ></app-input>
+    <app-input
+      formControlName="email"
+      [label]="'employees-profile-info.email' | translate"
+    ></app-input>
+    <app-input
+      formControlName="specialization"
+      [label]="'employees-profile-info.specialization' | translate"
+    ></app-input>
+    <app-input
+      formControlName="departament"
+      [label]="'employees-profile-info.department' | translate"
+    ></app-input>
+    <button mat-raised-button type="submit" [disabled]="form.invalid || submitted">
+      {{ 'buttons.save' | translate }}
+    </button>
+    <button mat-raised-button type="button">{{ 'buttons.cancel' | translate }}</button>
   </div>
 </form>

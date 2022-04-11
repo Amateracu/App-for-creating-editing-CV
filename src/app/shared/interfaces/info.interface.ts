@@ -6,3 +6,7 @@ export interface IInfo {
   department: string;
   specialization: string;
 }
+export interface IConfig {
+  adminName: string;
+  premissions?: string[];
+}

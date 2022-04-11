@@ -12,5 +12,9 @@ export class CorePageComponent {
   public toogle() {
     this.isToogle = !this.isToogle;
   }
+  public openBottomSheet!: boolean;
+  public opened() {
+    this.openBottomSheet = !this.openBottomSheet;
+  }
   constructor() {}
 }

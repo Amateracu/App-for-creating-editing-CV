@@ -1,24 +1,28 @@
 <form class="auth" [formGroup]="form" (ngSubmit)="submit()">
-  <h2>{{'header.title'| translate}}</h2>
+  <h2>{{ 'header.title' | translate }}</h2>
   <div class="form-group">
     <app-input formControlName="username" [label]="'auth-page.username' | translate"></app-input>
     <app-input formControlName="password" [label]="'auth-page.password' | translate"></app-input>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="form.invalid || submitted"
-      >{{'auth-page.button-login' | translate}}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">
+      {{ 'buttons.login' | translate }}
+    </button>
   </div>
   <section class="example-section">
-    <mat-checkbox class="example-margin" [(ngModel)]="checked">{{'auth-page.checkbox' | translate}}</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="checked">{{
+      'auth-page.checkbox' | translate
+    }}</mat-checkbox>
   </section>
 </form>
-<button mat-icon-button class="example-icon" matBadgePosition="above" mat-button [matMenuTriggerFor]="menu">
+<button
+  mat-icon-button
+  class="example-icon"
+  matBadgePosition="above"
+  mat-button
+  [matMenuTriggerFor]="menu"
+>
   <mat-icon>translate</mat-icon>
 </button>
 <mat-menu #menu="matMenu" yPosition="below">
   <button class="mat-menu" mat-menu-item (click)="changeLang('en')">en</button>
   <button class="mat-menu" mat-menu-item (click)="changeLang('ru')">ru</button>
 </mat-menu>
-
-

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Observable, Subject } from 'rxjs';
 import { IBreadCrumb } from '../interfaces/breadcrumbs.interface';
 
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbsService {
-  private subject = new Subject<IBreadCrumb[] | null>();
+  private subject = new BehaviorSubject<IBreadCrumb[]>([]);
 
-  getBreadCrumbs(): Observable<IBreadCrumb[] | null> {
+  getBreadCrumbs(): Observable<IBreadCrumb[]> {
     return this.subject.asObservable();
   }
 
@@ -15,6 +16,6 @@ export class BreadcrumbsService {
   }
 
   clearBreacrumb() {
-    this.subject.next(null);
+    this.subject.next([]);
   }
 }

@@ -11,13 +11,17 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent {
   @Output() openedSideBar = new EventEmitter<boolean>();
+  @Output() openedBottomSheet = new EventEmitter<boolean>();
   public opened() {
     this.openedSideBar.emit();
   }
   constructor(private translate: TranslateService) {
     this.translate.setDefaultLang('en');
   }
-  changeLang(lang: string) {
+  public changeLang(lang: string) {
     this.translate.use(lang);
+  }
+  public openBottomSheet() {
+    this.openedBottomSheet.emit();
   }
 }

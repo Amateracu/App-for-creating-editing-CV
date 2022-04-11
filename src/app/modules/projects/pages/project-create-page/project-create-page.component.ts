@@ -1,5 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  HOME_BREADCRUMB,
+  PROJECT_BREADCRUMB,
+  PROJECT_CREATE_BREADCRUMB,
+} from 'src/app/shared/constants/breadcrumbs.const';
+import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
+import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 
 @Component({
   selector: 'app-project-create-page',
@@ -8,7 +14,14 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCreatePageComponent implements OnInit {
-  constructor() {}
+  constructor(private breadcrumbsService: BreadcrumbsService) {}
+  public breadcrumbs: IBreadCrumb[] = [
+    HOME_BREADCRUMB,
+    PROJECT_BREADCRUMB,
+    PROJECT_CREATE_BREADCRUMB,
+  ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
+  }
 }

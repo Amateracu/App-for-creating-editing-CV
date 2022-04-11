@@ -1,0 +1,34 @@
+<form class="info" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-group">
+    <app-input formControlName="name" [label]="'project-info.name' | translate"></app-input>
+    <app-datepicker
+      formControlName="startDate"
+      [label]="'project-info.start-date' | translate"
+    ></app-datepicker>
+    <app-datepicker
+      formControlName="endDate"
+      [label]="'project-info.end-date' | translate"
+    ></app-datepicker>
+    <app-input
+      formControlName="teamSize"
+      [label]="'project-info.team-size' | translate"
+    ></app-input>
+    <app-input
+      formControlName="techStack"
+      [label]="'project-info.tech-stack' | translate"
+    ></app-input>
+    <app-input formControlName="roles" [label]="'project-info.roles' | translate"></app-input>
+    <app-input
+      formControlName="description"
+      [label]="'project-info.description' | translate"
+    ></app-input>
+    <app-input
+      formControlName="responsibilities"
+      [label]="'project-info.responsibilities' | translate"
+    ></app-input>
+    <button type="submit" [disabled]="form.invalid">
+      {{ 'buttons.save' | translate }}
+    </button>
+    <button type="button">{{ 'buttons.cancel' | translate }}</button>
+  </div>
+</form>

@@ -1,28 +1,51 @@
-
 <mat-toolbar>
   <div class="header">
-      <button mat-icon-button class="example-icon" (click)="opened()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    <span>{{'header.title' | translate}}</span>
+    <button mat-icon-button class="example-icon" (click)="opened()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ 'header.title' | translate }}</span>
   </div>
   <div class="navbar">
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
       <mat-icon>search</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" matBadge="15" matBadgeColor="warn">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+      matBadge="15"
+      matBadgeColor="warn"
+    >
       <mat-icon>assistant</mat-icon>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>notifications_none</mat-icon>
     </button>
-      <button mat-icon-button class="example-icon" matBadgePosition="above" mat-button [matMenuTriggerFor]="menu">
-        <mat-icon>translate</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu" yPosition="below">
-        <button class="mat-menu" mat-menu-item (click)="changeLang('en')">en</button>
-        <button class="mat-menu" mat-menu-item (click)="changeLang('ru')">ru</button>
-      </mat-menu>
+    <button
+      [ngStyle]="{ 'margin-right': '43px' }"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+      (click)="openBottomSheet()"
+    >
+      <mat-icon>account_circle</mat-icon>Serati Ma
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      matBadgePosition="above"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>translate</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" yPosition="below">
+      <button class="mat-menu" mat-menu-item (click)="changeLang('en')">en</button>
+      <button class="mat-menu" mat-menu-item (click)="changeLang('ru')">ru</button>
+    </mat-menu>
   </div>
 </mat-toolbar>
-

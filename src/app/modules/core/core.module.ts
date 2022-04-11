@@ -15,6 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { CorePageComponent } from './pages/core-page/core-page.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [CorePageComponent, HeaderComponent, SideBarComponent, BreadcrumbsComponent],

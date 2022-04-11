@@ -1,6 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PROJECTS_INFO_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  HOME_BREADCRUMB,
+  PROJECT_BREADCRUMB,
+  PROJECT_INFO_BREADCRUMB,
+} from 'src/app/shared/constants/breadcrumbs.const';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 
@@ -11,26 +14,13 @@ import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectEditPageComponent implements OnInit {
-  public form!: FormGroup;
-  public submitted = false;
-  public breadcrumb: IBreadCrumb = {
-    label: 'Project',
-    url: PROJECTS_INFO_ROUTE.path,
-    title: 'Project',
-    description: 'Project info',
-  };
-  constructor(private formBuilder: FormBuilder, public breadrumbs: BreadcrumbsService) {}
+  public breadcrumbs: IBreadCrumb[] = [
+    HOME_BREADCRUMB,
+    PROJECT_BREADCRUMB,
+    PROJECT_INFO_BREADCRUMB,
+  ];
+  constructor(public breadcrumbsService: BreadcrumbsService) {}
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
-      teamSize: ['', [Validators.required]],
-      techStack: ['', [Validators.required]],
-      roles: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      responsibilities: ['', [Validators.required]],
-    });
+    this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
   }
-  submit() {}
 }

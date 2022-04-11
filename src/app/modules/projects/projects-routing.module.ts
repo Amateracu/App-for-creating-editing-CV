@@ -22,7 +22,6 @@ const routes: Routes = [
     path: PROJECTS_INFO_ROUTE.path,
     component: ProjectEditPageComponent,
   },
-  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({

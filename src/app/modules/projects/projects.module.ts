@@ -10,9 +10,16 @@ import { ProjectCreatePageComponent } from './pages/project-create-page/project-
 import { ProjectEditPageComponent } from './pages/project-edit-page/project-edit-page.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
 import { ProjectsRoutingModule } from './projects-routing.module';
+import { ProjectFormComponent } from './components/project-form/project-form.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [ProjectsPageComponent, ProjectEditPageComponent, ProjectCreatePageComponent],
+  declarations: [
+    ProjectsPageComponent,
+    ProjectEditPageComponent,
+    ProjectCreatePageComponent,
+    ProjectFormComponent,
+  ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
@@ -23,6 +30,7 @@ import { ProjectsRoutingModule } from './projects-routing.module';
     DatepickerModule,
     TranslateModule,
     BaseTableModule,
+    MatButtonModule,
   ],
   exports: [],
   providers: [],

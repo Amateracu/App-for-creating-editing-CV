@@ -9,6 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { CoreModule } from './modules/core/core.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
+import { StoreModule } from '@ngrx/store';
+import { StateModule } from './state.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +27,7 @@ import { CoreModule } from './modules/core/core.module';
     AuthModule,
     CoreModule,
     BrowserAnimationsModule,
+    StateModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

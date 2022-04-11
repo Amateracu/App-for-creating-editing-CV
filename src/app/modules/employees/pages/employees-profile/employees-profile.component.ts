@@ -1,4 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  EMPLOYEES_BREADCRUMB,
+  EMPLOYEES_PROFILE_BREADCRUMB,
+  HOME_BREADCRUMB,
+} from 'src/app/shared/constants/breadcrumbs.const';
+import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 
 @Component({
@@ -7,6 +14,14 @@ import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
   styleUrls: ['./employees-profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeesProfileComponent {
-  constructor(public breadrumbs: BreadcrumbsService) {}
+export class EmployeesProfileComponent implements OnInit {
+  public breadcrumbs: IBreadCrumb[] = [
+    HOME_BREADCRUMB,
+    EMPLOYEES_BREADCRUMB,
+    EMPLOYEES_PROFILE_BREADCRUMB,
+  ];
+  constructor(public breadcrumbsService: BreadcrumbsService) {}
+  ngOnInit(): void {
+    this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
+  }
 }

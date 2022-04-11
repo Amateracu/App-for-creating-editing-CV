@@ -10,9 +10,7 @@
     "tech-stack": "Используемые технологии",
     "roles": "Роли",
     "description": "Описание",
-    "responsibilities": "Обязанности",
-    "button-save": "Сохранить",
-    "button-cancel": "Отмена"
+    "responsibilities": "Обязанности"
   },
   "project-page": {
     "first-name": "Имя",
@@ -35,28 +33,36 @@
     "last-name": "Фамилия",
     "email": "Почта",
     "specialization": "Специализация",
-    "department": "Отделение",
-    "button-save": "Сохранить",
-    "button-cancel": "Отмена"
+    "department": "Отделение"
   },
   "auth-page": {
     "username": "Логин",
     "password": "Пароль",
-    "checkbox": "Запомнить меня",
-    "button-login": "Войти"
+    "checkbox": "Запомнить меня"
   },
   "control-validation": {
     "required": "Пожалуйста, заполните поле"
   },
-  "breadcrumbs": {
-    "auth": "Аунтефикация",
-    "dashboard": "Панель Управления",
-    "employees": "Сотрудники",
-    "projects": "Проекты",
-    "info": "Информация",
+  "breadcrumbs-label": {
     "home": "Домашняя страница",
-    "label": "Проекты",
-    "description-list": "Список проектов",
-    "description-info": "Информация о проекте"
+    "project": "Проекты",
+    "create": "Страница создания",
+    "employees": "Сотрудники"
+  },
+  "breadcrumbs-title": {
+    "project-title": "Проекты",
+    "employees-title": "Сотрудники"
+  },
+  "breadcrumbs-description": {
+    "project-description": "Список проектов",
+    "employees-description": "Список сотрудников",
+    "create-description": "Создание проекта"
+  },
+  "buttons": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "login": "Войти",
+    "add-project": "Добавить проект",
+    "add-employee": "Добавить сотрудника"
   }
 }

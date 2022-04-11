@@ -10,9 +10,7 @@
     "tech-stack": "Tech Stack",
     "roles": "Roles",
     "description": "Description",
-    "responsibilities": "Responsibilities",
-    "button-save": "Save",
-    "button-cancel": "Cancel"
+    "responsibilities": "Responsibilities"
   },
   "project-page": {
     "first-name": "First Name",
@@ -35,30 +33,36 @@
     "last-name": "Last Name",
     "email": "Email",
     "specialization": "Specialization",
-    "department": "Department",
-    "button-save": "Save",
-    "button-cancel": "Cancel"
+    "department": "Department"
   },
   "auth-page": {
     "username": "Login",
     "password": "Password",
-    "checkbox": "Remember me",
-    "button-login": "Login"
+    "checkbox": "Remember me"
   },
   "control-validation": {
     "required": "Please, specify the field"
   },
-  "breadcrumbs": {
-    "auth": "Auth",
-    "dashboard": "Dashboard",
-    "employees": "Employees",
-    "projects": "Projects",
-    "info": "Info",
+  "breadcrumbs-label": {
     "home": "Home",
-    "label": "Projects",
-    "description-list": "Projects list",
-    "description-info": "Projects info"
+    "project": "Projects",
+    "create": "Create",
+    "employees": "Employees"
   },
-  "labels": {},
-  "descriptions": {}
+  "breadcrumbs-title": {
+    "project-title": "Projects",
+    "employees-title": "Employees"
+  },
+  "breadcrumbs-description": {
+    "project-description": "Project list",
+    "employees-description": "Employee list",
+    "create-description": "Project create"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "login": "Login",
+    "add-project": "Add Project",
+    "add-employee": "Add Employy"
+  }
 }
