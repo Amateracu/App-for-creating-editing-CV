@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy } from '@angular/core';
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +21,8 @@ export class AuthPageComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required]],
+      rememberMe: [''],
     });
   }
   submit() {

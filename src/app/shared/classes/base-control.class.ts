@@ -3,7 +3,10 @@ import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Directive } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { takeUntil } from 'rxjs';
 
+@UntilDestroy()
 @Directive()
 export class BaseControl implements OnInit, DoCheck, ControlValueAccessor {
   constructor(public ngControl: NgControl, private readonly cdRef: ChangeDetectorRef) {
@@ -19,13 +22,15 @@ export class BaseControl implements OnInit, DoCheck, ControlValueAccessor {
 
   public ngOnInit(): void {
     this.initErrors();
+    this.initControlValueChanges();
   }
   public ngDoCheck(): void {
+    console.log(this.ngControl.control);
     if (this.ngControl.control?.errors !== this.control.errors) {
       this.initErrors();
     }
-    if (this.ngControl.control?.dirty) {
-      this.control.markAsDirty();
+    if (this.ngControl.control?.touched) {
+      this.control.markAsTouched();
       this.cdRef.markForCheck();
     } else {
       this.control.markAsPristine();
@@ -38,11 +43,11 @@ export class BaseControl implements OnInit, DoCheck, ControlValueAccessor {
   }
 
   public registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.cvaOnChange = fn;
   }
 
   public registerOnTouched(fn: any): void {
-    this.onTouch = fn;
+    this.cvaOnTouched = fn;
   }
 
   public cvaOnTouched: () => void = () => {};
@@ -55,4 +60,10 @@ export class BaseControl implements OnInit, DoCheck, ControlValueAccessor {
     this.control.setErrors(this.ngControl.control!.errors);
   }
   protected cvaOnChange: (value: any) => void = () => {};
+
+  protected initControlValueChanges(): void {
+    this.control.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
+      this.cvaOnChange(value);
+    });
+  }
 }

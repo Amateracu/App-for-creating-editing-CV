@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { BaseControl } from '../../classes/base-control.class';
 import { Small } from '../../enums/small.enum';
 @Component({
@@ -8,5 +8,6 @@ import { Small } from '../../enums/small.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent extends BaseControl {
+  @Input() type: string = 'text';
   public required = Small.required;
 }

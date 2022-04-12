@@ -8,9 +8,8 @@ import {
   EMPLOYEES_ROUTE,
 } from 'src/app/shared/constants/routing-path.const';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
-import { IInfo } from 'src/app/shared/interfaces/info.interface';
+import { IProject } from 'src/app/shared/interfaces/project.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
-import { UrlService } from 'src/app/shared/services/url.service';
 
 @Component({
   selector: 'app-employees-page',
@@ -20,20 +19,16 @@ import { UrlService } from 'src/app/shared/services/url.service';
 })
 export class EmployeesPageComponent implements OnInit {
   public breadcrumbs: IBreadCrumb[] = [HOME_BREADCRUMB, EMPLOYEES_BREADCRUMB];
-  constructor(
-    public router: Router,
-    public breadcrumbsService: BreadcrumbsService,
-    private urlService: UrlService,
-  ) {
-    this.profileElements = urlService.cvElements;
+  constructor(public router: Router, public breadcrumbsService: BreadcrumbsService) {
+    this.profileElements = [];
   }
   ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
   }
-  public profileElements!: IInfo[];
+  public profileElements!: IProject[];
 
   public columns: IColumn[] = COLUMNS;
-  public openProfilePage(row: IInfo) {
+  public openProfilePage(row: IProject) {
     this.router.navigate([EMPLOYEES_ROUTE.path, row.id]);
   }
 }

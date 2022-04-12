@@ -1,17 +1,10 @@
-<div
-  class="formControl"
-  [ngClass]="{invalid: control?.touched && control?.invalid}"
-  >
-  <label for="name">{{label}}</label>
+<div class="formControl" [ngClass]="{ invalid: control?.touched && control?.invalid }">
+  <label for="name">{{ label }}</label>
   <mat-form-field>
-    <input matInput type="text" [formControl]="control">
+    <input matInput [formControl]="control" [type]="type" />
   </mat-form-field>
-  <div
-    *ngIf="control?.touched && control?.invalid"
-    class="validation"
-  >
-    <small
-      *ngIf="control?.errors?.required"
-    >{{required | translate}}</small>
+
+  <div *ngIf="control?.touched && control?.invalid" class="validation">
+    <small *ngIf="control?.errors?.required">{{ required | translate }}</small>
   </div>
 </div>

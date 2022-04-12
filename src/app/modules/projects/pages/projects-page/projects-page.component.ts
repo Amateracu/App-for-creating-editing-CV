@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { IColumn } from 'src/app/shared/components/base-table/interfaces/column.interface';
 import { HOME_BREADCRUMB, PROJECT_BREADCRUMB } from 'src/app/shared/constants/breadcrumbs.const';
 import { PROJECTS_CREATE_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
-import { IInfo } from 'src/app/shared/interfaces/info.interface';
+import { IProject } from 'src/app/shared/interfaces/project.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
-import { UrlService } from 'src/app/shared/services/url.service';
+import { GetProjectsList } from 'src/app/store/projects/projects.actions';
 import { COLUMNS } from './constants/columns.const';
 
 @Component({
@@ -17,22 +18,23 @@ import { COLUMNS } from './constants/columns.const';
 })
 export class ProjectsPageComponent implements OnInit {
   public breadcrumbs: IBreadCrumb[] = [HOME_BREADCRUMB, PROJECT_BREADCRUMB];
-  public cvElements!: IInfo[];
+  public cvElements!: IProject[];
 
   public columns: IColumn[] = COLUMNS;
 
   constructor(
-    public router: Router,
-    public breadcrumbsService: BreadcrumbsService,
-    private urlService: UrlService,
+    private router: Router,
+    private breadcrumbsService: BreadcrumbsService,
+    private store: Store,
   ) {
-    this.cvElements = urlService.cvElements;
+    this.cvElements = [];
   }
   ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
+    this.store.dispatch(GetProjectsList());
   }
 
-  public openProjectInfo(row: IInfo) {
+  public openProjectInfo(row: IProject) {
     this.router.navigate([PROJECTS_ROUTE.path, row.id]);
   }
   public routeAddProject() {

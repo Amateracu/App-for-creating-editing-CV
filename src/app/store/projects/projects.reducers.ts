@@ -1,27 +1,26 @@
-import { IConfig, IInfo } from 'src/app/shared/interfaces/info.interface';
+import { Action, createReducer, on, State } from '@ngrx/store';
+import { IProject } from 'src/app/shared/interfaces/project.interface';
+import { GetProjectsListSuccess } from './projects.actions';
 
-export interface IInfoState {
-  users: IInfo[];
-  selectedUser: IInfo;
+export interface ProjectsState {
+  projects: IProject[];
 }
-export const initialInfoState: IInfoState = {
-  users: [],
-  selectedUser: {
-    id: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-    department: '',
-    specialization: '',
-  },
+
+export const projectsInitialState: ProjectsState = {
+  projects: [],
 };
 
-export interface IConfigState {
-  config: IConfig;
+const projectsReducer = createReducer(
+  projectsInitialState,
+  on(
+    GetProjectsListSuccess,
+    (state, { projects }): ProjectsState => ({
+      ...state,
+      projects,
+    }),
+  ),
+);
+
+export function ProjectsReducer(state: ProjectsState, action: Action) {
+  return projectsReducer(state, action);
 }
-export const initialConfigState: IConfigState = {
-  config: {
-    adminName: '',
-    premissions: [],
-  },
-};
