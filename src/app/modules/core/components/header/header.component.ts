@@ -1,7 +1,9 @@
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AUTH_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
 
 @Component({
   selector: 'app-header',
@@ -11,17 +13,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent {
   @Output() openedSideBar = new EventEmitter<boolean>();
-  @Output() openedBottomSheet = new EventEmitter<boolean>();
   public opened() {
     this.openedSideBar.emit();
   }
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private router: Router) {
     this.translate.setDefaultLang('en');
   }
   public changeLang(lang: string) {
     this.translate.use(lang);
   }
-  public openBottomSheet() {
-    this.openedBottomSheet.emit();
+  public logout() {
+    this.router.navigate([AUTH_ROUTE.path]);
   }
 }

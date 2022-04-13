@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, DoCheck } from '@angular/core';
+import { ChangeDetectorRef, DoCheck, EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Output } from '@angular/core';
 import { Directive } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { takeUntil } from 'rxjs';
 
 @UntilDestroy()
 @Directive()
@@ -25,7 +25,6 @@ export class BaseControl implements OnInit, DoCheck, ControlValueAccessor {
     this.initControlValueChanges();
   }
   public ngDoCheck(): void {
-    console.log(this.ngControl.control);
     if (this.ngControl.control?.errors !== this.control.errors) {
       this.initErrors();
     }

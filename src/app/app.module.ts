@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule, Provider } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,9 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { CoreModule } from './modules/core/core.module';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { reducers, effects } from './store';
 import { StateModule } from './store/state.module';
 
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor,
+};
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -33,7 +39,7 @@ import { StateModule } from './store/state.module';
       },
     }),
   ],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
 })
 export class AppModule {
