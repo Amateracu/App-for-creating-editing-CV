@@ -12,6 +12,8 @@ import { ProjectsPageComponent } from './pages/projects-page/projects-page.compo
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { InputAutocompleteModule } from 'src/app/shared/controls/input-autocomplete/input-autocomplete.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
     TranslateModule,
     BaseTableModule,
     MatButtonModule,
+    MatAutocompleteModule,
+    InputAutocompleteModule,
   ],
   exports: [],
   providers: [],

@@ -5,4 +5,4 @@ export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
 export const getAuthFromState = (state: AuthState) => state.authResponse;
 
-export const selectFilters = createSelector(selectAuthState, getAuthFromState);
+export const selectAuthData = createSelector(selectAuthState, getAuthFromState);

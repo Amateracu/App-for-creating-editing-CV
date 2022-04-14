@@ -13,11 +13,11 @@
     "responsibilities": "Обязанности"
   },
   "project-page": {
-    "first-name": "Имя",
-    "last-name": "Фамилия",
-    "email": "Почта",
-    "department": "Отделение",
-    "specialization": "Специализация"
+    "first-name": "Название",
+    "last-name": "Второе название",
+    "team-size": "Размер команды",
+    "responsibilities": "Обязанности",
+    "specialization": "Стек"
   },
   "side-bar": {
     "dashboard": "Панель управления",

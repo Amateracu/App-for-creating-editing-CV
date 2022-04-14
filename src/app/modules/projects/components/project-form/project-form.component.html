@@ -17,7 +17,8 @@
       formControlName="techStack"
       [label]="'project-info.tech-stack' | translate"
     ></app-input>
-    <app-input formControlName="roles" [label]="'project-info.roles' | translate"></app-input>
+    <app-input-autocomplete formControlName="roles" [label]="'project-info.roles' | translate">
+    </app-input-autocomplete>
     <app-input
       formControlName="description"
       [label]="'project-info.description' | translate"

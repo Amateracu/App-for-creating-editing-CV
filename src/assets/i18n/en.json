@@ -15,8 +15,8 @@
   "project-page": {
     "first-name": "First Name",
     "last-name": "Last Name",
-    "email": "Email",
-    "department": "Department",
+    "team-size": "Team Size",
+    "responsibilities": "Responsibilities",
     "specialization": "Specialization"
   },
   "side-bar": {

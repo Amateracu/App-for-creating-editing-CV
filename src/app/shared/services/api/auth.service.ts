@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IAuth, IAuthResponse } from '../../interfaces/auth.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -18,6 +18,7 @@ export class AuthService {
   }
 
   public login(user: IAuth): Observable<IAuthResponse> {
+    console.log('service');
     return this.http
       .post<IAuthResponse>('https://innowise-cv-generator.herokuapp.com/auth/login', user)
       .pipe(
@@ -28,17 +29,18 @@ export class AuthService {
   }
 
   public logout() {
-    this.setToken('', 0);
+    localStorage.removeItem('cvGen-token');
+    localStorage.removeItem('cvGen-token-exp');
   }
 
   public isAuthenticated(): boolean {
-    return !!this.token;
+    return !!this.getToken();
   }
 
-  private setToken(idToken: string, expiresIn: number) {
-    if (idToken) {
+  private setToken(token: string, expiresIn: number) {
+    if (token) {
       const expDate = new Date(new Date().getTime() + +expiresIn * 1000);
-      localStorage.setItem('cvGen-token', idToken);
+      localStorage.setItem('cvGen-token', token);
       localStorage.setItem('cvGen-token-exp', expDate.toString());
     } else {
       localStorage.clear;

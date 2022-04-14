@@ -8,6 +8,7 @@
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
   cursor: pointer;
+  padding: 0 10px;
 }
 
 .mat-row:hover .mat-cell {
@@ -16,4 +17,5 @@
 .mat-header-cell {
   color: black;
   background-color: #fafafa;
+  padding: 0 10px;
 }

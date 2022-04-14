@@ -1,22 +1,27 @@
 export const COLUMNS = [
   {
     title: 'project-page.first-name',
-    fieldName: 'firstName',
+    fieldName: 'name',
+    width: '15%',
   },
   {
     title: 'project-page.last-name',
-    fieldName: 'lastName',
+    fieldName: 'secondName',
+    width: '15%',
   },
   {
-    title: 'project-page.email',
-    fieldName: 'email',
+    title: 'project-page.team-size',
+    fieldName: 'teamSize',
+    width: '10%',
   },
   {
-    title: 'project-page.department',
-    fieldName: 'department',
+    title: 'project-page.responsibilities',
+    fieldName: 'responsibilitiesNames',
+    width: '45%',
   },
   {
     title: 'project-page.specialization',
-    fieldName: 'specialization',
+    fieldName: 'specializationsNames',
+    width: '15%',
   },
 ];

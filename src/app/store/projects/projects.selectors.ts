@@ -5,4 +5,4 @@ export const selectProjectsState = createFeatureSelector<ProjectsState>('project
 
 export const getProjectsFromState = (state: ProjectsState) => state.projects;
 
-export const selectFilters = createSelector(selectProjectsState, getProjectsFromState);
+export const selectProjects = createSelector(selectProjectsState, getProjectsFromState);
