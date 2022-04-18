@@ -17,17 +17,26 @@
       formControlName="techStack"
       [label]="'project-info.tech-stack' | translate"
     ></app-input>
-    <app-input-autocomplete formControlName="roles" [label]="'project-info.roles' | translate">
+    <app-input-autocomplete
+      formControlName="roles"
+      [fruits]="selectedRoles"
+      [allFruits]="allRoles"
+      [title]="titleRoles"
+    >
     </app-input-autocomplete>
-    <app-input
+    <app-input-autocomplete
       formControlName="description"
-      [label]="'project-info.description' | translate"
-    ></app-input>
-    <app-input
+      [title]="titleDescription"
+      [fruits]="selectedDescriptions"
+      [allFruits]="allDescriptions"
+    ></app-input-autocomplete>
+    <app-input-autocomplete
       formControlName="responsibilities"
-      [label]="'project-info.responsibilities' | translate"
-    ></app-input>
-    <button type="submit" [disabled]="form.invalid">
+      [title]="titleResponsibilities"
+      [fruits]="selectedResponsibilities"
+      [allFruits]="allResponsibilities"
+    ></app-input-autocomplete>
+    <button type="submit">
       {{ 'buttons.save' | translate }}
     </button>
     <button type="button">{{ 'buttons.cancel' | translate }}</button>

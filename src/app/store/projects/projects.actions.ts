@@ -9,3 +9,12 @@ export const GetProjectsListSuccess = createAction(
 );
 
 export const GetProjectsListError = createAction('[PROJECTS] GetProjectsList Error');
+
+export const AddProject = createAction('[PROJECT] AddProject', props<{ project: IProject }>());
+
+export const AddProjectSuccess = createAction(
+  '[PROJECT] AddProject Success',
+  props<{ project: IProject }>(),
+);
+
+export const AddProjectError = createAction('[PROJECT] AddProject Error');

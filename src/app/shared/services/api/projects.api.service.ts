@@ -13,7 +13,11 @@ export class ProjectsApiService {
 
   getProjectsList(): Observable<IProject[]> {
     const url = environment.apiUrl + this.endPoints.getProjectsList;
-    console.log('kek');
     return this.http.get<IProject[]>(url);
+  }
+
+  createProject(project: IProject): Observable<IProject> {
+    const url = environment.apiUrl + this.endPoints.getProjectsList;
+    return this.http.post<IProject>(url, project);
   }
 }
