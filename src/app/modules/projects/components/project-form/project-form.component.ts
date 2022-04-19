@@ -13,32 +13,34 @@ import { AddProject } from 'src/app/store/projects/projects.actions';
 })
 export class ProjectFormComponent implements OnInit {
   public form!: FormGroup;
-  public titleRoles: string = 'Roles';
-  public titleDescription: string = 'Description ';
+  public titleSpecializations: string = 'Specializations';
+  public titleRoles: string = 'Roles ';
   public titleResponsibilities: string = 'Responsibilities';
-  public selectedRoles: string[] = ['PM'];
-  public allRoles: string[] = ['PM', 'Team lead', 'Tech lead'];
-  public selectedDescriptions: string[] = ['Routing'];
-  public allDescriptions: string[] = ['Routing', 'Testing', 'Structuring'];
-  public selectedResponsibilities: string[] = ['Eat'];
+  public selectedSpecializations: string[] = [];
+  public allSpecializations: string[] = ['PM', 'Team lead', 'Tech lead'];
+  public selectedRoles: string[] = [];
+  public allRoles: string[] = ['Routing', 'Testing', 'Structuring'];
+  public selectedResponsibilities: string[] = [];
   public allResponsibilities: string[] = ['Eat', 'Work', 'Sleep'];
   constructor(private formBuilder: FormBuilder, private store: Store) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
+      secondName: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      teamSize: ['', [Validators.required]],
-      techStack: ['', [Validators.required]],
-      roles: ['', [Validators.required]],
+      teamSize: [null, [Validators.required]],
+      tasksPerformed: ['', [Validators.required]],
+      projectRoles: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      specializations: ['', [Validators.required]],
       responsibilities: ['', [Validators.required]],
     });
   }
   submit() {
     const project: IProject = {
-      ...this.form.value,
-      id: '',
+      ...this.form.getRawValue(),
+      teamSize: Number(this.form.get('teamSize').value),
     };
     console.log(this.form.value);
     this.store.dispatch(AddProject({ project }));

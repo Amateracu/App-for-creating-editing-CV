@@ -4,6 +4,7 @@
   },
   "project-info": {
     "name": "Имя",
+    "second-name": "Второе Имя",
     "start-date": "Дата старта",
     "end-date": "Дата конца",
     "team-size": "Размер команды",

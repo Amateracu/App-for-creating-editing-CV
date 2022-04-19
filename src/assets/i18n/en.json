@@ -4,6 +4,7 @@
   },
   "project-info": {
     "name": "Name",
+    "second-name": "Second Name",
     "start-date": "Start Date",
     "end-date": "End Date",
     "team-size": "Team Size",

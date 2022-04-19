@@ -15,7 +15,6 @@ import { Input } from '@angular/core';
 })
 export class InputAutocompleteComponent extends BaseControl implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
   @Input() title: string;
   @Input() fruits: string[] = [];
@@ -24,7 +23,7 @@ export class InputAutocompleteComponent extends BaseControl implements OnInit {
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
 
   override ngOnInit(): void {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    this.filteredFruits = this.control.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
     );
@@ -39,7 +38,8 @@ export class InputAutocompleteComponent extends BaseControl implements OnInit {
 
     event.chipInput!.clear();
 
-    this.fruitCtrl.setValue(null);
+    this.control.setValue(null);
+    this.cvaOnChange(this.fruits);
   }
 
   remove(fruit: string): void {
@@ -47,13 +47,15 @@ export class InputAutocompleteComponent extends BaseControl implements OnInit {
 
     if (index >= 0) {
       this.fruits.splice(index, 1);
+      this.cvaOnChange(this.fruits);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.control.setValue(null);
+    this.cvaOnChange(this.fruits);
   }
 
   private _filter(value: string): string[] {

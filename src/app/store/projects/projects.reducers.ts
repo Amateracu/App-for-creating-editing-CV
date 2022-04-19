@@ -1,21 +1,33 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { IProject } from 'src/app/shared/interfaces/project.interface';
-import { AddProject, GetProjectsListSuccess } from './projects.actions';
+import {
+  IProject,
+  IProjectRoles,
+  IResponsibility,
+  ISpecialization,
+} from 'src/app/shared/interfaces/project.interface';
+import {
+  AddProject,
+  AddProjectSuccess,
+  GetProjectRolesListSuccess,
+  GetProjectsListSuccess,
+  GetResponsibilitiesListSuccess,
+  GetSpecializationsListSuccess,
+} from './projects.actions';
 
 export interface ProjectsState {
   projects: IProject[];
+  project: IProject;
+  specializations: ISpecialization[];
+  projectRoles: IProjectRoles[];
+  responsibilities: IResponsibility[];
 }
 
 export const projectsInitialState: ProjectsState = {
   projects: [],
-};
-
-export interface ProjectState {
-  project: IProject;
-}
-
-export const projectInitialState: ProjectState = {
   project: null,
+  specializations: [],
+  projectRoles: [],
+  responsibilities: [],
 };
 
 const projectsReducer = createReducer(
@@ -27,23 +39,36 @@ const projectsReducer = createReducer(
       projects,
     }),
   ),
-);
-
-const projectReducer = createReducer(
-  projectInitialState,
   on(
-    AddProject,
-    (state, { project }): ProjectState => ({
+    AddProjectSuccess,
+    (state, { project }): ProjectsState => ({
       ...state,
-      project,
+      projects: [...state.projects, project],
+    }),
+  ),
+  on(
+    GetSpecializationsListSuccess,
+    (state, { specializations }): ProjectsState => ({
+      ...state,
+      specializations,
+    }),
+  ),
+  on(
+    GetProjectRolesListSuccess,
+    (state, { projectRoles }): ProjectsState => ({
+      ...state,
+      projectRoles,
+    }),
+  ),
+  on(
+    GetResponsibilitiesListSuccess,
+    (state, { responsibilities }): ProjectsState => ({
+      ...state,
+      responsibilities,
     }),
   ),
 );
 
 export function ProjectsReducer(state: ProjectsState, action: Action) {
   return projectsReducer(state, action);
-}
-
-export function ProjectReducer(state: ProjectState, action: Action) {
-  return projectReducer(state, action);
 }

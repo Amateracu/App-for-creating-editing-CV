@@ -13,7 +13,51 @@ import {
 
 @Injectable()
 export class ProjectsEffects {
-  loadUser$ = createEffect(() => {
+  getProjectList$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetProjectsList),
+      switchMap(() =>
+        this.projectsApiService.getProjectsList().pipe(
+          map((projects) => GetProjectsListSuccess({ projects })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  createProject$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AddProject),
+      mergeMap((action) =>
+        this.projectsApiService.createProject(action.project).pipe(
+          map((project) => AddProjectSuccess({ project })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  getSpecializations$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetProjectsList),
+      switchMap(() =>
+        this.projectsApiService.getProjectsList().pipe(
+          map((projects) => GetProjectsListSuccess({ projects })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  getProjectRoles$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetProjectsList),
+      switchMap(() =>
+        this.projectsApiService.getProjectsList().pipe(
+          map((projects) => GetProjectsListSuccess({ projects })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  getResponsibilities$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetProjectsList),
       switchMap(() =>
@@ -25,20 +69,4 @@ export class ProjectsEffects {
     );
   });
   constructor(private projectsApiService: ProjectsApiService, private actions$: Actions) {}
-}
-
-export class ProjectEffect {
-  constructor(private projectsApiService: ProjectsApiService, private actions$: Actions) {}
-
-  loadUser$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AddProjectSuccess),
-      mergeMap((action) =>
-        this.projectsApiService.createProject(action.project).pipe(
-          map((project) => AddProjectSuccess({ project })),
-          catchError(() => EMPTY),
-        ),
-      ),
-    );
-  });
 }
