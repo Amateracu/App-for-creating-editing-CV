@@ -1,10 +1,27 @@
-import { Input } from '@angular/core';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { IProject } from 'src/app/shared/interfaces/project.interface';
-import { AddProject } from 'src/app/store/projects/projects.actions';
+import {
+  IProject,
+  IProjectRoles,
+  IResponsibility,
+  ISpecialization,
+} from 'src/app/shared/interfaces/project.interface';
+import {
+  AddProject,
+  GetProjectRolesList,
+  GetResponsibilitiesList,
+  GetSpecializationsList,
+} from 'src/app/store/projects/projects.actions';
+import {
+  selectProjectRoles,
+  selectResponsibilities,
+  selectSpecializations,
+} from 'src/app/store/projects/projects.selectors';
 
+@UntilDestroy()
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
@@ -16,13 +33,17 @@ export class ProjectFormComponent implements OnInit {
   public titleSpecializations: string = 'Specializations';
   public titleRoles: string = 'Roles ';
   public titleResponsibilities: string = 'Responsibilities';
-  public selectedSpecializations: string[] = [];
-  public allSpecializations: string[] = ['PM', 'Team lead', 'Tech lead'];
-  public selectedRoles: string[] = [];
-  public allRoles: string[] = ['Routing', 'Testing', 'Structuring'];
-  public selectedResponsibilities: string[] = [];
-  public allResponsibilities: string[] = ['Eat', 'Work', 'Sleep'];
-  constructor(private formBuilder: FormBuilder, private store: Store) {}
+  public selectedSpecializations: ISpecialization[] = [];
+  public allSpecializations: ISpecialization[] = [];
+  public selectedRoles: IProjectRoles[] = [];
+  public allRoles: IProjectRoles[] = [];
+  public selectedResponsibilities: IResponsibility[] = [];
+  public allResponsibilities: IResponsibility[] = [];
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store,
+    private cdRef: ChangeDetectorRef,
+  ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -31,18 +52,47 @@ export class ProjectFormComponent implements OnInit {
       endDate: ['', [Validators.required]],
       teamSize: [null, [Validators.required]],
       tasksPerformed: ['', [Validators.required]],
-      projectRoles: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      specializations: ['', [Validators.required]],
-      responsibilities: ['', [Validators.required]],
+      projectRoles: [[], [Validators.required]],
+      specializations: [[], [Validators.required]],
+      responsibilities: [[], [Validators.required]],
     });
+
+    this.store.dispatch(GetProjectRolesList());
+    this.store
+      .select(selectProjectRoles)
+      .pipe(untilDestroyed(this))
+      .subscribe((projectRoles) => {
+        this.allRoles = [...projectRoles];
+        this.cdRef.markForCheck();
+      });
+
+    this.store.dispatch(GetResponsibilitiesList());
+    this.store
+      .select(selectResponsibilities)
+      .pipe(untilDestroyed(this))
+      .subscribe((responsibilities) => {
+        this.allResponsibilities = [...responsibilities];
+        this.cdRef.markForCheck();
+      });
+
+    this.store.dispatch(GetSpecializationsList());
+    this.store
+      .select(selectSpecializations)
+      .pipe(untilDestroyed(this))
+      .subscribe((specializations) => {
+        this.allSpecializations = [...specializations];
+        this.cdRef.markForCheck();
+      });
   }
   submit() {
     const project: IProject = {
       ...this.form.getRawValue(),
       teamSize: Number(this.form.get('teamSize').value),
+      specializations: this.selectedSpecializations.map((item) => item.id),
+      projectRoles: this.selectedRoles.map((item) => item.id),
+      responsibilities: this.selectedResponsibilities.map((item) => item.id),
     };
-    console.log(this.form.value);
     this.store.dispatch(AddProject({ project }));
   }
 }

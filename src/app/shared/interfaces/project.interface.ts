@@ -1,5 +1,5 @@
 export interface IProject {
-  id?: number;
+  id?: string;
   name: string;
   secondName: string;
   startDate?: string;
@@ -15,13 +15,17 @@ export interface IProject {
 }
 export interface ISpecialization {
   name: string;
-  id: string;
+  id?: string;
 }
 export interface IResponsibility {
   name: string;
-  id: string;
+  id?: string;
 }
 export interface IProjectRoles {
   name: string;
-  id: string;
+  id?: string;
+}
+export interface IChips {
+  name: string;
+  id?: string;
 }

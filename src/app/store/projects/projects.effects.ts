@@ -7,8 +7,14 @@ import { ProjectsApiService } from 'src/app/shared/services/api/projects.api.ser
 import {
   AddProject,
   AddProjectSuccess,
+  GetProjectRolesList,
+  GetProjectRolesListSuccess,
   GetProjectsList,
   GetProjectsListSuccess,
+  GetResponsibilitiesList,
+  GetResponsibilitiesListSuccess,
+  GetSpecializationsList,
+  GetSpecializationsListSuccess,
 } from './projects.actions';
 
 @Injectable()
@@ -37,10 +43,10 @@ export class ProjectsEffects {
   });
   getSpecializations$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GetProjectsList),
+      ofType(GetSpecializationsList),
       switchMap(() =>
-        this.projectsApiService.getProjectsList().pipe(
-          map((projects) => GetProjectsListSuccess({ projects })),
+        this.projectsApiService.getSpecializations().pipe(
+          map((specializations) => GetSpecializationsListSuccess({ specializations })),
           catchError(() => EMPTY),
         ),
       ),
@@ -48,10 +54,10 @@ export class ProjectsEffects {
   });
   getProjectRoles$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GetProjectsList),
+      ofType(GetProjectRolesList),
       switchMap(() =>
-        this.projectsApiService.getProjectsList().pipe(
-          map((projects) => GetProjectsListSuccess({ projects })),
+        this.projectsApiService.getProjectRoles().pipe(
+          map((projectRoles) => GetProjectRolesListSuccess({ projectRoles })),
           catchError(() => EMPTY),
         ),
       ),
@@ -59,10 +65,10 @@ export class ProjectsEffects {
   });
   getResponsibilities$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GetProjectsList),
+      ofType(GetResponsibilitiesList),
       switchMap(() =>
-        this.projectsApiService.getProjectsList().pipe(
-          map((projects) => GetProjectsListSuccess({ projects })),
+        this.projectsApiService.getResponsibilities().pipe(
+          map((responsibilities) => GetResponsibilitiesListSuccess({ responsibilities })),
           catchError(() => EMPTY),
         ),
       ),

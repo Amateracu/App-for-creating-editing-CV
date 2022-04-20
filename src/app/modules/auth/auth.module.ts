@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputModule } from 'src/app/shared/controls/input/input.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AuthPageComponent],
@@ -21,6 +22,7 @@ import { InputModule } from 'src/app/shared/controls/input/input.module';
     MatIconModule,
     TranslateModule,
     InputModule,
+    MatButtonModule,
   ],
   exports: [],
   providers: [],

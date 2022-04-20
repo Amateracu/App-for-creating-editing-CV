@@ -27,22 +27,22 @@
     ></app-input>
     <app-input-autocomplete
       formControlName="specializations"
-      [fruits]="selectedSpecializations"
-      [allFruits]="allSpecializations"
+      [chips]="selectedSpecializations"
+      [allchips]="allSpecializations"
       [title]="titleSpecializations"
     >
     </app-input-autocomplete>
     <app-input-autocomplete
       formControlName="projectRoles"
       [title]="titleRoles"
-      [fruits]="selectedRoles"
-      [allFruits]="allRoles"
+      [chips]="selectedRoles"
+      [allchips]="allRoles"
     ></app-input-autocomplete>
     <app-input-autocomplete
       formControlName="responsibilities"
       [title]="titleResponsibilities"
-      [fruits]="selectedResponsibilities"
-      [allFruits]="allResponsibilities"
+      [chips]="selectedResponsibilities"
+      [allchips]="allResponsibilities"
     ></app-input-autocomplete>
     <button type="submit">
       {{ 'buttons.save' | translate }}

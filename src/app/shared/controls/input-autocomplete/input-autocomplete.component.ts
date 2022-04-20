@@ -6,6 +6,7 @@ import { map, Observable, startWith } from 'rxjs';
 import { BaseControl } from '../../classes/base-control.class';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Input } from '@angular/core';
+import { IChips } from '../../interfaces/project.interface';
 
 @Component({
   selector: 'app-input-autocomplete',
@@ -15,52 +16,53 @@ import { Input } from '@angular/core';
 })
 export class InputAutocompleteComponent extends BaseControl implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  filteredFruits: Observable<string[]>;
+  filteredChips: Observable<IChips[]>;
   @Input() title: string;
-  @Input() fruits: string[] = [];
-  @Input() allFruits: string[] = [];
+  @Input() chips: IChips[] = [];
+  @Input() allchips: IChips[] = [];
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('chipsInput') chipsInput: ElementRef<HTMLInputElement>;
 
   override ngOnInit(): void {
-    this.filteredFruits = this.control.valueChanges.pipe(
+    this.filteredChips = this.control.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+      map((value: IChips | null) => (value ? this._filter(value) : this.allchips.slice())),
     );
   }
 
   add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+    const value = (event.value || null).trim();
 
     if (value) {
-      this.fruits.push(value);
+      this.chips.map(({ name }) => name).push(value);
     }
 
     event.chipInput!.clear();
 
     this.control.setValue(null);
-    this.cvaOnChange(this.fruits);
+    this.cvaOnChange(this.chips);
   }
 
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(value: IChips): void {
+    const index = this.chips.indexOf(value);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
-      this.cvaOnChange(this.fruits);
+      this.chips.splice(index, 1);
+      this.cvaOnChange(this.chips);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.control.setValue(null);
-    this.cvaOnChange(this.fruits);
+    console.log(event);
+    this.chips.push(event.option.value);
+    this.chipsInput.nativeElement.value = null;
+    this.control.setValue([]);
+    this.cvaOnChange(this.chips);
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  private _filter(value: IChips): IChips[] {
+    const filterValue = value.name;
 
-    return this.allFruits.filter((fruit) => fruit.toLowerCase().includes(filterValue));
+    return this.allchips.filter((value) => value.name.includes(filterValue));
   }
 }
