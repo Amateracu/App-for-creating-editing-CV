@@ -29,6 +29,16 @@ export class ProjectsApiService {
     return this.http.post<IProject>(url, project);
   }
 
+  editProject(project: IProject): Observable<IProject> {
+    const url = environment.apiUrl + this.endPoints.getProjectsList;
+    return this.http.put<IProject>(url, project);
+  }
+
+  getProjectById(id: string): Observable<IProject> {
+    const url = environment.apiUrl + this.endPoints.getProjectsList + id;
+    return this.http.get<IProject>(url);
+  }
+
   getSpecializations(): Observable<ISpecialization[]> {
     const url = environment.apiUrl + this.endPoints.getSpecializationsList;
     return this.http.get<ISpecialization[]>(url);

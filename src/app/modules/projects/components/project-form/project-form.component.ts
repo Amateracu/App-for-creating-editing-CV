@@ -1,4 +1,6 @@
 import { ChangeDetectorRef } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Output } from '@angular/core';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -29,6 +31,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectFormComponent implements OnInit {
+  @Output() addProject = new EventEmitter<IProject>();
   public form!: FormGroup;
   public titleSpecializations: string = 'Specializations';
   public titleRoles: string = 'Roles ';
@@ -93,6 +96,6 @@ export class ProjectFormComponent implements OnInit {
       projectRoles: this.selectedRoles.map((item) => item.id),
       responsibilities: this.selectedResponsibilities.map((item) => item.id),
     };
-    this.store.dispatch(AddProject({ project }));
+    this.addProject.emit(project);
   }
 }

@@ -1,6 +1,13 @@
 :host {
   width: 100%;
-  background-color: #f0f2f5;
+}
+h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+input {
+  width: 100%;
 }
 .example-icon {
   float: right;
@@ -12,7 +19,6 @@
   margin-right: auto;
   width: 40%;
   .auth {
-    text-align: center;
     padding: 50% 0;
 
     .btn-primary {
@@ -24,4 +30,7 @@
       width: 100%;
     }
   }
+}
+.example-section {
+  margin: 20px;
 }
