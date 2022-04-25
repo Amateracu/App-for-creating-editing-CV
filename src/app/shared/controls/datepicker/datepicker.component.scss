@@ -1,3 +1,7 @@
-label {
-  margin: 20px;
+:host::ng-deep {
+  margin: 50px;
+  .form-control {
+    display: flex;
+    flex-direction: column;
+  }
 }

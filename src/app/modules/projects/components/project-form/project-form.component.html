@@ -29,28 +29,30 @@
       formControlName="specializations"
       [chips]="selectedSpecializations"
       [allchips]="allSpecializations"
-      [title]="titleSpecializations"
+      [title]="'project-page.specialization' | translate"
     >
     </app-input-autocomplete>
     <app-input-autocomplete
       formControlName="projectRoles"
-      [title]="titleRoles"
+      [title]="'project-info.roles' | translate"
       [chips]="selectedRoles"
       [allchips]="allRoles"
     ></app-input-autocomplete>
     <app-input-autocomplete
       formControlName="responsibilities"
-      [title]="titleResponsibilities"
+      [title]="'project-info.responsibilities' | translate"
       [chips]="selectedResponsibilities"
       [allchips]="allResponsibilities"
     ></app-input-autocomplete>
-    <div class="save">
-      <button mat-button type="submit">
-        {{ 'buttons.save' | translate }}
-      </button>
-    </div>
-    <div class="cancel">
-      <button mat-button type="button">{{ 'buttons.cancel' | translate }}</button>
-    </div>
   </div>
 </form>
+<div class="btn">
+  <div class="save">
+    <button mat-button type="submit">
+      {{ 'buttons.save' | translate }}
+    </button>
+  </div>
+  <div class="cancel">
+    <button mat-button type="button">{{ 'buttons.cancel' | translate }}</button>
+  </div>
+</div>

@@ -1,10 +1,17 @@
-.form-group {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-
-  .save {
-    background-color: #1890ff;
-    color: white;
+:host::ng-deep {
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
   }
+}
+
+.btn {
+  display: flex;
+  float: right;
+}
+.save {
+  margin-right: 10px;
+  background-color: #1890ff;
+  color: white;
 }

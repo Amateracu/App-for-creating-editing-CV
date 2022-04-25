@@ -1,7 +1,9 @@
 <div class="formControl" [ngClass]="{ invalid: control?.touched && control?.invalid }">
   <label for="name">{{ label }}</label>
   <mat-form-field>
-    <input matInput [formControl]="control" [type]="type" />
+    <div class="input-control">
+      <input matInput [formControl]="control" [type]="type" />
+    </div>
   </mat-form-field>
 
   <div *ngIf="control?.touched && control?.invalid" class="validation">

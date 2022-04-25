@@ -1,19 +1,11 @@
-<div
-      class="form-control"
-      [ngClass]="{invalid: control.touched && control.invalid}"
-      >
-      <label>{{label}}</label>
-      <mat-form-field >
-          <input matInput [matDatepicker]="picker" [formControl]="control">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      <div
-        *ngIf="control.touched && control.invalid"
-        class="validation"
-      >
-        <small
-          *ngIf="control.errors?.required"
-        >{{required | translate}}</small>
-      </div>
-    </div>
+<div class="form-control" [ngClass]="{ invalid: control.touched && control.invalid }">
+  <label>{{ label }}</label>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [formControl]="control" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div *ngIf="control.touched && control.invalid" class="validation">
+    <small *ngIf="control.errors?.required">{{ required | translate }}</small>
+  </div>
+</div>
