@@ -1,36 +1,29 @@
-:host {
-  width: 100%;
-}
-h2 {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 50px;
-}
-input {
-  width: 100%;
+:host::ng-deep {
+  background-color: #f0f2f5;
+  .main {
+    display: block;
+    align-items: center;
+    .auth {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 {
+        font-size: 40px;
+        margin-top: 20%;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        .btn-primary {
+          color: white;
+          background-color: #1890ff;
+        }
+      }
+    }
+  }
 }
 .example-icon {
   float: right;
   margin: 10px;
-}
-.main {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-  .auth {
-    padding: 50% 0;
-
-    .btn-primary {
-      width: 100%;
-      background-color: #1890ff;
-      color: white;
-    }
-    .form-group {
-      width: 100%;
-    }
-  }
-}
-.example-section {
-  margin: 20px;
 }

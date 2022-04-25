@@ -1,5 +1,10 @@
 .form-group {
   display: flex;
-
+  justify-content: space-between;
   flex-direction: column;
+
+  .save {
+    background-color: #1890ff;
+    color: white;
+  }
 }

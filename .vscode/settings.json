@@ -1,0 +1,23 @@
+{
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "all",
+  "js/ts.implicitProjectConfig.experimentalDecorators": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.eol": "\r\n",
+  "html.format.endWithNewline": true,
+  "html.format.wrapAttributes": "force-aligned",
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.endOfLine": "crlf",
+  "workbench.editorAssociations": {
+    "*.eot": "default"
+  },
+  "prettier.printWidth": 100
+}

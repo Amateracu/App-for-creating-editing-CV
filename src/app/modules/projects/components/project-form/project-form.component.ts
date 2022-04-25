@@ -1,7 +1,11 @@
-import { ChangeDetectorRef } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Output } from '@angular/core';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
@@ -12,7 +16,6 @@ import {
   ISpecialization,
 } from 'src/app/shared/interfaces/project.interface';
 import {
-  AddProject,
   GetProjectRolesList,
   GetResponsibilitiesList,
   GetSpecializationsList,

@@ -8,7 +8,7 @@ import { filter } from 'rxjs';
 import { PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
 import { IAuth } from 'src/app/shared/interfaces/auth.interface';
 import { AuthService } from 'src/app/shared/services/api/auth.service';
-import { Auth, AuthSuccess } from 'src/app/store/auth/auth.actions';
+import { Auth } from 'src/app/store/auth/auth.actions';
 import { selectAuthData } from 'src/app/store/auth/auth.selectors';
 
 @UntilDestroy()
@@ -50,7 +50,6 @@ export class AuthPageComponent implements OnInit {
       email: this.form.value.username,
       password: this.form.value.password,
     };
-    console.log(this.form.invalid);
     this.store.dispatch(Auth({ auth }));
     this.store
       .select(selectAuthData)
