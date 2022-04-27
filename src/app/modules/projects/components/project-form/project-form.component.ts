@@ -35,6 +35,7 @@ import {
 })
 export class ProjectFormComponent implements OnInit {
   @Output() addProject = new EventEmitter<IProject>();
+  @Output() cancelProject = new EventEmitter<any>();
   public form!: FormGroup;
   public titleSpecializations: string = 'Specializations';
   public titleRoles: string = 'Roles ';
@@ -99,6 +100,10 @@ export class ProjectFormComponent implements OnInit {
       projectRoles: this.selectedRoles.map((item) => item.id),
       responsibilities: this.selectedResponsibilities.map((item) => item.id),
     };
+    this.form.reset();
     this.addProject.emit(project);
+  }
+  cancel() {
+    this.cancelProject.emit();
   }
 }

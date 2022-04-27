@@ -1,23 +1,16 @@
-button {
-  background-color: #1890ff;
-  color: white;
-}
-.demo-table {
-  width: 100%;
-
-  box-shadow: none;
-}
-
-.mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
-}
-
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
-}
-.mat-header-cell {
-  color: black;
-  background-color: #fafafa;
+.employees-list {
+  align-items: baseline;
+  margin: 30px;
+  .employees-table {
+    padding-top: 40px;
+    padding: 20px;
+    background-color: white;
+  }
+  button {
+    display: block;
+    background-color: #1890ff;
+    color: white;
+    margin-left: auto;
+    margin-bottom: 10px;
+  }
 }

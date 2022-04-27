@@ -1,10 +1,12 @@
 <div class="project-list">
-  <button mat-raised-button class="add-project" (click)="routeAddProject()">
-    {{ 'buttons.add-project' | translate }}
-  </button>
-  <app-base-table
-    [data]="cvElements"
-    [columns]="columns"
-    (clickedRow)="openProjectInfo($event)"
-  ></app-base-table>
+  <div class="project-table">
+    <button mat-raised-button class="add-project" (click)="routeAddProject()">
+      {{ 'buttons.add-project' | translate }}
+    </button>
+    <app-base-table
+      [data]="cvElements"
+      [columns]="columns"
+      (clickedRow)="openProjectInfo($event)"
+    ></app-base-table>
+  </div>
 </div>

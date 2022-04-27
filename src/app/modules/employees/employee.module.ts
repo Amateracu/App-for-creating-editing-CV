@@ -13,6 +13,7 @@ import { EmployeesPageComponent } from './pages/employees-page/employees-page.co
 import { EmployeesProfileComponent } from './pages/employees-profile/employees-profile.component';
 import { EmpoyeesProfileCvComponent } from './pages/empoyees-profile-cv/empoyees-profile-cv.component';
 import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empoyees-profile-info.component';
+import { EmployeesFormComponent } from './components/employees-form/employees-form.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empo
     EmployeesProfileComponent,
     EmpoyeesProfileInfoComponent,
     EmpoyeesProfileCvComponent,
+    EmployeesFormComponent,
   ],
   imports: [
     CommonModule,

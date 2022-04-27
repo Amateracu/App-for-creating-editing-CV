@@ -1,7 +1,22 @@
 :host::ng-deep {
-  margin: 50px;
   .form-control {
     display: flex;
     flex-direction: column;
+  }
+  .mat-input-element {
+    border: groove;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 7px;
+    background-color: white;
+  }
+  .mat-form-field-flex {
+    display: flex;
+    align-items: center;
+  }
+  .mat-form-field-suffix {
+    position: absolute;
+    right: 6px;
+    top: 22px;
   }
 }

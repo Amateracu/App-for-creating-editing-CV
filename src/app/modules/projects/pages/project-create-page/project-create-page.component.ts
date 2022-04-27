@@ -38,4 +38,7 @@ export class ProjectCreatePageComponent implements OnInit {
     this.store.dispatch(AddProject({ project }));
     this.router.navigate([PROJECTS_ROUTE.path]);
   }
+  public routeCancelProject() {
+    this.router.navigate([PROJECTS_ROUTE.path]);
+  }
 }

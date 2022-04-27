@@ -1,58 +1,76 @@
-<form class="info" [formGroup]="form" (ngSubmit)="submit()">
-  <div class="form-group">
-    <app-input formControlName="name" [label]="'project-info.name' | translate"></app-input>
-    <app-input
-      formControlName="secondName"
-      [label]="'project-info.second-name' | translate"
-    ></app-input>
-    <app-datepicker
-      formControlName="startDate"
-      [label]="'project-info.start-date' | translate"
-    ></app-datepicker>
-    <app-datepicker
-      formControlName="endDate"
-      [label]="'project-info.end-date' | translate"
-    ></app-datepicker>
-    <app-input
-      formControlName="teamSize"
-      [label]="'project-info.team-size' | translate"
-    ></app-input>
-    <app-input
-      formControlName="tasksPerformed"
-      [label]="'project-info.tech-stack' | translate"
-    ></app-input>
-    <app-input
-      formControlName="description"
-      [label]="'project-info.description' | translate"
-    ></app-input>
-    <app-input-autocomplete
-      formControlName="specializations"
-      [chips]="selectedSpecializations"
-      [allchips]="allSpecializations"
-      [title]="'project-page.specialization' | translate"
-    >
-    </app-input-autocomplete>
-    <app-input-autocomplete
-      formControlName="projectRoles"
-      [title]="'project-info.roles' | translate"
-      [chips]="selectedRoles"
-      [allchips]="allRoles"
-    ></app-input-autocomplete>
-    <app-input-autocomplete
-      formControlName="responsibilities"
-      [title]="'project-info.responsibilities' | translate"
-      [chips]="selectedResponsibilities"
-      [allchips]="allResponsibilities"
-    ></app-input-autocomplete>
-  </div>
-</form>
-<div class="btn">
-  <div class="save">
-    <button mat-button type="submit">
-      {{ 'buttons.save' | translate }}
-    </button>
-  </div>
-  <div class="cancel">
-    <button mat-button type="button">{{ 'buttons.cancel' | translate }}</button>
-  </div>
+<div class="form-list">
+  <button mat-button class="button-archive">{{ 'project-info.archive' | translate }}</button>
+  <form class="info" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <app-input
+        class="form-field"
+        formControlName="name"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="secondName"
+        [label]="'project-info.second-name' | translate"
+      ></app-input>
+      <app-datepicker
+        class="form-field"
+        formControlName="startDate"
+        [label]="'project-info.start-date' | translate"
+      ></app-datepicker>
+      <app-datepicker
+        class="form-field"
+        formControlName="endDate"
+        [label]="'project-info.end-date' | translate"
+      ></app-datepicker>
+      <app-input
+        class="form-field"
+        formControlName="teamSize"
+        [label]="'project-info.team-size' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="tasksPerformed"
+        [label]="'project-info.tech-stack' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="description"
+        [label]="'project-info.description' | translate"
+      ></app-input>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="specializations"
+        [chips]="selectedSpecializations"
+        [allchips]="allSpecializations"
+        [title]="'project-page.specialization' | translate"
+      >
+      </app-input-autocomplete>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="projectRoles"
+        [title]="'project-info.roles' | translate"
+        [chips]="selectedRoles"
+        [allchips]="allRoles"
+      ></app-input-autocomplete>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="responsibilities"
+        [title]="'project-info.responsibilities' | translate"
+        [chips]="selectedResponsibilities"
+        [allchips]="allResponsibilities"
+      ></app-input-autocomplete>
+    </div>
+    <div class="btn">
+      <div class="save">
+        <button mat-button type="submit">
+          {{ 'buttons.save' | translate }}
+        </button>
+      </div>
+      <div class="cancel">
+        <button (click)="cancel()" mat-button type="button">
+          {{ 'buttons.cancel' | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

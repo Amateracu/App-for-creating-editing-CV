@@ -21,11 +21,15 @@
         [label]="'auth-page.password' | translate"
         type="password"
       ></app-input>
-      <section class="example-section">
-        <mat-checkbox class="example-margin" formControlName="rememberMe">{{
-          'auth-page.checkbox' | translate
-        }}</mat-checkbox>
-      </section>
+      <div class="forgot-pass">
+        <section class="example-section">
+          <mat-checkbox class="example-margin" formControlName="rememberMe">{{
+            'auth-page.checkbox' | translate
+          }}</mat-checkbox>
+        </section>
+        <div [ngStyle]="{ color: '#1890ff' }">{{ 'header.forgot-pass' | translate }}</div>
+      </div>
+
       <button
         mat-raised-button
         type="submit"

@@ -1,13 +1,16 @@
 :host::ng-deep {
   display: flex;
   flex-direction: column;
-  margin: 50px;
 
-  input {
-    border: 2px;
-  }
   .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: #f0f2f5;
+    background-color: white;
     padding: 0%;
+  }
+  .mat-input-element {
+    border: groove;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 7px;
+    background-color: white;
   }
 }

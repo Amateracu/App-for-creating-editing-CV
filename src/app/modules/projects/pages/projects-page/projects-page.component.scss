@@ -1,8 +1,16 @@
 .project-list {
   align-items: baseline;
+  margin: 30px;
+  .project-table {
+    padding-top: 40px;
+    padding: 20px;
+    background-color: white;
+  }
   button {
+    display: block;
     background-color: #1890ff;
     color: white;
-    float: right;
+    margin-left: auto;
+    margin-bottom: 10px;
   }
 }

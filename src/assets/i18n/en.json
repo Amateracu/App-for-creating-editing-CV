@@ -1,8 +1,10 @@
 {
   "header": {
-    "title": "Ant Design"
+    "title": "Ant Design",
+    "forgot-pass": "Forgot your password?"
   },
   "project-info": {
+    "archive": "Archive",
     "name": "Name",
     "second-name": "Second Name",
     "start-date": "Start Date",

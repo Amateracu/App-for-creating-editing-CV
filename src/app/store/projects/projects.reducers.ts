@@ -6,7 +6,6 @@ import {
   ISpecialization,
 } from 'src/app/shared/interfaces/project.interface';
 import {
-  AddProject,
   AddProjectSuccess,
   GetProjectRolesListSuccess,
   GetProjectsListSuccess,

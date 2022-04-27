@@ -1,11 +1,13 @@
 :host::ng-deep {
-  margin: 50px;
   .formControl {
     display: flex;
     flex-direction: column;
   }
-  .input-control {
-    width: 100%;
-    border: 2px;
+  .mat-input-element {
+    border: groove;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 7px;
+    background-color: white;
   }
 }

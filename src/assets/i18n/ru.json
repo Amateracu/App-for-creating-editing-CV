@@ -1,8 +1,10 @@
 {
   "header": {
-    "title": "Ант Дизайн"
+    "title": "Ант Дизайн",
+    "forgot-pass": "Забыли пароль?"
   },
   "project-info": {
+    "archive": "Архив",
     "name": "Имя",
     "second-name": "Второе Имя",
     "start-date": "Дата старта",

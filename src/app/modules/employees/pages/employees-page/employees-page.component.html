@@ -1,5 +1,9 @@
-<app-base-table
-  [data]="profileElements"
-  [columns]="columns"
-  (clickedRow)="openProfilePage($event)"
-></app-base-table>
+<div class="employees-list">
+  <div class="employees-table">
+    <app-base-table
+      [data]="profileElements"
+      [columns]="columns"
+      (clickedRow)="openProfilePage($event)"
+    ></app-base-table>
+  </div>
+</div>
