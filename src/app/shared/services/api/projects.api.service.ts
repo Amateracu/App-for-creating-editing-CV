@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   IProject,
@@ -34,9 +34,13 @@ export class ProjectsApiService {
     return this.http.put<IProject>(url, project);
   }
 
-  getProjectById(id: string): Observable<IProject> {
-    const url = environment.apiUrl + this.endPoints.getProjectsList + id;
-    return this.http.get<IProject>(url);
+  getProjectById(projectId: string): Observable<IProject> {
+    const url = environment.apiUrl + this.endPoints.getProjectsList + `?id=${projectId}`;
+    return this.http.get<IProject[]>(url).pipe(
+      map((projects) => {
+        return projects[0];
+      }),
+    );
   }
 
   getSpecializations(): Observable<ISpecialization[]> {

@@ -7,6 +7,10 @@ export const getProjectsFromState = (state: ProjectsState) => state.projects;
 
 export const getProjectFromState = (state: ProjectsState) => state.project;
 
+export const getProjectByIdFromState = (state: ProjectsState) => state.project;
+
+export const editProjectFromState = (state: ProjectsState) => state.project;
+
 export const getSpecializationsFromState = (state: ProjectsState) => state.specializations;
 
 export const getProjectRolesFromState = (state: ProjectsState) => state.projectRoles;
@@ -15,6 +19,8 @@ export const getResponsibilitiesFromState = (state: ProjectsState) => state.resp
 
 export const selectProjects = createSelector(selectProjectsState, getProjectsFromState);
 export const selectProject = createSelector(selectProjectsState, getProjectFromState);
+export const selectProjectById = createSelector(selectProjectsState, getProjectByIdFromState);
+export const selectEditProject = createSelector(selectProjectsState, editProjectFromState);
 export const selectSpecializations = createSelector(
   selectProjectsState,
   getSpecializationsFromState,

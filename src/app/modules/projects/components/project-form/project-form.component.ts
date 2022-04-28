@@ -3,12 +3,16 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { PROJECT_INFO_BREADCRUMB } from 'src/app/shared/constants/breadcrumbs.const';
 import {
   IProject,
   IProjectRoles,
@@ -33,13 +37,11 @@ import {
   styleUrls: ['./project-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProjectFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit, OnChanges {
   @Output() addProject = new EventEmitter<IProject>();
   @Output() cancelProject = new EventEmitter<any>();
+  @Input() projectById: IProject;
   public form!: FormGroup;
-  public titleSpecializations: string = 'Specializations';
-  public titleRoles: string = 'Roles ';
-  public titleResponsibilities: string = 'Responsibilities';
   public selectedSpecializations: ISpecialization[] = [];
   public allSpecializations: ISpecialization[] = [];
   public selectedRoles: IProjectRoles[] = [];
@@ -51,6 +53,25 @@ export class ProjectFormComponent implements OnInit {
     private store: Store,
     private cdRef: ChangeDetectorRef,
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['projectById'] && changes['projectById'].currentValue) {
+      this.form.setValue({
+        name: this.projectById.name,
+        secondName: this.projectById.secondName,
+        startDate: this.projectById.startDate,
+        endDate: this.projectById.endDate,
+        teamSize: this.projectById.teamSize,
+        tasksPerformed: this.projectById.tasksPerformed,
+        description: this.projectById.description,
+        projectRoles: this.projectById.projectRoles,
+        specializations: this.projectById.specializations,
+        responsibilities: this.projectById.responsibilities,
+      });
+      this.selectedSpecializations = this.projectById.specializations;
+      this.selectedRoles = this.projectById.projectRoles;
+      this.selectedResponsibilities = this.projectById.responsibilities;
+    }
+  }
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -100,8 +121,8 @@ export class ProjectFormComponent implements OnInit {
       projectRoles: this.selectedRoles.map((item) => item.id),
       responsibilities: this.selectedResponsibilities.map((item) => item.id),
     };
-    this.form.reset();
     this.addProject.emit(project);
+    this.form.reset();
   }
   cancel() {
     this.cancelProject.emit();

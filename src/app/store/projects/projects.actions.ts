@@ -20,6 +20,20 @@ export const AddProjectSuccess = createAction(
 );
 export const AddProjectError = createAction('[PROJECT] AddProject Error');
 
+export const GetProjectById = createAction('[PROJECT] GetProject', props<{ projectId: string }>());
+export const GetProjectByIdSuccess = createAction(
+  '[PROJECT] GetProject Success',
+  props<{ project: IProject }>(),
+);
+export const GetProjectByIdError = createAction('[PROJECT] GetProject Error');
+
+export const EditProject = createAction('[PROJECT] EditProject', props<{ project: IProject }>());
+export const EditProjectSuccess = createAction(
+  '[PROJECT] EditProject Success',
+  props<{ project: IProject }>(),
+);
+export const EditProjectError = createAction('[PROJECT] EditProject Error');
+
 export const GetSpecializationsList = createAction('[SPECIALIZATIONS] GetSpecializationsList');
 export const GetSpecializationsListSuccess = createAction(
   '[SPECIALIZATIONS] GetSpecializationsList Success',

@@ -26,15 +26,16 @@ export class InputAutocompleteComponent extends BaseControl implements OnInit {
   override ngOnInit(): void {
     this.filteredChips = this.control.valueChanges.pipe(
       startWith(null),
-      map((value: IChips | null) => (value ? this._filter(value) : this.allchips.slice())),
+      map((value: IChips | null) => (value.name ? this._filter(value) : this.allchips.slice())),
     );
   }
 
   add(event: MatChipInputEvent): void {
-    const value = (event.value || null).trim();
-
-    if (value) {
-      this.chips.map(({ name }) => name).push(value);
+    const value: IChips = {
+      name: (event.value || null).trim(),
+    };
+    if (value.name) {
+      this.chips.map(({ name }) => name).push(value.name);
     }
 
     event.chipInput!.clear();
@@ -53,7 +54,6 @@ export class InputAutocompleteComponent extends BaseControl implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    console.log(event);
     this.chips.push(event.option.value);
     this.chipsInput.nativeElement.value = null;
     this.control.setValue([]);

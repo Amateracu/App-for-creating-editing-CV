@@ -7,6 +7,9 @@ import {
 } from 'src/app/shared/interfaces/project.interface';
 import {
   AddProjectSuccess,
+  EditProjectSuccess,
+  GetProjectById,
+  GetProjectByIdSuccess,
   GetProjectRolesListSuccess,
   GetProjectsListSuccess,
   GetResponsibilitiesListSuccess,
@@ -40,6 +43,20 @@ const projectsReducer = createReducer(
   ),
   on(
     AddProjectSuccess,
+    (state, { project }): ProjectsState => ({
+      ...state,
+      projects: [...state.projects, project],
+    }),
+  ),
+  on(
+    GetProjectByIdSuccess,
+    (state, { project }): ProjectsState => ({
+      ...state,
+      project,
+    }),
+  ),
+  on(
+    EditProjectSuccess,
     (state, { project }): ProjectsState => ({
       ...state,
       projects: [...state.projects, project],

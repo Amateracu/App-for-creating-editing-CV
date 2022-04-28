@@ -7,6 +7,10 @@ import { ProjectsApiService } from 'src/app/shared/services/api/projects.api.ser
 import {
   AddProject,
   AddProjectSuccess,
+  EditProject,
+  EditProjectSuccess,
+  GetProjectById,
+  GetProjectByIdSuccess,
   GetProjectRolesList,
   GetProjectRolesListSuccess,
   GetProjectsList,
@@ -36,6 +40,28 @@ export class ProjectsEffects {
       mergeMap((action) =>
         this.projectsApiService.createProject(action.project).pipe(
           map((project) => AddProjectSuccess({ project })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  getProjectById = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetProjectById),
+      mergeMap((action) =>
+        this.projectsApiService.getProjectById(action.projectId).pipe(
+          map((project) => GetProjectByIdSuccess({ project })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  editProject$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EditProject),
+      mergeMap((action) =>
+        this.projectsApiService.editProject(action.project).pipe(
+          map((project) => EditProjectSuccess({ project })),
           catchError(() => EMPTY),
         ),
       ),
