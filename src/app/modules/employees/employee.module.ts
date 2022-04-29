@@ -14,6 +14,8 @@ import { EmployeesProfileComponent } from './pages/employees-profile/employees-p
 import { EmpoyeesProfileCvComponent } from './pages/empoyees-profile-cv/empoyees-profile-cv.component';
 import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empoyees-profile-info.component';
 import { EmployeesFormComponent } from './components/employees-form/employees-form.component';
+import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
+import { InputAutocompleteModule } from 'src/app/shared/controls/input-autocomplete/input-autocomplete.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { EmployeesFormComponent } from './components/employees-form/employees-fo
     EmpoyeesProfileInfoComponent,
     EmpoyeesProfileCvComponent,
     EmployeesFormComponent,
+    AddEmployeeComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { EmployeesFormComponent } from './components/employees-form/employees-fo
     TranslateModule,
     InputModule,
     DatepickerModule,
+    InputAutocompleteModule,
     MatButtonModule,
     MatTableModule,
     BaseTableModule,

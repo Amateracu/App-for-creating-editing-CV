@@ -40,8 +40,7 @@
       <app-input-autocomplete
         class="form-field"
         formControlName="specializations"
-        [chips]="selectedSpecializations"
-        [allchips]="allSpecializations"
+        [allChips]="allSpecializations"
         [title]="'project-page.specialization' | translate"
       >
       </app-input-autocomplete>
@@ -49,15 +48,13 @@
         class="form-field"
         formControlName="projectRoles"
         [title]="'project-info.roles' | translate"
-        [chips]="selectedRoles"
-        [allchips]="allRoles"
+        [allChips]="allRoles"
       ></app-input-autocomplete>
       <app-input-autocomplete
         class="form-field"
         formControlName="responsibilities"
         [title]="'project-info.responsibilities' | translate"
-        [chips]="selectedResponsibilities"
-        [allchips]="allResponsibilities"
+        [allChips]="allResponsibilities"
       ></app-input-autocomplete>
     </div>
     <div class="btn">

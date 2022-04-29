@@ -1,6 +1,7 @@
 import { IBreadCrumb } from '../interfaces/breadcrumbs.interface';
 import {
   CORE_ROUTE,
+  EMPLOYEES_ADD_ROUTE,
   EMPLOYEES_PROFILE_ROUTE,
   EMPLOYEES_ROUTE,
   PROJECTS_CREATE_ROUTE,
@@ -36,6 +37,12 @@ export const EMPLOYEES_BREADCRUMB: IBreadCrumb = {
   url: EMPLOYEES_ROUTE.path,
   title: 'breadcrumbs-title.employees-title',
   description: 'breadcrumbs-description.employees-description',
+};
+export const EMPLOYEES_ADD_BREADCRUMB: IBreadCrumb = {
+  label: 'breadcrums-label.employee-add ',
+  url: EMPLOYEES_ADD_ROUTE.path,
+  title: 'breadcrumbs-title.employees-title',
+  description: 'breadcrumbs-description.create-employee',
 };
 export const EMPLOYEES_PROFILE_BREADCRUMB: IBreadCrumb = {
   label: 'Info',

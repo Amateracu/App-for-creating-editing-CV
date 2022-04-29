@@ -28,29 +28,29 @@
     display: flex;
     column-gap: 0px;
     margin: 10px;
-    span {
+    .breadcrumb-link {
       color: darkgrey;
       cursor: pointer;
     }
-    span:hover {
+    .breadcrumb-link:hover {
       color: black;
       text-decoration: none;
     }
-    li {
+    .bradcrumbs-list {
       list-style: none;
       float: left;
       margin: 5px;
     }
-    li:last-child span {
+    .bradcrumbs-list:last-child .breadcrumb-link {
       color: black;
       margin-right: 20px;
     }
-    li::after {
+    .bradcrumbs-list::after {
       content: '/';
       color: darkgrey;
       margin: 5px;
     }
-    li:last-child::after {
+    .bradcrumbs-list:last-child::after {
       content: '';
     }
   }

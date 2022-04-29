@@ -50,7 +50,12 @@ export class ProjectEditPageComponent implements OnInit {
           filter((project) => Boolean(project)),
         )
         .subscribe((project) => {
-          this.project = { ...project };
+          this.project = {
+            ...project,
+            projectRoles: [...project.projectRoles],
+            specializations: [...project.specializations],
+            responsibilities: [...project.responsibilities],
+          };
 
           this.cdRef.markForCheck();
         });

@@ -1,10 +1,10 @@
-mat-toolbar {
+.toolbar {
   display: flex;
   justify-content: space-between;
   color: #f0f2f5;
   background-color: #001529;
 }
-span {
+.title {
   vertical-align: middle;
 }
 .header {

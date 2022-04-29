@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { EMPLOYEES_COLUMNS } from 'src/app/modules/projects/pages/projects-page/constants/columns.const';
 import { IColumn } from 'src/app/shared/components/base-table/interfaces/column.interface';
 import { EMPLOYEES_BREADCRUMB, HOME_BREADCRUMB } from 'src/app/shared/constants/breadcrumbs.const';
-import { EMPLOYEES_ROUTE } from 'src/app/shared/constants/routing-path.const';
+import { EMPLOYEES_ADD_ROUTE, EMPLOYEES_ROUTE } from 'src/app/shared/constants/routing-path.const';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IEmployees } from 'src/app/shared/interfaces/employees.interface';
 import { IProject } from 'src/app/shared/interfaces/project.interface';
@@ -49,5 +49,8 @@ export class EmployeesPageComponent implements OnInit {
         }));
         this.cdRef.markForCheck();
       });
+  }
+  routeAddEmployee() {
+    this.router.navigate([EMPLOYEES_ROUTE.path, EMPLOYEES_ADD_ROUTE.path]);
   }
 }

@@ -42,11 +42,8 @@ export class ProjectFormComponent implements OnInit, OnChanges {
   @Output() cancelProject = new EventEmitter<any>();
   @Input() projectById: IProject;
   public form!: FormGroup;
-  public selectedSpecializations: ISpecialization[] = [];
   public allSpecializations: ISpecialization[] = [];
-  public selectedRoles: IProjectRoles[] = [];
   public allRoles: IProjectRoles[] = [];
-  public selectedResponsibilities: IResponsibility[] = [];
   public allResponsibilities: IResponsibility[] = [];
   constructor(
     private formBuilder: FormBuilder,
@@ -67,9 +64,6 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         specializations: this.projectById.specializations,
         responsibilities: this.projectById.responsibilities,
       });
-      this.selectedSpecializations = this.projectById.specializations;
-      this.selectedRoles = this.projectById.projectRoles;
-      this.selectedResponsibilities = this.projectById.responsibilities;
     }
   }
   ngOnInit(): void {
@@ -116,10 +110,14 @@ export class ProjectFormComponent implements OnInit, OnChanges {
   submit() {
     const project: IProject = {
       ...this.form.getRawValue(),
+      specializations: this.form
+        .get('specializations')
+        .value.map((item: ISpecialization) => item.id),
+      projectRoles: this.form.get('projectRoles').value.map((item: IProjectRoles) => item.id),
+      responsibilities: this.form
+        .get('responsibilities')
+        .value.map((item: IResponsibility) => item.id),
       teamSize: Number(this.form.get('teamSize').value),
-      specializations: this.selectedSpecializations.map((item) => item.id),
-      projectRoles: this.selectedRoles.map((item) => item.id),
-      responsibilities: this.selectedResponsibilities.map((item) => item.id),
     };
     this.addProject.emit(project);
     this.form.reset();

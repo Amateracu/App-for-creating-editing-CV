@@ -50,7 +50,8 @@
     "home": "Домашняя страница",
     "project": "Проекты",
     "create": "Страница создания",
-    "employees": "Сотрудники"
+    "employees": "Сотрудники",
+    "employee-add": "Добавить"
   },
   "breadcrumbs-title": {
     "project-title": "Проекты",
@@ -59,7 +60,8 @@
   "breadcrumbs-description": {
     "project-description": "Список проектов",
     "employees-description": "Список сотрудников",
-    "create-description": "Создание проекта"
+    "create-description": "Создание проекта",
+    "create-employee": "Создание Работника"
   },
   "buttons": {
     "save": "Сохранить",

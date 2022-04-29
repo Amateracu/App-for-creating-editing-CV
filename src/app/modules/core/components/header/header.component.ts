@@ -1,9 +1,8 @@
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AUTH_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
+import { AUTH_ROUTE } from 'src/app/shared/constants/routing-path.const';
+import { AuthService } from 'src/app/shared/services/api/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,13 +15,18 @@ export class HeaderComponent {
   public opened() {
     this.openedSideBar.emit();
   }
-  constructor(private translate: TranslateService, private router: Router) {
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private authService: AuthService,
+  ) {
     this.translate.setDefaultLang('en');
   }
   public changeLang(lang: string) {
     this.translate.use(lang);
   }
   public logout() {
+    this.authService.logout();
     this.router.navigate([AUTH_ROUTE.path]);
   }
 }

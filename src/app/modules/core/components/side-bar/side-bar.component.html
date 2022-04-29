@@ -1,5 +1,5 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" [(opened)]="isToogle">
+<mat-sidenav-container class="container">
+  <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="isToogle">
     <div class="btn-menu">
       <button class="button-side-bar" [routerLink]="dashboardRoute">
         <mat-icon>speed</mat-icon>
@@ -15,7 +15,7 @@
       </button>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="content">
     <app-breadcrumbs></app-breadcrumbs>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

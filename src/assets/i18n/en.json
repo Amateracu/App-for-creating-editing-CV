@@ -38,6 +38,7 @@
     "specialization": "Specialization",
     "department": "Department"
   },
+
   "auth-page": {
     "username": "Login",
     "password": "Password",
@@ -50,7 +51,8 @@
     "home": "Home",
     "project": "Projects",
     "create": "Create",
-    "employees": "Employees"
+    "employees": "Employees",
+    "employee-add": "Add"
   },
   "breadcrumbs-title": {
     "project-title": "Projects",
@@ -59,7 +61,8 @@
   "breadcrumbs-description": {
     "project-description": "Project list",
     "employees-description": "Employee list",
-    "create-description": "Project create"
+    "create-description": "Project create",
+    "create-employee": "Add Employee"
   },
   "buttons": {
     "save": "Save",

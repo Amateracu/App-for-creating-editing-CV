@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ILanguages, ISkills } from 'src/app/shared/interfaces/employees.interface';
 
 @Component({
   selector: 'app-employees-form',
@@ -7,7 +9,26 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesFormComponent implements OnInit {
-  constructor() {}
+  public form: FormGroup;
+  public allSkills: ISkills[] = [];
+  public selectedSkills: ISkills[] = [];
+  public allLanguages: ILanguages[] = [];
+  public selectedLanguages: ILanguages[] = [];
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      institution: ['', [Validators.required]],
+      diplomaProfession: ['', [Validators.required]],
+      skills: [[], [Validators.required]],
+      role: ['', [Validators.required]],
+      department: ['', [Validators.required]],
+      languages: [[], [Validators.required]],
+    });
+  }
+  submit() {}
 }

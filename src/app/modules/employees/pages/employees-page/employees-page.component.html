@@ -1,5 +1,9 @@
 <div class="employees-list">
   <div class="employees-table">
+    <button class="add-button" mat-raised-button (click)="routeAddEmployee()">
+      {{ 'buttons.add-employee' | translate }}
+    </button>
+
     <app-base-table
       [data]="profileElements"
       [columns]="columns"

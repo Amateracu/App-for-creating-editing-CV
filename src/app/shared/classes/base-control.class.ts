@@ -9,7 +9,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @UntilDestroy()
 @Directive()
 export class BaseControl implements OnInit, DoCheck, ControlValueAccessor {
-  constructor(public ngControl: NgControl, private readonly cdRef: ChangeDetectorRef) {
+  constructor(private ngControl: NgControl, private readonly cdRef: ChangeDetectorRef) {
     this.ngControl.valueAccessor = this;
     if (this.ngControl.control?.parent) {
       this.control.setParent(this.ngControl.control?.parent);
@@ -36,7 +36,7 @@ export class BaseControl implements OnInit, DoCheck, ControlValueAccessor {
     }
   }
 
-  public writeValue(value: string): void {
+  public writeValue(value: any): void {
     this.control.setValue(value, { emitEvent: false });
     this.cdRef.detectChanges();
   }

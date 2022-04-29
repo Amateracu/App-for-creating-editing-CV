@@ -1,1 +1,60 @@
-<p>employees-form works!</p>
+<div class="form-add">
+  <form class="info" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <app-input
+        class="form-field"
+        formControlName="firstName"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="lastName"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="password"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="email"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="institution"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="diplomaProfession"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="skills"
+        [allChips]="allSkills"
+        [title]="'project-page.specialization' | translate"
+      >
+      </app-input-autocomplete>
+      <app-input
+        class="form-field"
+        formControlName="role"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="department"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="languages"
+        [allChips]="allLanguages"
+        [title]="'project-page.specialization' | translate"
+      >
+      </app-input-autocomplete>
+    </div>
+  </form>
+</div>

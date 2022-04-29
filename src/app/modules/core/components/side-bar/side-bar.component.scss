@@ -2,11 +2,11 @@
   height: 100%;
 }
 
-mat-sidenav-container {
+.container {
   height: 100%;
 }
 
-mat-sidenav {
+.sidenav {
   background-color: white;
   width: 201px;
 }
@@ -33,17 +33,12 @@ mat-sidenav {
   }
 }
 
-mat-sidenav,
+.sidenav,
 .button-side-bar:focus {
   color: #1890ff;
 }
 
-mat-toolbar {
-  width: 200px;
-  background-color: white;
-}
-
-mat-sidenav-content {
+.content {
   background-color: #f0f2f5;
 }
 .mat-drawer-content {

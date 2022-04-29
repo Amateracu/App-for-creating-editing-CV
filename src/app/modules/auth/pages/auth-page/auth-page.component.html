@@ -13,10 +13,15 @@
 </mat-menu>
 <div class="main">
   <form class="auth" [formGroup]="form" (ngSubmit)="submit()">
-    <h2><mat-icon>apps</mat-icon> {{ 'header.title' | translate }}</h2>
+    <h2 class="title"><mat-icon>apps</mat-icon> {{ 'header.title' | translate }}</h2>
     <div class="form-group">
-      <app-input formControlName="username" [label]="'auth-page.username' | translate"></app-input>
       <app-input
+        class="input-auth"
+        formControlName="username"
+        [label]="'auth-page.username' | translate"
+      ></app-input>
+      <app-input
+        class="input-auth"
         formControlName="password"
         [label]="'auth-page.password' | translate"
         type="password"
