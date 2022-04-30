@@ -15,6 +15,18 @@
     "description": "Description",
     "responsibilities": "Responsibilities"
   },
+  "employee-form": {
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "password": "Password",
+    "email": "Email",
+    "institution": "Institution",
+    "diploma": "Diploma Profession",
+    "skills": "Skills",
+    "role": "Role",
+    "department": "Department",
+    "languages": "Languages"
+  },
   "project-page": {
     "first-name": "First Name",
     "last-name": "Last Name",

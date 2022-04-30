@@ -15,6 +15,18 @@
     "description": "Описание",
     "responsibilities": "Обязанности"
   },
+  "employee-form": {
+    "first-name": "Имя",
+    "last-name": "Фамилия",
+    "password": "Пароль",
+    "email": "Почта",
+    "institution": "Образование",
+    "diploma": "Специальность",
+    "skills": "Навыки",
+    "role": "Должность",
+    "department": "Команда",
+    "languages": "Языки"
+  },
   "project-page": {
     "first-name": "Название",
     "last-name": "Второе название",
@@ -61,7 +73,7 @@
     "project-description": "Список проектов",
     "employees-description": "Список сотрудников",
     "create-description": "Создание проекта",
-    "create-employee": "Создание Работника"
+    "create-employee": "Добавление Работника"
   },
   "buttons": {
     "save": "Сохранить",

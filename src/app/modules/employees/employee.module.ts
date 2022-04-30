@@ -16,6 +16,7 @@ import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empo
 import { EmployeesFormComponent } from './components/employees-form/employees-form.component';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 import { InputAutocompleteModule } from 'src/app/shared/controls/input-autocomplete/input-autocomplete.module';
+import { InputSelectModule } from 'src/app/shared/controls/input-select/input-select.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { InputAutocompleteModule } from 'src/app/shared/controls/input-autocompl
     InputModule,
     DatepickerModule,
     InputAutocompleteModule,
+    InputSelectModule,
     MatButtonModule,
     MatTableModule,
     BaseTableModule,

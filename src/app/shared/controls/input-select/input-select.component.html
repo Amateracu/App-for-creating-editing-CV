@@ -1,0 +1,8 @@
+<label class="title">{{ title }}</label>
+<mat-form-field appearance="fill">
+  <mat-select>
+    <mat-option *ngFor="let select of selects" [value]="select.name">
+      {{ select.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

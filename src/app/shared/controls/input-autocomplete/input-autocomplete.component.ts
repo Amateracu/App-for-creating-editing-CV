@@ -10,8 +10,7 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { map, Observable, startWith } from 'rxjs';
+import { map } from 'rxjs';
 import { BaseControl } from '../../classes/base-control.class';
 import { IChips } from '../../interfaces/project.interface';
 

@@ -30,3 +30,11 @@ export interface ILanguages {
   professionalWritingLevel?: string;
   professionalSpeakingLevel?: string;
 }
+export interface ISelect {
+  id?: string;
+  name: string;
+}
+export interface IRoles {
+  id?: string;
+  name: string;
+}

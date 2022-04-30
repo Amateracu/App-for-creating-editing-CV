@@ -39,7 +39,7 @@ export const EMPLOYEES_BREADCRUMB: IBreadCrumb = {
   description: 'breadcrumbs-description.employees-description',
 };
 export const EMPLOYEES_ADD_BREADCRUMB: IBreadCrumb = {
-  label: 'breadcrums-label.employee-add ',
+  label: 'breadcrumbs-label.employee-add',
   url: EMPLOYEES_ADD_ROUTE.path,
   title: 'breadcrumbs-title.employees-title',
   description: 'breadcrumbs-description.create-employee',

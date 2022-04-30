@@ -4,57 +4,72 @@
       <app-input
         class="form-field"
         formControlName="firstName"
-        [label]="'project-info.name' | translate"
+        [label]="'employee-form.first-name' | translate"
       ></app-input>
       <app-input
         class="form-field"
         formControlName="lastName"
-        [label]="'project-info.name' | translate"
+        [label]="'employee-form.last-name' | translate"
       ></app-input>
       <app-input
         class="form-field"
+        type="password"
         formControlName="password"
-        [label]="'project-info.name' | translate"
+        [label]="'employee-form.password' | translate"
       ></app-input>
       <app-input
         class="form-field"
         formControlName="email"
-        [label]="'project-info.name' | translate"
+        [label]="'employee-form.email' | translate"
       ></app-input>
       <app-input
         class="form-field"
         formControlName="institution"
-        [label]="'project-info.name' | translate"
+        [label]="'employee-form.institution' | translate"
       ></app-input>
       <app-input
         class="form-field"
         formControlName="diplomaProfession"
-        [label]="'project-info.name' | translate"
+        [label]="'employee-form.diploma' | translate"
       ></app-input>
       <app-input-autocomplete
         class="form-field"
         formControlName="skills"
         [allChips]="allSkills"
-        [title]="'project-page.specialization' | translate"
+        [title]="'employee-form.skills' | translate"
       >
       </app-input-autocomplete>
-      <app-input
+      <app-input-select
         class="form-field"
         formControlName="role"
-        [label]="'project-info.name' | translate"
-      ></app-input>
+        [selects]="allRoles"
+        [title]="'employee-form.role' | translate"
+      >
+      </app-input-select>
       <app-input
         class="form-field"
         formControlName="department"
-        [label]="'project-info.name' | translate"
+        [label]="'employee-form.department' | translate"
       ></app-input>
       <app-input-autocomplete
         class="form-field"
         formControlName="languages"
         [allChips]="allLanguages"
-        [title]="'project-page.specialization' | translate"
+        [title]="'employee-form.languages' | translate"
       >
       </app-input-autocomplete>
+    </div>
+    <div class="btn">
+      <div class="save">
+        <button mat-button type="submit">
+          {{ 'buttons.save' | translate }}
+        </button>
+      </div>
+      <div class="cancel">
+        <button (click)="cancel()" mat-button type="button">
+          {{ 'buttons.cancel' | translate }}
+        </button>
+      </div>
     </div>
   </form>
 </div>
