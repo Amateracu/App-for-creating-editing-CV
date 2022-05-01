@@ -1,5 +1,16 @@
+:host {
+  display: block;
+}
+:host::ng-deep {
+  .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: #1890ff;
+  }
+}
 .head-employee {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  background-color: white;
+  margin: 30px;
+  padding: 30px;
 }

@@ -63,7 +63,7 @@ export class ProjectsPageComponent implements OnInit {
   public openProjectInfo(row: IProject) {
     this.router.navigate([PROJECTS_ROUTE.path, row.id]);
     PROJECT_INFO_BREADCRUMB.label = row.name;
-    PROJECT_INFO_BREADCRUMB.description = 'Project ' + row.name;
+    PROJECT_INFO_BREADCRUMB.description = row.name;
   }
   public routeAddProject() {
     this.router.navigate([PROJECTS_ROUTE.path, PROJECTS_CREATE_ROUTE.path]);

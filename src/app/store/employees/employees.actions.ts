@@ -23,6 +23,26 @@ export const AddEmployeeSuccess = createAction(
 );
 export const AddEmployeeError = createAction('[EMPLOYEE] AddEmployee Error');
 
+export const GetEmployeeById = createAction(
+  '[EMPLOYEE] GetEmployee',
+  props<{ employeeId: string }>(),
+);
+export const GetEmployeeByIdSuccess = createAction(
+  '[EMPLOYEE] GetEmployee Success',
+  props<{ employee: IEmployees }>(),
+);
+export const GetEmployeeByIdError = createAction('[EMPLOYEE] GetEmployee Error');
+
+export const EditEmployee = createAction(
+  '[EMPLOYEE] EditEmployee',
+  props<{ employee: IEmployees }>(),
+);
+export const EditEmployeeSuccess = createAction(
+  '[EMPLOYEE] EditEmployee Success',
+  props<{ employee: IEmployees }>(),
+);
+export const EditEmployeeError = createAction('[EMPLOYEE] EditEmployee Error');
+
 export const GetSkillsList = createAction('[SKILLS] GetSkillsList');
 export const GetSkillsListSuccess = createAction(
   '[SKILLS] GetSkillsList Success',

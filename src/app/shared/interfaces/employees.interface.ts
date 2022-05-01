@@ -38,3 +38,7 @@ export interface IRoles {
   id?: string;
   name: string;
 }
+export interface ICvTabs {
+  label: string;
+  content: string;
+}

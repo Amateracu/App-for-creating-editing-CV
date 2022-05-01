@@ -1,2 +1,12 @@
-<p>empoyees-profile-cv works!</p>
-<app-empoyees-profile-info></app-empoyees-profile-info>
+<div class="cv-profile">
+  <div class="mat-tab">
+    <mat-tab-group>
+      <mat-tab class="mat-tab" *ngFor="let cvTab of cvTabs" [label]="cvTab.label"
+        >{{ cvTab.content }}
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="employees-profile">
+    <app-empoyees-profile-info></app-empoyees-profile-info>
+  </div>
+</div>

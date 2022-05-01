@@ -5,6 +5,10 @@ import { EmployeesApiService } from 'src/app/shared/services/api/employees.api.s
 import {
   AddEmployee,
   AddEmployeeSuccess,
+  EditEmployee,
+  EditEmployeeSuccess,
+  GetEmployeeById,
+  GetEmployeeByIdSuccess,
   GetEmployeesList,
   GetEmployeesListSuccess,
   GetLanguagesList,
@@ -34,6 +38,28 @@ export class EmployeesEffect {
       mergeMap((action) =>
         this.employeesApiService.createEmployee(action.employee).pipe(
           map((employee) => AddEmployeeSuccess({ employee })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  getEmployeeById = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetEmployeeById),
+      mergeMap((action) =>
+        this.employeesApiService.getEmployeeById(action.employeeId).pipe(
+          map((employee) => GetEmployeeByIdSuccess({ employee })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  editEmployee$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EditEmployee),
+      mergeMap((action) =>
+        this.employeesApiService.editEmployee(action.employee).pipe(
+          map((employee) => EditEmployeeSuccess({ employee })),
           catchError(() => EMPTY),
         ),
       ),

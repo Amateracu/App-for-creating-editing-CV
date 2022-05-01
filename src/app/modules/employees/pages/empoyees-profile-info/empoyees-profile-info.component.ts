@@ -1,6 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
+import { EMPLOYEES_PARAM, EMPLOYEES_ROUTE } from 'src/app/shared/constants/routing-path.const';
+import { IEmployees } from 'src/app/shared/interfaces/employees.interface';
+import { EditEmployee, GetEmployeeById } from 'src/app/store/employees/employees.actions';
+import { selectEmployeeById } from 'src/app/store/employees/employees.selectors';
+@UntilDestroy()
 @Component({
   selector: 'app-empoyees-profile-info',
   templateUrl: './empoyees-profile-info.component.html',
@@ -9,17 +17,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EmpoyeesProfileInfoComponent implements OnInit {
   public form!: FormGroup;
-  public submitted = false;
-  constructor(private formBuilder: FormBuilder) {}
+  public employee: IEmployees;
+  public employeeId: string;
+  public useInput = false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store,
+    private route: ActivatedRoute,
+    private cdRef: ChangeDetectorRef,
+    private router: Router,
+  ) {}
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      specialization: ['', [Validators.required]],
-      departament: ['', [Validators.required]],
-    });
+    this.employeeId = this.route.snapshot.params[EMPLOYEES_PARAM];
+    if (this.employeeId) {
+      this.store.dispatch(GetEmployeeById({ employeeId: this.employeeId }));
+      this.store
+        .select(selectEmployeeById)
+        .pipe(
+          untilDestroyed(this),
+          filter((employee) => Boolean(employee) && this.employeeId === employee.id),
+          filter((employee) => Boolean(employee)),
+        )
+        .subscribe((employee) => {
+          this.employee = {
+            ...employee,
+            skills: [...employee.skills],
+          };
+
+          this.cdRef.markForCheck();
+        });
+    }
   }
 
-  submit() {}
+  editEmployee(employee: IEmployees) {
+    employee.id = this.employeeId;
+    this.store.dispatch(EditEmployee({ employee }));
+    this.router.navigate([EMPLOYEES_ROUTE.path]);
+  }
 }

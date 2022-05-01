@@ -12,6 +12,7 @@
         [label]="'employee-form.last-name' | translate"
       ></app-input>
       <app-input
+        *ngIf="used"
         class="form-field"
         type="password"
         formControlName="password"
@@ -23,11 +24,13 @@
         [label]="'employee-form.email' | translate"
       ></app-input>
       <app-input
+        *ngIf="used"
         class="form-field"
         formControlName="institution"
         [label]="'employee-form.institution' | translate"
       ></app-input>
       <app-input
+        *ngIf="used"
         class="form-field"
         formControlName="diplomaProfession"
         [label]="'employee-form.diploma' | translate"
@@ -40,6 +43,7 @@
       >
       </app-input-autocomplete>
       <app-input-select
+        *ngIf="used"
         class="form-field"
         formControlName="role"
         [selects]="allRoles"
@@ -52,6 +56,7 @@
         [label]="'employee-form.department' | translate"
       ></app-input>
       <app-input-autocomplete
+        *ngIf="used"
         class="form-field"
         formControlName="languages"
         [allChips]="allLanguages"

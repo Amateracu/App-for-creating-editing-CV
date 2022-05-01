@@ -1,0 +1,19 @@
+:host::ng-deep {
+  .cv-profile {
+    display: flex;
+    .mat-tab {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .mat-tab-labels {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-ink-bar {
+    display: none;
+  }
+  .mat-tab:focus {
+    color: #1890ff;
+  }
+}

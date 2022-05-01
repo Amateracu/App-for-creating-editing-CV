@@ -8,6 +8,8 @@ import {
 import {
   AddEmployee,
   AddEmployeeSuccess,
+  EditEmployeeSuccess,
+  GetEmployeeByIdSuccess,
   GetEmployeesListSuccess,
   GetLanguagesListSuccess,
   GetRolesListSuccess,
@@ -41,6 +43,20 @@ const employeesReducer = createReducer(
   ),
   on(
     AddEmployeeSuccess,
+    (state, { employee }): EmployeesState => ({
+      ...state,
+      employees: [...state.employees, employee],
+    }),
+  ),
+  on(
+    GetEmployeeByIdSuccess,
+    (state, { employee }): EmployeesState => ({
+      ...state,
+      employee,
+    }),
+  ),
+  on(
+    EditEmployeeSuccess,
     (state, { employee }): EmployeesState => ({
       ...state,
       employees: [...state.employees, employee],

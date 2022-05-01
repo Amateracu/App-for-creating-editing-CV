@@ -8,9 +8,8 @@ describe('EmpoyeesProfileCvComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmpoyeesProfileCvComponent ]
-    })
-    .compileComponents();
+      declarations: [EmpoyeesProfileCvComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

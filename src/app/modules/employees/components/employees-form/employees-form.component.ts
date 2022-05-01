@@ -5,6 +5,9 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -34,9 +37,11 @@ import {
   styleUrls: ['./employees-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeesFormComponent implements OnInit {
+export class EmployeesFormComponent implements OnInit, OnChanges {
   @Output() addEmployee = new EventEmitter<IEmployees>();
   @Output() cancelEmployee = new EventEmitter<any>();
+  @Input() used = true;
+  @Input() employeeById: IEmployees;
   public form: FormGroup;
   public allSkills: ISkills[] = [];
   public allLanguages: ILanguages[] = [];
@@ -47,6 +52,17 @@ export class EmployeesFormComponent implements OnInit {
     private store: Store,
     private cdRef: ChangeDetectorRef,
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['employeeById'] && changes['employeeById'].currentValue) {
+      this.form.patchValue({
+        firstName: this.employeeById.firstName,
+        lastName: this.employeeById.lastName,
+        email: this.employeeById.email,
+        skills: this.employeeById.skills,
+        department: this.employeeById.department,
+      });
+    }
+  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

@@ -23,6 +23,18 @@ export class EmployeesApiService {
     const url = environment.apiUrl + this.endPoints.getEmployeesList;
     return this.http.post<IEmployees>(url, employee);
   }
+  getEmployeeById(employeeId: string): Observable<IEmployees> {
+    const url = environment.apiUrl + this.endPoints.getEmployeesList + `?id=${employeeId}`;
+    return this.http.get<IEmployees[]>(url).pipe(
+      map((employees) => {
+        return employees[0];
+      }),
+    );
+  }
+  editEmployee(employee: IEmployees): Observable<IEmployees> {
+    const url = environment.apiUrl + this.endPoints.getEmployeesList;
+    return this.http.put<IEmployees>(url, employee);
+  }
   getSkills(): Observable<ISkills[]> {
     const url = environment.apiUrl + this.endPoints.getSkills;
     return this.http.get<ISkills[]>(url).pipe(

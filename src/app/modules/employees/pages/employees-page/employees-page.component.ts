@@ -4,7 +4,11 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { EMPLOYEES_COLUMNS } from 'src/app/modules/projects/pages/projects-page/constants/columns.const';
 import { IColumn } from 'src/app/shared/components/base-table/interfaces/column.interface';
-import { EMPLOYEES_BREADCRUMB, HOME_BREADCRUMB } from 'src/app/shared/constants/breadcrumbs.const';
+import {
+  EMPLOYEES_BREADCRUMB,
+  EMPLOYEES_PROFILE_BREADCRUMB,
+  HOME_BREADCRUMB,
+} from 'src/app/shared/constants/breadcrumbs.const';
 import { EMPLOYEES_ADD_ROUTE, EMPLOYEES_ROUTE } from 'src/app/shared/constants/routing-path.const';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IEmployees } from 'src/app/shared/interfaces/employees.interface';
@@ -25,9 +29,6 @@ export class EmployeesPageComponent implements OnInit {
 
   public columns: IColumn[] = EMPLOYEES_COLUMNS;
 
-  public openProfilePage(row: IProject) {
-    this.router.navigate([EMPLOYEES_ROUTE.path, row.id]);
-  }
   constructor(
     public router: Router,
     public breadcrumbsService: BreadcrumbsService,
@@ -50,7 +51,12 @@ export class EmployeesPageComponent implements OnInit {
         this.cdRef.markForCheck();
       });
   }
-  routeAddEmployee() {
+  public routeAddEmployee() {
     this.router.navigate([EMPLOYEES_ROUTE.path, EMPLOYEES_ADD_ROUTE.path]);
+  }
+  public openProfilePage(row: IEmployees) {
+    this.router.navigate([EMPLOYEES_ROUTE.path, row.id]);
+    EMPLOYEES_PROFILE_BREADCRUMB.label = row.firstName;
+    EMPLOYEES_PROFILE_BREADCRUMB.description = row.firstName;
   }
 }
