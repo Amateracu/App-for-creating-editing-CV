@@ -12,7 +12,7 @@ import { CoreModule } from './modules/core/core.module';
 import { TokenExpirationInterceptor } from './shared/interceptors/token-expiration.interceptor';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { StateModule } from './store/state.module';
-import { InputSelectComponent } from './shared/controls/input-select/input-select.component';
+import { AutocompleteFormComponent } from './shared/controls/autocomplete-form/autocomplete-form.component';
 
 @NgModule({
   declarations: [AppComponent],

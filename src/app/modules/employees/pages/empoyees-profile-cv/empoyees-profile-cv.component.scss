@@ -1,19 +1,26 @@
+:host {
+  display: block;
+}
 :host::ng-deep {
-  .cv-profile {
+  .cv-form {
     display: flex;
-    .mat-tab {
-      display: flex;
-      flex-direction: column;
-    }
+    justify-content: space-between;
   }
-  .mat-tab-labels {
-    display: flex;
-    flex-direction: column;
+  .button-opened {
+    display: block;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: #1890ff;
+    color: white;
   }
-  .mat-ink-bar {
-    display: none;
-  }
-  .mat-tab:focus {
-    color: #1890ff;
-  }
+}
+.btn {
+  display: flex;
+  justify-content: end;
+  padding: 30px;
+}
+.save {
+  margin-right: 10px;
+  background-color: #1890ff;
+  color: white;
 }

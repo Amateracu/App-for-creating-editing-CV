@@ -66,6 +66,9 @@ export class InputAutocompleteComponent extends BaseControl implements OnInit, O
   }
 
   private filter(value: string): IChips[] {
-    return this.allChips.filter((chip) => value.includes(chip.name));
+    if (typeof value !== 'string') return this.allChips;
+    console.log('value: ', value);
+
+    return this.allChips.filter((chip) => chip.name.toLowerCase().includes(value.toLowerCase()));
   }
 }

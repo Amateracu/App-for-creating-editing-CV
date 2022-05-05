@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+.form-list {
+  background-color: white;
+  margin: 30px;
+  padding: 30px;
+  .button-archive {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 44px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 60px;
+    align-content: space-between;
+    .form-field {
+      width: 200px;
+    }
+  }
+}
+.btn {
+  display: flex;
+  justify-content: end;
+  padding: 30px;
+}
+.save {
+  margin-right: 10px;
+  background-color: #1890ff;
+  color: white;
+}

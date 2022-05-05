@@ -1,0 +1,61 @@
+<div class="form-list">
+  <form class="info" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <app-autocomplete-form
+        [options]="names"
+        class="form-field"
+        formControlName="name"
+        [label]="'project-info.name' | translate"
+      ></app-autocomplete-form>
+      <app-input
+        class="form-field"
+        formControlName="secondName"
+        [label]="'project-info.second-name' | translate"
+      ></app-input>
+      <app-datepicker
+        class="form-field"
+        formControlName="startDate"
+        [label]="'project-info.start-date' | translate"
+      ></app-datepicker>
+      <app-datepicker
+        class="form-field"
+        formControlName="endDate"
+        [label]="'project-info.end-date' | translate"
+      ></app-datepicker>
+      <app-input
+        class="form-field"
+        formControlName="teamSize"
+        [label]="'project-info.team-size' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="tasksPerformed"
+        [label]="'project-info.tech-stack' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="description"
+        [label]="'project-info.description' | translate"
+      ></app-input>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="specializations"
+        [allChips]="allSpecializations"
+        [title]="'project-page.specialization' | translate"
+      >
+      </app-input-autocomplete>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="projectRoles"
+        [title]="'project-info.roles' | translate"
+        [allChips]="allRoles"
+      ></app-input-autocomplete>
+      <app-input-autocomplete
+        class="form-field"
+        formControlName="responsibilities"
+        [title]="'project-info.responsibilities' | translate"
+        [allChips]="allResponsibilities"
+      ></app-input-autocomplete>
+    </div>
+  </form>
+</div>

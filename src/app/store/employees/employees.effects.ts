@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, EMPTY, map, mergeMap, switchMap } from 'rxjs';
+import { CvApiService } from 'src/app/shared/services/api/cv.api.service';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees.api.service';
 import {
   AddEmployee,
   AddEmployeeSuccess,
   EditEmployee,
   EditEmployeeSuccess,
+  GetCvList,
+  GetCvListSuccess,
   GetEmployeeById,
   GetEmployeeByIdSuccess,
   GetEmployeesList,
@@ -99,5 +102,21 @@ export class EmployeesEffect {
     );
   });
 
-  constructor(private employeesApiService: EmployeesApiService, private actions$: Actions) {}
+  getCvList$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetCvList),
+      switchMap(() =>
+        this.cvService.getCvList().pipe(
+          map((cvList) => GetCvListSuccess({ cvList })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+
+  constructor(
+    private employeesApiService: EmployeesApiService,
+    private actions$: Actions,
+    private cvService: CvApiService,
+  ) {}
 }

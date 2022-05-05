@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import {
   IEmployees,
   ILanguages,
@@ -6,14 +7,13 @@ import {
   ISkills,
 } from 'src/app/shared/interfaces/employees.interface';
 import {
-  AddEmployee,
   AddEmployeeSuccess,
   EditEmployeeSuccess,
+  GetCvListSuccess,
   GetEmployeeByIdSuccess,
   GetEmployeesListSuccess,
   GetLanguagesListSuccess,
   GetRolesListSuccess,
-  GetSkillsList,
   GetSkillsListSuccess,
 } from './employees.actions';
 
@@ -23,6 +23,7 @@ export interface EmployeesState {
   skills: ISkills[];
   languages: ILanguages[];
   roles: IRoles[];
+  cvList: ICv[];
 }
 export const employeesInitialState: EmployeesState = {
   employees: [],
@@ -30,6 +31,7 @@ export const employeesInitialState: EmployeesState = {
   skills: [],
   languages: [],
   roles: [],
+  cvList: [],
 };
 
 const employeesReducer = createReducer(
@@ -81,6 +83,14 @@ const employeesReducer = createReducer(
     (state, { roles }): EmployeesState => ({
       ...state,
       roles,
+    }),
+  ),
+
+  on(
+    GetCvListSuccess,
+    (state, { cvList }): EmployeesState => ({
+      ...state,
+      cvList,
     }),
   ),
 );

@@ -17,6 +17,9 @@ import { EmployeesFormComponent } from './components/employees-form/employees-fo
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 import { InputAutocompleteModule } from 'src/app/shared/controls/input-autocomplete/input-autocomplete.module';
 import { InputSelectModule } from 'src/app/shared/controls/input-select/input-select.module';
+import { CvFormComponent } from './components/cv-form/cv-form.component';
+import { AutocompleteFormModule } from 'src/app/shared/controls/autocomplete-form/autocomplete-form.module';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { InputSelectModule } from 'src/app/shared/controls/input-select/input-se
     EmpoyeesProfileCvComponent,
     EmployeesFormComponent,
     AddEmployeeComponent,
+    CvFormComponent,
   ],
   imports: [
     CommonModule,
@@ -38,9 +42,11 @@ import { InputSelectModule } from 'src/app/shared/controls/input-select/input-se
     DatepickerModule,
     InputAutocompleteModule,
     InputSelectModule,
+    AutocompleteFormModule,
     MatButtonModule,
     MatTableModule,
     BaseTableModule,
+    MatExpansionModule,
   ],
   exports: [],
   providers: [],

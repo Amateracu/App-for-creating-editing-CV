@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputSelectComponent } from './input-select.component';
+import { CvFormComponent } from './cv-form.component';
 
-describe('InputSelectComponent', () => {
-  let component: InputSelectComponent;
-  let fixture: ComponentFixture<InputSelectComponent>;
+describe('CvFormComponent', () => {
+  let component: CvFormComponent;
+  let fixture: ComponentFixture<CvFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InputSelectComponent],
+      declarations: [CvFormComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputSelectComponent);
+    fixture = TestBed.createComponent(CvFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

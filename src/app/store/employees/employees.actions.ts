@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import {
   IEmployees,
   ILanguages,
@@ -63,3 +64,7 @@ export const GetRolesListSuccess = createAction(
   props<{ roles: IRoles[] }>(),
 );
 export const GetRolesListError = createAction('[ROLES] GetRolesList Error');
+
+export const GetCvList = createAction('[CV] GetCvList');
+export const GetCvListSuccess = createAction('[CV] GetCvList Success', props<{ cvList: ICv[] }>());
+export const GetCvListError = createAction('[CV] GetCvList Error');

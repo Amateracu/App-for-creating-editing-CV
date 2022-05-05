@@ -1,19 +1,18 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Output,
+  Component,
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { EMPLOYEES_ROUTE } from 'src/app/shared/constants/routing-path.const';
 import {
   IEmployees,
   ILanguages,
@@ -73,7 +72,7 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
       institution: ['', [Validators.required]],
       diplomaProfession: ['', [Validators.required]],
       skills: [[], [Validators.required]],
-      role: ['', [Validators.required]],
+      role: [[], [Validators.required]],
       department: ['', [Validators.required]],
       languages: [[], [Validators.required]],
     });
@@ -109,8 +108,9 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
       ...this.form.getRawValue(),
       skills: this.form.get('skills').value.map((item: ISkills) => item.id),
       languages: this.form.get('languages').value.map((item: ILanguages) => item.id),
-      role: this.form.get('role').value.map((item: IRoles) => item.id),
+      role: this.form.get('role').value.id,
     };
+
     this.addEmployee.emit(employee);
     this.form.reset();
   }

@@ -1,12 +1,18 @@
-<div class="cv-profile">
-  <div class="mat-tab">
-    <mat-tab-group>
-      <mat-tab class="mat-tab" *ngFor="let cvTab of cvTabs" [label]="cvTab.label"
-        >{{ cvTab.content }}
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-  <div class="employees-profile">
-    <app-empoyees-profile-info></app-empoyees-profile-info>
+<div class="cvList">
+  <button class="button-opened" mat-button (click)="openedCv()">cv</button>
+</div>
+<div *ngIf="isOpened" class="cv-profile">
+  <app-cv-form class="cv-form" [cvs]="cvList"></app-cv-form>
+  <div class="btn">
+    <div class="save">
+      <button mat-button type="submit">
+        {{ 'buttons.save' | translate }}
+      </button>
+    </div>
+    <div class="cancel">
+      <button (click)="cancel()" mat-button type="button">
+        {{ 'buttons.cancel' | translate }}
+      </button>
+    </div>
   </div>
 </div>

@@ -1,0 +1,19 @@
+:host::ng-deep {
+  display: flex;
+  flex-direction: column;
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white;
+    padding: 0%;
+  }
+  .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0.4375em 0;
+  }
+  .mat-input-element {
+    border: groove;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 7px;
+    background-color: white;
+  }
+}
