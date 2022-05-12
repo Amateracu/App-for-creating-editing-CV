@@ -8,6 +8,7 @@ import {
 } from 'src/app/shared/interfaces/employees.interface';
 import {
   AddEmployeeSuccess,
+  EditCvProjectSuccess,
   EditEmployeeSuccess,
   GetCvListSuccess,
   GetEmployeeByIdSuccess,
@@ -24,6 +25,7 @@ export interface EmployeesState {
   languages: ILanguages[];
   roles: IRoles[];
   cvList: ICv[];
+  cv: ICv;
 }
 export const employeesInitialState: EmployeesState = {
   employees: [],
@@ -32,6 +34,7 @@ export const employeesInitialState: EmployeesState = {
   languages: [],
   roles: [],
   cvList: [],
+  cv: null,
 };
 
 const employeesReducer = createReducer(
@@ -91,6 +94,13 @@ const employeesReducer = createReducer(
     (state, { cvList }): EmployeesState => ({
       ...state,
       cvList,
+    }),
+  ),
+  on(
+    EditCvProjectSuccess,
+    (state, { cv }): EmployeesState => ({
+      ...state,
+      cvList: [...state.cvList, cv],
     }),
   ),
 );

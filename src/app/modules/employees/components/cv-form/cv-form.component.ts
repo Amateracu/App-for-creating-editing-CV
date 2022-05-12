@@ -3,7 +3,9 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -15,8 +17,16 @@ import {
   IResponsibility,
   ISpecialization,
 } from 'src/app/shared/interfaces/project.interface';
-import { GetCvList } from 'src/app/store/employees/employees.actions';
-import { selectCvList } from 'src/app/store/employees/employees.selectors';
+import {
+  GetProjectRolesList,
+  GetResponsibilitiesList,
+  GetSpecializationsList,
+} from 'src/app/store/projects/projects.actions';
+import {
+  selectProjectRoles,
+  selectResponsibilities,
+  selectSpecializations,
+} from 'src/app/store/projects/projects.selectors';
 
 @UntilDestroy()
 @Component({
@@ -26,19 +36,32 @@ import { selectCvList } from 'src/app/store/employees/employees.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CvFormComponent implements OnInit {
-  @Input() cvs: ICv[];
+  @Input() userProjects: IProject[];
+  @Input() editProjectCv: ICv;
   public allSpecializations: ISpecialization[] = [];
   public allRoles: IRoles[] = [];
   public allResponsibilities: IResponsibility[] = [];
   public form: FormGroup;
-  public userProjects: IProject[];
-  public names: string[];
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,
     private cdRef: ChangeDetectorRef,
   ) {}
 
+  setFormProject(project: IProject) {
+    this.form.setValue({
+      name: project.name,
+      secondName: project.secondName,
+      startDate: project.startDate,
+      endDate: project.endDate,
+      teamSize: project.teamSize,
+      tasksPerformed: project.tasksPerformed,
+      description: project.description,
+      projectRoles: project.projectRoles,
+      specializations: project.specializations,
+      responsibilities: project.responsibilities,
+    });
+  }
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -52,17 +75,32 @@ export class CvFormComponent implements OnInit {
       specializations: [[], [Validators.required]],
       responsibilities: [[], [Validators.required]],
     });
-    this.store.dispatch(GetCvList());
+    this.store.dispatch(GetProjectRolesList());
     this.store
-      .select(selectCvList)
+      .select(selectProjectRoles)
       .pipe(untilDestroyed(this))
-      .subscribe((cvList) => {
-        this.cvs = [...cvList];
-        [...cvList].map((item) => (this.userProjects = item.projects));
+      .subscribe((projectRoles) => {
+        this.allRoles = [...projectRoles];
         this.cdRef.markForCheck();
       });
-    console.log(this.cvs);
-    console.log(this.userProjects);
+
+    this.store.dispatch(GetResponsibilitiesList());
+    this.store
+      .select(selectResponsibilities)
+      .pipe(untilDestroyed(this))
+      .subscribe((responsibilities) => {
+        this.allResponsibilities = [...responsibilities];
+        this.cdRef.markForCheck();
+      });
+
+    this.store.dispatch(GetSpecializationsList());
+    this.store
+      .select(selectSpecializations)
+      .pipe(untilDestroyed(this))
+      .subscribe((specializations) => {
+        this.allSpecializations = [...specializations];
+        this.cdRef.markForCheck();
+      });
   }
   submit() {}
   cancel() {}

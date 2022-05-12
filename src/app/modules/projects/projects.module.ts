@@ -36,7 +36,7 @@ import { InputAutocompleteModule } from 'src/app/shared/controls/input-autocompl
     MatAutocompleteModule,
     InputAutocompleteModule,
   ],
-  exports: [],
+  exports: [ProjectFormComponent],
   providers: [],
 })
 export class ProjectsModule {}

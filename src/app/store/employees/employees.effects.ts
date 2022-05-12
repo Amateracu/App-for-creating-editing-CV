@@ -6,6 +6,8 @@ import { EmployeesApiService } from 'src/app/shared/services/api/employees.api.s
 import {
   AddEmployee,
   AddEmployeeSuccess,
+  EditCvProject,
+  EditCvProjectSuccess,
   EditEmployee,
   EditEmployeeSuccess,
   GetCvList,
@@ -105,9 +107,20 @@ export class EmployeesEffect {
   getCvList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetCvList),
-      switchMap(() =>
-        this.cvService.getCvList().pipe(
+      switchMap((action) =>
+        this.cvService.getCvByUserId(action.userId).pipe(
           map((cvList) => GetCvListSuccess({ cvList })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  editCvProject$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EditCvProject),
+      mergeMap((action) =>
+        this.cvService.editCvProject(action.cv).pipe(
+          map((cv) => EditCvProjectSuccess({ cv })),
           catchError(() => EMPTY),
         ),
       ),

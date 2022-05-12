@@ -6,6 +6,7 @@ import {
   IRoles,
   ISkills,
 } from 'src/app/shared/interfaces/employees.interface';
+import { IProject } from 'src/app/shared/interfaces/project.interface';
 
 export const GetEmployeesList = createAction('[EMPLOYEES] GetEmployeesList');
 export const GetEmployeesListSuccess = createAction(
@@ -65,6 +66,13 @@ export const GetRolesListSuccess = createAction(
 );
 export const GetRolesListError = createAction('[ROLES] GetRolesList Error');
 
-export const GetCvList = createAction('[CV] GetCvList');
+export const GetCvList = createAction('[CV] GetCvList', props<{ userId: string }>());
 export const GetCvListSuccess = createAction('[CV] GetCvList Success', props<{ cvList: ICv[] }>());
 export const GetCvListError = createAction('[CV] GetCvList Error');
+
+export const EditCvProject = createAction('[CV] EditCvProject', props<{ cv: ICv }>());
+export const EditCvProjectSuccess = createAction(
+  '[CV] EditCvProject Success',
+  props<{ cv: ICv }>(),
+);
+export const EditCvProjectError = createAction('[CV] EditCvProject Error');

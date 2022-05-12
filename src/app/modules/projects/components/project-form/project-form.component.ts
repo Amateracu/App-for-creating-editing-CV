@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { PROJECT_INFO_BREADCRUMB } from 'src/app/shared/constants/breadcrumbs.const';
+import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import {
   IProject,
   IProjectRoles,
@@ -39,6 +40,7 @@ import {
 })
 export class ProjectFormComponent implements OnInit, OnChanges {
   @Output() addProject = new EventEmitter<IProject>();
+  @Output() addCvProject = new EventEmitter<IProject>();
   @Output() cancelProject = new EventEmitter<any>();
   @Input() projectById: IProject;
   public form!: FormGroup;
@@ -119,7 +121,9 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         .value.map((item: IResponsibility) => item.id),
       teamSize: Number(this.form.get('teamSize').value),
     };
+
     this.addProject.emit(project);
+    this.addCvProject.emit(project);
     this.form.reset();
   }
   cancel() {

@@ -1,9 +1,10 @@
+import { IEmployees } from './employees.interface';
 import { IProject } from './project.interface';
 
 export interface ICv {
   id: string;
   projects: IProject[];
-  user: string;
+  user: IEmployees;
   name: string;
   description: string;
   createdAt: string;

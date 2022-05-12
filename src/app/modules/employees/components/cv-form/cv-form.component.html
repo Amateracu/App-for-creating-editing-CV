@@ -2,7 +2,8 @@
   <form class="info" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
       <app-autocomplete-form
-        [options]="names"
+        (option)="setFormProject($event)"
+        [options]="userProjects"
         class="form-field"
         formControlName="name"
         [label]="'project-info.name' | translate"

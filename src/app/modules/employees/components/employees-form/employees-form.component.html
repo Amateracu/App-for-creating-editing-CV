@@ -64,7 +64,7 @@
       >
       </app-input-autocomplete>
     </div>
-    <div class="btn">
+    <div *ngIf="useButton" class="btn">
       <div class="save">
         <button mat-button type="submit">
           {{ 'buttons.save' | translate }}

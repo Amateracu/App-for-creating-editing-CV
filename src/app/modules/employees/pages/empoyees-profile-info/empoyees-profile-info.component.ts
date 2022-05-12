@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Input,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -16,10 +22,11 @@ import { selectEmployeeById } from 'src/app/store/employees/employees.selectors'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmpoyeesProfileInfoComponent implements OnInit {
+  @Input() useButton = true;
+  @Input() useInput = false;
   public form!: FormGroup;
   public employee: IEmployees;
   public employeeId: string;
-  public useInput = false;
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,

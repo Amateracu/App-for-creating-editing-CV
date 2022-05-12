@@ -1,18 +1,38 @@
-<div class="cvList">
-  <button class="button-opened" mat-button (click)="openedCv()">cv</button>
+<div class="buttons-cv">
+  <div *ngFor="let cv of cvList; let index = index" class="button-cv">
+    <button mat-button type="button" (click)="clickedCv(index)">{{ cv.name }}</button>
+  </div>
 </div>
-<div *ngIf="isOpened" class="cv-profile">
-  <app-cv-form class="cv-form" [cvs]="cvList"></app-cv-form>
-  <div class="btn">
-    <div class="save">
-      <button mat-button type="submit">
-        {{ 'buttons.save' | translate }}
-      </button>
+<div *ngIf="isOpened" class="cv-page">
+  <app-empoyees-profile-info [useButton]="useButton"></app-empoyees-profile-info>
+  <div>
+    <button class="add-project-btn" mat-raised-button class="add-project" (click)="addProject()">
+      {{ 'buttons.add-project' | translate }}
+    </button>
+    <div *ngIf="addProj">
+      <app-project-form (addCvProject)="saveNewProject($event)"></app-project-form>
     </div>
-    <div class="cancel">
-      <button (click)="cancel()" mat-button type="button">
-        {{ 'buttons.cancel' | translate }}
-      </button>
+  </div>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ 'breadcrumbs-label.project' | translate }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-cv-form [userProjects]="projectsCv" class="cv-form"></app-cv-form>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  </mat-expansion-panel>
+  <div class="cv-profile">
+    <div class="btn">
+      <div class="save">
+        <button mat-button type="submit">
+          {{ 'buttons.save' | translate }}
+        </button>
+      </div>
+      <div class="cancel">
+        <button (click)="cancel()" mat-button type="button">
+          {{ 'buttons.cancel' | translate }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

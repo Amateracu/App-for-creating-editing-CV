@@ -8,9 +8,8 @@ describe('AutocompleteFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AutocompleteFormComponent ]
-    })
-    .compileComponents();
+      declarations: [AutocompleteFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

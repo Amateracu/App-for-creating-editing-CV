@@ -40,6 +40,7 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
   @Output() addEmployee = new EventEmitter<IEmployees>();
   @Output() cancelEmployee = new EventEmitter<any>();
   @Input() used = true;
+  @Input() useButton = true;
   @Input() employeeById: IEmployees;
   public form: FormGroup;
   public allSkills: ISkills[] = [];
@@ -59,6 +60,10 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
         email: this.employeeById.email,
         skills: this.employeeById.skills,
         department: this.employeeById.department,
+        institution: this.employeeById.institution,
+        diplomaProfession: this.employeeById.diplomaProfession,
+        languages: this.employeeById.languages,
+        role: this.employeeById.role,
       });
     }
   }
