@@ -7,6 +7,13 @@ export interface ICv {
   user: IEmployees;
   name: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+export interface IcvEdit {
+  id: string;
+  projects: string[];
+  user: string;
+  name: string;
+  description: string;
 }

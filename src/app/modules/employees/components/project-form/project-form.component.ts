@@ -2,15 +2,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
+  Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import { IRoles } from 'src/app/shared/interfaces/employees.interface';
 import {
   IProject,
@@ -27,17 +26,19 @@ import {
   selectResponsibilities,
   selectSpecializations,
 } from 'src/app/store/projects/projects.selectors';
-
 @UntilDestroy()
 @Component({
-  selector: 'app-cv-form',
-  templateUrl: './cv-form.component.html',
-  styleUrls: ['./cv-form.component.scss'],
+  selector: 'app-projects-form',
+  templateUrl: './project-form.component.html',
+  styleUrls: ['./project-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CvFormComponent implements OnInit {
+export class ProjectsFormComponent implements OnInit {
   @Input() userProjects: IProject[];
-  @Input() editProjectCv: ICv;
+  @Input() useBtn: boolean = true;
+  @Output() saveProject = new EventEmitter<IProject>();
+  @Output() submitCv = new EventEmitter<void>();
+
   public allSpecializations: ISpecialization[] = [];
   public allRoles: IRoles[] = [];
   public allResponsibilities: IResponsibility[] = [];
@@ -49,7 +50,7 @@ export class CvFormComponent implements OnInit {
   ) {}
 
   setFormProject(project: IProject) {
-    this.form.setValue({
+    this.form.patchValue({
       name: project.name,
       secondName: project.secondName,
       startDate: project.startDate,
@@ -61,7 +62,23 @@ export class CvFormComponent implements OnInit {
       specializations: project.specializations,
       responsibilities: project.responsibilities,
     });
+    this.saveProject.emit(project);
   }
+  setFormProjectCv(projectCv: IProject) {
+    this.form.patchValue({
+      name: projectCv.name,
+      secondName: projectCv.secondName,
+      startDate: projectCv.startDate,
+      endDate: projectCv.endDate,
+      teamSize: projectCv.teamSize,
+      tasksPerformed: projectCv.tasksPerformed,
+      description: projectCv.description,
+      projectRoles: projectCv.projectRoles,
+      specializations: projectCv.specializations,
+      responsibilities: projectCv.responsibilities,
+    });
+  }
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -102,6 +119,10 @@ export class CvFormComponent implements OnInit {
         this.cdRef.markForCheck();
       });
   }
-  submit() {}
-  cancel() {}
+  submit() {
+    this.submitCv.emit();
+  }
+  cancel() {
+    this.form.reset();
+  }
 }

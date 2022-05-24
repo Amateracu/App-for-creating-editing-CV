@@ -25,7 +25,11 @@
     "skills": "Skills",
     "role": "Role",
     "department": "Department",
-    "languages": "Languages"
+    "languages": "Languages",
+    "establishment": "Establishment",
+    "profession": "Profession",
+    "general": "General",
+    "education": "Education"
   },
   "project-page": {
     "first-name": "First Name",
@@ -82,5 +86,15 @@
     "login": "Login",
     "add-project": "Add Project",
     "add-employee": "Add Employy"
+  },
+  "languages": {
+    "title": "Foreign Languages",
+    "name": "Language",
+    "everydayWritingLevel": "Reading Level",
+    "everydayReadingLevel": "Writing Level",
+    "everydaySpeakingLevel": "Speaking Level",
+    "professionalReadingLevel": "Professional Reading Level",
+    "professionalWritingLevel": "Professional Writing Level",
+    "professionalSpeakingLevel": "Professional Speaking Level"
   }
 }

@@ -40,7 +40,6 @@ import {
 })
 export class ProjectFormComponent implements OnInit, OnChanges {
   @Output() addProject = new EventEmitter<IProject>();
-  @Output() addCvProject = new EventEmitter<IProject>();
   @Output() cancelProject = new EventEmitter<any>();
   @Input() projectById: IProject;
   public form!: FormGroup;
@@ -123,7 +122,6 @@ export class ProjectFormComponent implements OnInit, OnChanges {
     };
 
     this.addProject.emit(project);
-    this.addCvProject.emit(project);
     this.form.reset();
   }
   cancel() {

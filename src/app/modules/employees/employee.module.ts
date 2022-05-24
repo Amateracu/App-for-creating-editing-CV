@@ -15,7 +15,6 @@ import { InputSelectModule } from 'src/app/shared/controls/input-select/input-se
 import { InputModule } from 'src/app/shared/controls/input/input.module';
 import { ProjectFormComponent } from '../projects/components/project-form/project-form.component';
 import { ProjectsModule } from '../projects/projects.module';
-import { CvFormComponent } from './components/cv-form/cv-form.component';
 import { EmployeesFormComponent } from './components/employees-form/employees-form.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
@@ -23,6 +22,11 @@ import { EmployeesPageComponent } from './pages/employees-page/employees-page.co
 import { EmployeesProfileComponent } from './pages/employees-profile/employees-profile.component';
 import { EmpoyeesProfileCvComponent } from './pages/empoyees-profile-cv/empoyees-profile-cv.component';
 import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empoyees-profile-info.component';
+import { MatIconModule } from '@angular/material/icon';
+import { GeneralFormComponent } from './components/general-form/general-form.component';
+import { EducationFormComponent } from './components/education-form/education-form.component';
+import { LanguagesFormComponent } from './components/languages-form/languages-form.component';
+import { ProjectsFormComponent } from './components/project-form/project-form.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +36,16 @@ import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empo
     EmpoyeesProfileCvComponent,
     EmployeesFormComponent,
     AddEmployeeComponent,
-    CvFormComponent,
+    GeneralFormComponent,
+    EducationFormComponent,
+    LanguagesFormComponent,
+    ProjectsFormComponent,
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     MatTabsModule,
+    MatIconModule,
     FormsModule,
     ProjectsModule,
     ReactiveFormsModule,

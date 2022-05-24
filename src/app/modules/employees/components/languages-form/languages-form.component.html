@@ -1,0 +1,45 @@
+<h2>{{ 'languages.title' | translate }}</h2>
+<div class="form-language">
+  <form class="info" [formGroup]="form">
+    <div class="form-group">
+      <app-autocomplete-form
+        [label]="'languages.name' | translate"
+        class="form-field"
+        formControlName="name"
+        [options]="foreignLanguages"
+        (option)="setFormLanguages($event)"
+      >
+      </app-autocomplete-form>
+      <app-input
+        class="form-field"
+        formControlName="everydayReadingLevel"
+        [label]="'languages.everydayWritingLevel' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="everydayWritingLevel"
+        [label]="'languages.everydayReadingLevel' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="everydaySpeakingLevel"
+        [label]="'languages.everydaySpeakingLevel' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="professionalReadingLevel"
+        [label]="'languages.professionalReadingLevel' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="professionalWritingLevel"
+        [label]="'languages.professionalWritingLevel' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="professionalSpeakingLevel"
+        [label]="'languages.professionalSpeakingLevel' | translate"
+      ></app-input>
+    </div>
+  </form>
+</div>

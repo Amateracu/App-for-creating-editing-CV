@@ -4,6 +4,8 @@ import { catchError, EMPTY, map, mergeMap, switchMap } from 'rxjs';
 import { CvApiService } from 'src/app/shared/services/api/cv.api.service';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees.api.service';
 import {
+  AddCv,
+  AddCvSuccess,
   AddEmployee,
   AddEmployeeSuccess,
   EditCvProject,
@@ -121,6 +123,17 @@ export class EmployeesEffect {
       mergeMap((action) =>
         this.cvService.editCvProject(action.cv).pipe(
           map((cv) => EditCvProjectSuccess({ cv })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  createCv$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AddCv),
+      mergeMap((action) =>
+        this.cvService.createCv(action.cv).pipe(
+          map((cv) => AddCvSuccess({ cv })),
           catchError(() => EMPTY),
         ),
       ),

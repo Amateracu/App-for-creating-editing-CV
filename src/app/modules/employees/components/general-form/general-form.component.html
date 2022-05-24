@@ -1,0 +1,22 @@
+<h2>{{ 'employee-form.general' | translate }}</h2>
+<div class="form-general">
+  <form class="info" [formGroup]="form">
+    <div class="form-group">
+      <app-input
+        class="form-field"
+        formControlName="firstName"
+        [label]="'employee-form.first-name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="lastName"
+        [label]="'employee-form.last-name' | translate"
+      ></app-input>
+      <app-input
+        class="form-field"
+        formControlName="name"
+        [label]="'project-info.name' | translate"
+      ></app-input>
+    </div>
+  </form>
+</div>

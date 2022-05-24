@@ -7,6 +7,7 @@ import {
   ISkills,
 } from 'src/app/shared/interfaces/employees.interface';
 import { IProject } from 'src/app/shared/interfaces/project.interface';
+import { IVirtualCv } from 'src/app/shared/interfaces/virtual-cv.interface';
 
 export const GetEmployeesList = createAction('[EMPLOYEES] GetEmployeesList');
 export const GetEmployeesListSuccess = createAction(
@@ -67,12 +68,19 @@ export const GetRolesListSuccess = createAction(
 export const GetRolesListError = createAction('[ROLES] GetRolesList Error');
 
 export const GetCvList = createAction('[CV] GetCvList', props<{ userId: string }>());
-export const GetCvListSuccess = createAction('[CV] GetCvList Success', props<{ cvList: ICv[] }>());
+export const GetCvListSuccess = createAction(
+  '[CV] GetCvList Success',
+  props<{ cvList: IVirtualCv[] }>(),
+);
 export const GetCvListError = createAction('[CV] GetCvList Error');
 
-export const EditCvProject = createAction('[CV] EditCvProject', props<{ cv: ICv }>());
+export const AddCv = createAction('[CV] AddCv', props<{ cv: IVirtualCv }>());
+export const AddCvSuccess = createAction('[CV] AddCv Success', props<{ cv: IVirtualCv }>());
+export const AddCvError = createAction('[CV] AddCv Error');
+
+export const EditCvProject = createAction('[CV] EditCvProject', props<{ cv: IVirtualCv }>());
 export const EditCvProjectSuccess = createAction(
   '[CV] EditCvProject Success',
-  props<{ cv: ICv }>(),
+  props<{ cv: IVirtualCv }>(),
 );
 export const EditCvProjectError = createAction('[CV] EditCvProject Error');

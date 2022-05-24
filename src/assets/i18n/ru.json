@@ -25,7 +25,11 @@
     "skills": "Навыки",
     "role": "Должность",
     "department": "Команда",
-    "languages": "Языки"
+    "languages": "Языки",
+    "establishment": "Учреждение",
+    "profession": "Специальность",
+    "general": "Основное",
+    "education": "Образование"
   },
   "project-page": {
     "first-name": "Название",
@@ -81,5 +85,15 @@
     "login": "Войти",
     "add-project": "Добавить проект",
     "add-employee": "Добавить сотрудника"
+  },
+  "languages": {
+    "title": "Иностранные языки",
+    "name": "Язык",
+    "everydayWritingLevel": "Навыки письма",
+    "everydayReadingLevel": "Навыки чтения",
+    "everydaySpeakingLevel": "Разговорные навыки",
+    "professionalReadingLevel": "Профессиональные навыки письма",
+    "professionalWritingLevel": "Профессиональные навыки чтения",
+    "professionalSpeakingLevel": "Профессиональные разговорные навыки"
   }
 }

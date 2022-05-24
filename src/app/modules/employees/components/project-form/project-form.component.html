@@ -3,6 +3,7 @@
     <div class="form-group">
       <app-autocomplete-form
         (option)="setFormProject($event)"
+        (option)="setFormProjectCv($event)"
         [options]="userProjects"
         class="form-field"
         formControlName="name"
@@ -57,6 +58,18 @@
         [title]="'project-info.responsibilities' | translate"
         [allChips]="allResponsibilities"
       ></app-input-autocomplete>
+    </div>
+    <div *ngIf="useBtn" class="btn">
+      <div class="save">
+        <button mat-button type="submit">
+          {{ 'buttons.save' | translate }}
+        </button>
+      </div>
+      <div class="cancel">
+        <button (click)="cancel()" mat-button type="button">
+          {{ 'buttons.cancel' | translate }}
+        </button>
+      </div>
     </div>
   </form>
 </div>

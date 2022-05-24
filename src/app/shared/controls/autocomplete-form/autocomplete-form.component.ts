@@ -1,17 +1,14 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input,
-  ChangeDetectorRef,
-  Output,
+  Component,
   EventEmitter,
+  Input,
+  OnInit,
+  Output,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
 import { BaseControl } from '../../classes/base-control.class';
-import { IProject } from '../../interfaces/project.interface';
 
 @Component({
   selector: 'app-autocomplete-form',
@@ -20,10 +17,11 @@ import { IProject } from '../../interfaces/project.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteFormComponent extends BaseControl implements OnInit {
-  @Input() options: IProject[];
-  @Output() option = new EventEmitter<IProject>();
-  public item: IProject;
-  filteredOptions: Observable<IProject[]>;
+  @Input() options: any[];
+  @Output() option = new EventEmitter<any>();
+  @Output() optionCv = new EventEmitter<any>();
+  public item: any;
+  filteredOptions: Observable<any[]>;
 
   override ngOnInit() {
     this.filteredOptions = this.control.valueChanges.pipe(
@@ -35,10 +33,12 @@ export class AutocompleteFormComponent extends BaseControl implements OnInit {
 
   selectOption(e: MatAutocompleteSelectedEvent) {
     const obj = e.option.value;
+
     this.option.emit(obj);
+    this.optionCv.emit(obj);
   }
 
-  private _filter(name: string): IProject[] {
+  private _filter(name: string): any[] {
     const filterValue = name.toLowerCase();
 
     return this.options.filter((option) => option.name.toLowerCase().includes(filterValue));

@@ -6,12 +6,20 @@
     display: flex;
     justify-content: space-between;
   }
+  .cv-profile {
+    display: flex;
+    justify-content: space-between;
+  }
   .button-opened {
     display: block;
     margin-left: 10px;
     margin-top: 10px;
     background-color: #1890ff;
     color: white;
+  }
+  .add-new-cv {
+    background-color: #f0f2f5;
+    margin: 30px;
   }
   .mat-raised-button {
     display: block;

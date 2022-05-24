@@ -6,7 +6,9 @@ import {
   IRoles,
   ISkills,
 } from 'src/app/shared/interfaces/employees.interface';
+import { IVirtualCv } from 'src/app/shared/interfaces/virtual-cv.interface';
 import {
+  AddCvSuccess,
   AddEmployeeSuccess,
   EditCvProjectSuccess,
   EditEmployeeSuccess,
@@ -24,8 +26,8 @@ export interface EmployeesState {
   skills: ISkills[];
   languages: ILanguages[];
   roles: IRoles[];
-  cvList: ICv[];
-  cv: ICv;
+  cvList: IVirtualCv[];
+  cv: IVirtualCv;
 }
 export const employeesInitialState: EmployeesState = {
   employees: [],
@@ -98,6 +100,13 @@ const employeesReducer = createReducer(
   ),
   on(
     EditCvProjectSuccess,
+    (state, { cv }): EmployeesState => ({
+      ...state,
+      cvList: [...state.cvList, cv],
+    }),
+  ),
+  on(
+    AddCvSuccess,
     (state, { cv }): EmployeesState => ({
       ...state,
       cvList: [...state.cvList, cv],
