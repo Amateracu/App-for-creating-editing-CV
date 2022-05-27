@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   EMPLOYEES_ADD_ROUTE,
   EMPLOYEES_PROFILE_ROUTE,
-  EMPLOYEES_ROUTE,
 } from 'src/app/shared/constants/routing-path.const';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 import { EmployeesPageComponent } from './pages/employees-page/employees-page.component';

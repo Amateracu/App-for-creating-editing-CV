@@ -1,5 +1,6 @@
 <app-employees-form
-  [used]="useInput"
+  [usedInputs]="useInput"
   [useButton]="useButton"
   [employeeById]="employee"
+  (addEmployee)="editEmployee($event)"
 ></app-employees-form>

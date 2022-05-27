@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ICv } from 'src/app/shared/interfaces/cv.interface';
+import { IaddCv, ICv } from 'src/app/shared/interfaces/cv.interface';
 import {
   IEmployees,
   ILanguages,
@@ -74,8 +74,8 @@ export const GetCvListSuccess = createAction(
 );
 export const GetCvListError = createAction('[CV] GetCvList Error');
 
-export const AddCv = createAction('[CV] AddCv', props<{ cv: IVirtualCv }>());
-export const AddCvSuccess = createAction('[CV] AddCv Success', props<{ cv: IVirtualCv }>());
+export const AddCv = createAction('[CV] AddCv', props<{ addCv: IaddCv }>());
+export const AddCvSuccess = createAction('[CV] AddCv Success', props<{ addCv: IVirtualCv }>());
 export const AddCvError = createAction('[CV] AddCv Error');
 
 export const EditCvProject = createAction('[CV] EditCvProject', props<{ cv: IVirtualCv }>());
@@ -84,3 +84,17 @@ export const EditCvProjectSuccess = createAction(
   props<{ cv: IVirtualCv }>(),
 );
 export const EditCvProjectError = createAction('[CV] EditCvProject Error');
+
+export const GetCvUserList = createAction('[CV] GetCvUserList', props<{ userId: string }>());
+export const GetCvUserListSuccess = createAction(
+  '[CV] GetUserCvList Success',
+  props<{ cvUser: ICv }>(),
+);
+export const GetCvUserListError = createAction('[CV] GetUserCvList Error');
+
+export const DeleteVirtualCv = createAction('[CV] DeleteVirtualCV', props<{ id: string }>());
+export const DeleteVirtualCvSuccess = createAction(
+  '[CV] DeleteVirtualCV Success',
+  props<{ id: string }>(),
+);
+export const DeleteVirtualCvError = createAction('[CV] DeleteVirtualCV Error');

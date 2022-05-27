@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   PROJECTS_CREATE_ROUTE,
   PROJECTS_INFO_ROUTE,
-  PROJECTS_ROUTE,
 } from 'src/app/shared/constants/routing-path.const';
 import { ProjectCreatePageComponent } from './pages/project-create-page/project-create-page.component';
 import { ProjectEditPageComponent } from './pages/project-edit-page/project-edit-page.component';

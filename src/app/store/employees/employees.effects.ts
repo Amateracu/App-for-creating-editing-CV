@@ -8,12 +8,16 @@ import {
   AddCvSuccess,
   AddEmployee,
   AddEmployeeSuccess,
+  DeleteVirtualCv,
+  DeleteVirtualCvSuccess,
   EditCvProject,
   EditCvProjectSuccess,
   EditEmployee,
   EditEmployeeSuccess,
   GetCvList,
   GetCvListSuccess,
+  GetCvUserList,
+  GetCvUserListSuccess,
   GetEmployeeById,
   GetEmployeeByIdSuccess,
   GetEmployeesList,
@@ -28,7 +32,7 @@ import {
 
 @Injectable()
 export class EmployeesEffect {
-  getEmployeesList$ = createEffect(() => {
+  public getEmployeesList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetEmployeesList),
       switchMap(() =>
@@ -39,7 +43,7 @@ export class EmployeesEffect {
       ),
     );
   });
-  createEmployee$ = createEffect(() => {
+  public createEmployee$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AddEmployee),
       mergeMap((action) =>
@@ -50,7 +54,7 @@ export class EmployeesEffect {
       ),
     );
   });
-  getEmployeeById = createEffect(() => {
+  public getEmployeeById = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetEmployeeById),
       mergeMap((action) =>
@@ -61,7 +65,7 @@ export class EmployeesEffect {
       ),
     );
   });
-  editEmployee$ = createEffect(() => {
+  public editEmployee$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EditEmployee),
       mergeMap((action) =>
@@ -72,7 +76,7 @@ export class EmployeesEffect {
       ),
     );
   });
-  getSkills$ = createEffect(() => {
+  public getSkills$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetSkillsList),
       switchMap(() =>
@@ -83,7 +87,7 @@ export class EmployeesEffect {
       ),
     );
   });
-  getLanguages$ = createEffect(() => {
+  public getLanguages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetLanguagesList),
       switchMap(() =>
@@ -94,7 +98,7 @@ export class EmployeesEffect {
       ),
     );
   });
-  getRoles$ = createEffect(() => {
+  public getRoles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetRolesList),
       switchMap(() =>
@@ -106,7 +110,7 @@ export class EmployeesEffect {
     );
   });
 
-  getCvList$ = createEffect(() => {
+  public getCvList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetCvList),
       switchMap((action) =>
@@ -117,7 +121,7 @@ export class EmployeesEffect {
       ),
     );
   });
-  editCvProject$ = createEffect(() => {
+  public editCvProject$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EditCvProject),
       mergeMap((action) =>
@@ -128,12 +132,34 @@ export class EmployeesEffect {
       ),
     );
   });
-  createCv$ = createEffect(() => {
+  public createCv$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AddCv),
       mergeMap((action) =>
-        this.cvService.createCv(action.cv).pipe(
-          map((cv) => AddCvSuccess({ cv })),
+        this.cvService.createCv(action.addCv).pipe(
+          map((addCv) => AddCvSuccess({ addCv })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  public getCvUserList$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetCvUserList),
+      switchMap((action) =>
+        this.cvService.getCvById(action.userId).pipe(
+          map((cvUser) => GetCvUserListSuccess({ cvUser })),
+          catchError(() => EMPTY),
+        ),
+      ),
+    );
+  });
+  public deleteCv$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DeleteVirtualCv),
+      mergeMap(({ id }) =>
+        this.cvService.deleteVirtualCvById({ id }).pipe(
+          map(() => DeleteVirtualCvSuccess({ id })),
           catchError(() => EMPTY),
         ),
       ),

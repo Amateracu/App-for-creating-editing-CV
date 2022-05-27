@@ -21,15 +21,17 @@ import { IChips } from '../../interfaces/project.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputAutocompleteComponent extends BaseControl implements OnInit, OnChanges {
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  filteredChips: IChips[];
-  @Input() title: string;
+  @Input() public title: string;
+  @Input() public allChips: IChips[] = [];
+  public separatorKeysCodes: number[] = [ENTER, COMMA];
+  public filteredChips: IChips[];
   public chips: IChips[] = [];
-  @Input() allChips: IChips[] = [];
+
   constructor(private autoComleteControl: NgControl, private cdr: ChangeDetectorRef) {
     super(autoComleteControl, cdr);
   }
-  ngOnChanges(changes: SimpleChanges): void {
+
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes['allChips'] && changes['allChips'].currentValue) {
       this.filteredChips = this.allChips;
       this.cdr.markForCheck();
@@ -45,30 +47,27 @@ export class InputAutocompleteComponent extends BaseControl implements OnInit, O
       });
   }
 
-  remove(value: IChips): void {
+  public remove(value: IChips): void {
     const index = this.chips.indexOf(value);
-
     if (index !== -1) {
       this.chips.splice(index, 1);
       this.cvaOnChange(this.chips);
     }
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
+  public selected(event: MatAutocompleteSelectedEvent): void {
     this.chips.push(event.option.value);
     this.control.setValue('');
     this.cvaOnChange(this.chips);
   }
 
-  override writeValue(selectedChips: IChips[]) {
+  override writeValue(selectedChips: IChips[]): void {
     this.chips = selectedChips;
     this.cdr.markForCheck();
   }
 
   private filter(value: string): IChips[] {
     if (typeof value !== 'string') return this.allChips;
-    console.log('value: ', value);
-
     return this.allChips.filter((chip) => chip.name.toLowerCase().includes(value.toLowerCase()));
   }
 }

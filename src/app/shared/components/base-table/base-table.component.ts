@@ -12,11 +12,9 @@ import { IColumn } from './interfaces/column.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseTableComponent implements OnInit, OnChanges {
-  @Input() data!: any[];
-  @Input() columns!: IColumn[];
-
-  @Output() clickedRow = new EventEmitter<any>();
-
+  @Input() public data!: any[];
+  @Input() public columns!: IColumn[];
+  @Output() public clickedRow = new EventEmitter<any>();
   public columnsDef!: string[];
 
   constructor() {}

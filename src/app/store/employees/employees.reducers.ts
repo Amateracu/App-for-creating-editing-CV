@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { ICv } from 'src/app/shared/interfaces/cv.interface';
+import { IaddCv, ICv } from 'src/app/shared/interfaces/cv.interface';
 import {
   IEmployees,
   ILanguages,
@@ -10,9 +10,11 @@ import { IVirtualCv } from 'src/app/shared/interfaces/virtual-cv.interface';
 import {
   AddCvSuccess,
   AddEmployeeSuccess,
+  DeleteVirtualCvSuccess,
   EditCvProjectSuccess,
   EditEmployeeSuccess,
   GetCvListSuccess,
+  GetCvUserListSuccess,
   GetEmployeeByIdSuccess,
   GetEmployeesListSuccess,
   GetLanguagesListSuccess,
@@ -28,6 +30,9 @@ export interface EmployeesState {
   roles: IRoles[];
   cvList: IVirtualCv[];
   cv: IVirtualCv;
+  cvUser: ICv;
+  addCv: IaddCv;
+  deleteCv: IVirtualCv;
 }
 export const employeesInitialState: EmployeesState = {
   employees: [],
@@ -37,6 +42,9 @@ export const employeesInitialState: EmployeesState = {
   roles: [],
   cvList: [],
   cv: null,
+  cvUser: null,
+  addCv: null,
+  deleteCv: null,
 };
 
 const employeesReducer = createReducer(
@@ -98,18 +106,34 @@ const employeesReducer = createReducer(
       cvList,
     }),
   ),
+  on(EditCvProjectSuccess, (state, { cv }): EmployeesState => {
+    let index = state.cvList.findIndex((cvItem) => cvItem.id === cv.id);
+    let newCvList = [...state.cvList];
+    newCvList.splice(index, 1, cv);
+    return { ...state, cvList: newCvList };
+  }),
   on(
-    EditCvProjectSuccess,
-    (state, { cv }): EmployeesState => ({
+    AddCvSuccess,
+    (state, { addCv }): EmployeesState => ({
       ...state,
-      cvList: [...state.cvList, cv],
+      cvList: [...state.cvList, addCv],
     }),
   ),
   on(
-    AddCvSuccess,
-    (state, { cv }): EmployeesState => ({
+    GetCvUserListSuccess,
+    (state, { cvUser }): EmployeesState => ({
       ...state,
-      cvList: [...state.cvList, cv],
+      cvUser,
+    }),
+  ),
+  on(
+    DeleteVirtualCvSuccess,
+    (state, { id }): EmployeesState => ({
+      ...state,
+      cvList: state.cvList.splice(
+        state.cvList.findIndex((item) => item.id === id),
+        1,
+      ),
     }),
   ),
 );

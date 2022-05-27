@@ -7,11 +7,10 @@ import { Auth, AuthSuccess } from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-  loadUser$ = createEffect(() => {
+  public loadUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(Auth),
       mergeMap((action) => {
-        console.log('kek');
         return this.AuthService.login(action.auth).pipe(
           map((authResponse) => AuthSuccess({ authResponse })),
           catchError(() => EMPTY),

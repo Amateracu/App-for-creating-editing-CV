@@ -13,6 +13,7 @@ export const getRolesFromState = (state: EmployeesState) => state.roles;
 export const getCvListFromState = (state: EmployeesState) => state.cvList;
 export const editCvProjectFromState = (state: EmployeesState) => state.cv;
 export const addCvFromState = (state: EmployeesState) => state.cv;
+export const getCvUserListFromState = (state: EmployeesState) => state.cvUser;
 
 export const selectEmployees = createSelector(selectEmployeesState, getEmployeesFromState);
 export const selectEmployee = createSelector(selectEmployeesState, addEmployeeFromState);
@@ -24,3 +25,4 @@ export const selectRoles = createSelector(selectEmployeesState, getRolesFromStat
 export const selectCvList = createSelector(selectEmployeesState, getCvListFromState);
 export const selectCvProject = createSelector(selectEmployeesState, editCvProjectFromState);
 export const selectCv = createSelector(selectEmployeesState, addCvFromState);
+export const selectCvUserList = createSelector(selectEmployeesState, getCvUserListFromState);

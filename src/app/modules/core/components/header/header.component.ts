@@ -11,10 +11,8 @@ import { AuthService } from 'src/app/shared/services/api/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Output() openedSideBar = new EventEmitter<boolean>();
-  public opened() {
-    this.openedSideBar.emit();
-  }
+  @Output() public openedSideBar = new EventEmitter<boolean>();
+
   constructor(
     private translate: TranslateService,
     private router: Router,
@@ -22,10 +20,16 @@ export class HeaderComponent {
   ) {
     this.translate.setDefaultLang('en');
   }
-  public changeLang(lang: string) {
+
+  public opened(): void {
+    this.openedSideBar.emit();
+  }
+
+  public changeLang(lang: string): void {
     this.translate.use(lang);
   }
-  public logout() {
+
+  public logout(): void {
     this.authService.logout();
     this.router.navigate([AUTH_ROUTE.path]);
   }

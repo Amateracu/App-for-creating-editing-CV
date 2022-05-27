@@ -12,8 +12,6 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { PROJECT_INFO_BREADCRUMB } from 'src/app/shared/constants/breadcrumbs.const';
-import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import {
   IProject,
   IProjectRoles,
@@ -39,19 +37,34 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectFormComponent implements OnInit, OnChanges {
-  @Output() addProject = new EventEmitter<IProject>();
-  @Output() cancelProject = new EventEmitter<any>();
-  @Input() projectById: IProject;
+  @Output() public addProject = new EventEmitter<IProject>();
+  @Output() public cancelProject = new EventEmitter<any>();
+  @Input() public projectById: IProject;
   public form!: FormGroup;
   public allSpecializations: ISpecialization[] = [];
   public allRoles: IProjectRoles[] = [];
   public allResponsibilities: IResponsibility[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,
     private cdRef: ChangeDetectorRef,
-  ) {}
-  ngOnChanges(changes: SimpleChanges): void {
+  ) {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      secondName: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      teamSize: [null, [Validators.required]],
+      tasksPerformed: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      projectRoles: [[], [Validators.required]],
+      specializations: [[], [Validators.required]],
+      responsibilities: [[], [Validators.required]],
+    });
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes['projectById'] && changes['projectById'].currentValue) {
       this.form.setValue({
         name: this.projectById.name,
@@ -67,20 +80,8 @@ export class ProjectFormComponent implements OnInit, OnChanges {
       });
     }
   }
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      secondName: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
-      teamSize: [null, [Validators.required]],
-      tasksPerformed: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      projectRoles: [[], [Validators.required]],
-      specializations: [[], [Validators.required]],
-      responsibilities: [[], [Validators.required]],
-    });
 
+  public ngOnInit(): void {
     this.store.dispatch(GetProjectRolesList());
     this.store
       .select(selectProjectRoles)
@@ -89,7 +90,6 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         this.allRoles = [...projectRoles];
         this.cdRef.markForCheck();
       });
-
     this.store.dispatch(GetResponsibilitiesList());
     this.store
       .select(selectResponsibilities)
@@ -98,7 +98,6 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         this.allResponsibilities = [...responsibilities];
         this.cdRef.markForCheck();
       });
-
     this.store.dispatch(GetSpecializationsList());
     this.store
       .select(selectSpecializations)
@@ -108,7 +107,8 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         this.cdRef.markForCheck();
       });
   }
-  submit() {
+
+  public submit(): void {
     const project: IProject = {
       ...this.form.getRawValue(),
       specializations: this.form
@@ -120,11 +120,11 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         .value.map((item: IResponsibility) => item.id),
       teamSize: Number(this.form.get('teamSize').value),
     };
-
     this.addProject.emit(project);
     this.form.reset();
   }
-  cancel() {
+
+  public cancel(): void {
     this.cancelProject.emit();
   }
 }

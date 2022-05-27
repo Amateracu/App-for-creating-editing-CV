@@ -17,13 +17,13 @@ import { BaseControl } from '../../classes/base-control.class';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteFormComponent extends BaseControl implements OnInit {
-  @Input() options: any[];
-  @Output() option = new EventEmitter<any>();
-  @Output() optionCv = new EventEmitter<any>();
+  @Input() public options: any[];
+  @Output() public option = new EventEmitter<any>();
+  @Output() public optionCv = new EventEmitter<any>();
   public item: any;
-  filteredOptions: Observable<any[]>;
+  public filteredOptions: Observable<any[]>;
 
-  override ngOnInit() {
+  override ngOnInit(): void {
     this.filteredOptions = this.control.valueChanges.pipe(
       startWith(''),
       map((value) => (typeof value === 'string' ? value : value.name)),
@@ -31,16 +31,14 @@ export class AutocompleteFormComponent extends BaseControl implements OnInit {
     );
   }
 
-  selectOption(e: MatAutocompleteSelectedEvent) {
+  public selectOption(e: MatAutocompleteSelectedEvent): void {
     const obj = e.option.value;
-
     this.option.emit(obj);
     this.optionCv.emit(obj);
   }
 
   private _filter(name: string): any[] {
     const filterValue = name.toLowerCase();
-
     return this.options.filter((option) => option.name.toLowerCase().includes(filterValue));
   }
 }

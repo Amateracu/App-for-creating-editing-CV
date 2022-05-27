@@ -9,7 +9,7 @@ import { AuthService } from '../services/api/auth.service';
 export class TokenExpirationInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService, private router: Router) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.auth.isAuthenticated() && this.auth.tokenIsExpired()) {
       this.auth.logout();
       this.router.navigate([AUTH_ROUTE.path]);

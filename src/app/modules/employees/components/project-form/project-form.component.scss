@@ -10,7 +10,6 @@
     margin-left: auto;
     margin-bottom: 44px;
   }
-
   .form-group {
     display: flex;
     flex-wrap: wrap;
@@ -20,14 +19,14 @@
       width: 200px;
     }
   }
-}
-.btn {
-  display: flex;
-  justify-content: end;
-  padding: 30px;
-}
-.save {
-  margin-right: 10px;
-  background-color: #1890ff;
-  color: white;
+  .btn {
+    display: flex;
+    justify-content: end;
+    padding: 30px;
+    .save {
+      margin-right: 10px;
+      background-color: #1890ff;
+      color: white;
+    }
+  }
 }

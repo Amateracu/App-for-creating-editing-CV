@@ -17,3 +17,10 @@ export interface IcvEdit {
   name: string;
   description: string;
 }
+export interface IaddCv {
+  cvId?: string;
+  userId?: string;
+}
+export interface IDeleteCv {
+  deleteCount: number;
+}

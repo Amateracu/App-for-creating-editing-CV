@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IEducation } from 'src/app/shared/interfaces/virtual-cv.interface';
 
@@ -8,19 +8,23 @@ import { IEducation } from 'src/app/shared/interfaces/virtual-cv.interface';
   styleUrls: ['./education-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EducationFormComponent implements OnInit {
-  @Input() education: IEducation;
+export class EducationFormComponent implements OnChanges {
+  @Input() public education: IEducation;
   public form: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       establishment: ['', [Validators.required]],
       profession: ['', [Validators.required]],
     });
-    this.form.setValue({
-      establishment: this.education.establishment,
-      profession: this.education.profession,
-    });
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['education'] && changes['education'].currentValue) {
+      this.form.patchValue({
+        establishment: this.education.establishment,
+        profession: this.education.profession,
+      });
+    }
   }
 }

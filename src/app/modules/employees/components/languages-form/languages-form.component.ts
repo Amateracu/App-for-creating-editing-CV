@@ -1,5 +1,4 @@
-import { T } from '@angular/cdk/keycodes';
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ILanguages } from 'src/app/shared/interfaces/employees.interface';
 
@@ -10,11 +9,12 @@ import { ILanguages } from 'src/app/shared/interfaces/employees.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguagesFormComponent implements OnInit {
-  @Input() foreignLanguages: ILanguages[];
+  @Input() public foreignLanguages: ILanguages[];
   public form: FormGroup;
+
   constructor(private formBuilder: FormBuilder) {}
 
-  setFormLanguages(languages: ILanguages) {
+  public setFormLanguages(languages: ILanguages): void {
     this.form.setValue({
       name: languages.name,
       everydayReadingLevel: languages.everydayReadingLevel,
@@ -25,7 +25,7 @@ export class LanguagesFormComponent implements OnInit {
       professionalSpeakingLevel: languages.professionalSpeakingLevel,
     });
   }
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       everydayReadingLevel: ['', [Validators.required]],

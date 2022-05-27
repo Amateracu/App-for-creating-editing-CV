@@ -9,6 +9,6 @@ import { ISelect } from '../../interfaces/employees.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputSelectComponent extends BaseControl {
-  @Input() title: string = '';
-  @Input() selects: ISelect[] = [];
+  @Input() public title: string = '';
+  @Input() public selects: ISelect[] = [];
 }

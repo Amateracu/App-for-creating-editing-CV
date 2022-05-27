@@ -1,9 +1,8 @@
-import { HttpParams } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { filter, Observable, switchMap } from 'rxjs';
+import { filter } from 'rxjs';
 import {
   HOME_BREADCRUMB,
   PROJECT_BREADCRUMB,
@@ -15,6 +14,7 @@ import { IProject } from 'src/app/shared/interfaces/project.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 import { EditProject, GetProjectById } from 'src/app/store/projects/projects.actions';
 import { selectProjectById } from 'src/app/store/projects/projects.selectors';
+
 @UntilDestroy()
 @Component({
   selector: 'app-project-edit-page',
@@ -30,6 +30,7 @@ export class ProjectEditPageComponent implements OnInit {
   ];
   public project: IProject;
   public projectId: string;
+
   constructor(
     public breadcrumbsService: BreadcrumbsService,
     private store: Store,
@@ -37,7 +38,8 @@ export class ProjectEditPageComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private router: Router,
   ) {}
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
     this.projectId = this.route.snapshot.params[PROJECT_PARAM];
     if (this.projectId) {
@@ -61,7 +63,7 @@ export class ProjectEditPageComponent implements OnInit {
         });
     }
   }
-  editProject(project: IProject) {
+  public editProject(project: IProject): void {
     project.id = this.projectId;
     this.store.dispatch(EditProject({ project }));
     this.router.navigate([PROJECTS_ROUTE.path]);

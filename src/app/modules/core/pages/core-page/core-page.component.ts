@@ -9,12 +9,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class CorePageComponent {
   public isToogle!: boolean;
-  public toogle() {
+  constructor() {}
+
+  public toogle(): void {
     this.isToogle = !this.isToogle;
   }
-  public openBottomSheet!: boolean;
-  public opened() {
-    this.openBottomSheet = !this.openBottomSheet;
-  }
-  constructor() {}
 }

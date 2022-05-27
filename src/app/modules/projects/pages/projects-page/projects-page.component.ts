@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
@@ -19,7 +12,7 @@ import { PROJECTS_CREATE_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IProject } from 'src/app/shared/interfaces/project.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
-import { GetProjectById, GetProjectsList } from 'src/app/store/projects/projects.actions';
+import { GetProjectsList } from 'src/app/store/projects/projects.actions';
 import { selectProjects } from 'src/app/store/projects/projects.selectors';
 import { PROJECT_COLUMNS } from './constants/columns.const';
 
@@ -33,7 +26,6 @@ import { PROJECT_COLUMNS } from './constants/columns.const';
 export class ProjectsPageComponent implements OnInit {
   public breadcrumbs: IBreadCrumb[] = [HOME_BREADCRUMB, PROJECT_BREADCRUMB];
   public cvElements!: IProject[];
-
   public columns: IColumn[] = PROJECT_COLUMNS;
 
   constructor(
@@ -44,7 +36,8 @@ export class ProjectsPageComponent implements OnInit {
   ) {
     this.cvElements = [];
   }
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
     this.store.dispatch(GetProjectsList());
     this.store
@@ -60,12 +53,13 @@ export class ProjectsPageComponent implements OnInit {
       });
   }
 
-  public openProjectInfo(row: IProject) {
+  public openProjectInfo(row: IProject): void {
     this.router.navigate([PROJECTS_ROUTE.path, row.id]);
     PROJECT_INFO_BREADCRUMB.label = row.name;
     PROJECT_INFO_BREADCRUMB.description = row.name;
   }
-  public routeAddProject() {
+
+  public routeAddProject(): void {
     this.router.navigate([PROJECTS_ROUTE.path, PROJECTS_CREATE_ROUTE.path]);
   }
 }

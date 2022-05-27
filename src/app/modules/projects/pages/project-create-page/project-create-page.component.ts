@@ -19,26 +19,28 @@ import { AddProject } from 'src/app/store/projects/projects.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCreatePageComponent implements OnInit {
-  constructor(
-    private breadcrumbsService: BreadcrumbsService,
-    private store: Store,
-    private router: Router,
-  ) {}
-
   public breadcrumbs: IBreadCrumb[] = [
     HOME_BREADCRUMB,
     PROJECT_BREADCRUMB,
     PROJECT_CREATE_BREADCRUMB,
   ];
 
-  ngOnInit(): void {
+  constructor(
+    private breadcrumbsService: BreadcrumbsService,
+    private store: Store,
+    private router: Router,
+  ) {}
+
+  public ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
   }
-  public addProject(project: IProject) {
+
+  public addProject(project: IProject): void {
     this.store.dispatch(AddProject({ project }));
     this.router.navigate([PROJECTS_ROUTE.path]);
   }
-  public routeCancelProject() {
+
+  public routeCancelProject(): void {
     this.router.navigate([PROJECTS_ROUTE.path]);
   }
 }

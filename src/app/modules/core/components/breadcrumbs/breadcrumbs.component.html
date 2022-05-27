@@ -1,6 +1,6 @@
 <div class="breadcrumb-wrapper">
   <ol class="breadcrumb">
-    <li class="bradcrumbs-list" *ngFor="let breadcrumb of breadcrumbs$ | async">
+    <li class="bradcrumbs-list" *ngFor="let breadcrumb of breadcrumbs | async">
       <span
         class="breadcrumb-link"
         [routerLink]="breadcrumb.url"

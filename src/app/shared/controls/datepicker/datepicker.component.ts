@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseControl } from '../../classes/base-control.class';
 import { Small } from '../../enums/small.enum';
 
@@ -9,5 +9,5 @@ import { Small } from '../../enums/small.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatepickerComponent extends BaseControl {
-  public required = Small.required;
+  public required: Small = Small.required;
 }

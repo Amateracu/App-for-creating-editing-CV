@@ -23,7 +23,7 @@ import {
 
 @Injectable()
 export class ProjectsEffects {
-  getProjectList$ = createEffect(() => {
+  public getProjectList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetProjectsList),
       switchMap(() =>
@@ -34,7 +34,7 @@ export class ProjectsEffects {
       ),
     );
   });
-  createProject$ = createEffect(() => {
+  public createProject$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AddProject),
       mergeMap((action) =>
@@ -45,7 +45,7 @@ export class ProjectsEffects {
       ),
     );
   });
-  getProjectById = createEffect(() => {
+  public getProjectById = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetProjectById),
       mergeMap((action) =>
@@ -56,7 +56,7 @@ export class ProjectsEffects {
       ),
     );
   });
-  editProject$ = createEffect(() => {
+  public editProject$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EditProject),
       mergeMap((action) =>
@@ -67,7 +67,7 @@ export class ProjectsEffects {
       ),
     );
   });
-  getSpecializations$ = createEffect(() => {
+  public getSpecializations$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetSpecializationsList),
       switchMap(() =>
@@ -78,7 +78,7 @@ export class ProjectsEffects {
       ),
     );
   });
-  getProjectRoles$ = createEffect(() => {
+  public getProjectRoles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetProjectRolesList),
       switchMap(() =>
@@ -89,7 +89,7 @@ export class ProjectsEffects {
       ),
     );
   });
-  getResponsibilities$ = createEffect(() => {
+  public getResponsibilities$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetResponsibilitiesList),
       switchMap(() =>

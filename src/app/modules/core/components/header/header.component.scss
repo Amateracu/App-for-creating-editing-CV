@@ -3,15 +3,14 @@
   justify-content: space-between;
   color: #f0f2f5;
   background-color: #001529;
-}
-.title {
-  vertical-align: middle;
-}
-.header {
-  display: inline-block;
-  align-items: center;
-}
-
-.navbar {
-  justify-content: end;
+  .header {
+    display: inline-block;
+    align-items: center;
+    .title {
+      vertical-align: middle;
+    }
+  }
+  .navbar {
+    justify-content: end;
+  }
 }

@@ -12,10 +12,10 @@ import {
 import { EMPLOYEES_ADD_ROUTE, EMPLOYEES_ROUTE } from 'src/app/shared/constants/routing-path.const';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IEmployees } from 'src/app/shared/interfaces/employees.interface';
-import { IProject } from 'src/app/shared/interfaces/project.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 import { GetEmployeesList } from 'src/app/store/employees/employees.actions';
 import { selectEmployees } from 'src/app/store/employees/employees.selectors';
+
 @UntilDestroy()
 @Component({
   selector: 'app-employees-page',
@@ -26,7 +26,6 @@ import { selectEmployees } from 'src/app/store/employees/employees.selectors';
 export class EmployeesPageComponent implements OnInit {
   public breadcrumbs: IBreadCrumb[] = [HOME_BREADCRUMB, EMPLOYEES_BREADCRUMB];
   public profileElements!: IEmployees[];
-
   public columns: IColumn[] = EMPLOYEES_COLUMNS;
 
   constructor(
@@ -37,7 +36,8 @@ export class EmployeesPageComponent implements OnInit {
   ) {
     this.profileElements = [];
   }
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
     this.store.dispatch(GetEmployeesList());
     this.store
@@ -51,10 +51,10 @@ export class EmployeesPageComponent implements OnInit {
         this.cdRef.markForCheck();
       });
   }
-  public routeAddEmployee() {
+  public routeAddEmployee(): void {
     this.router.navigate([EMPLOYEES_ROUTE.path, EMPLOYEES_ADD_ROUTE.path]);
   }
-  public openProfilePage(row: IEmployees) {
+  public openProfilePage(row: IEmployees): void {
     this.router.navigate([EMPLOYEES_ROUTE.path, row.id]);
     EMPLOYEES_PROFILE_BREADCRUMB.label = row.firstName;
     EMPLOYEES_PROFILE_BREADCRUMB.description = row.firstName;

@@ -10,7 +10,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import {
@@ -29,6 +28,7 @@ import {
   selectRoles,
   selectSkills,
 } from 'src/app/store/employees/employees.selectors';
+
 @UntilDestroy()
 @Component({
   selector: 'app-employees-form',
@@ -37,22 +37,36 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesFormComponent implements OnInit, OnChanges {
-  @Output() addEmployee = new EventEmitter<IEmployees>();
-  @Output() cancelEmployee = new EventEmitter<any>();
-  @Input() used = true;
-  @Input() useButton = true;
-  @Input() employeeById: IEmployees;
+  @Output() public addEmployee = new EventEmitter<IEmployees>();
+  @Output() public cancelEmployee = new EventEmitter<any>();
+  @Input() public usedInputs: boolean = true;
+  @Input() public useButton: boolean = true;
+  @Input() public employeeById: IEmployees;
   public form: FormGroup;
   public allSkills: ISkills[] = [];
   public allLanguages: ILanguages[] = [];
   public allRoles: IRoles[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private store: Store,
     private cdRef: ChangeDetectorRef,
-  ) {}
-  ngOnChanges(changes: SimpleChanges): void {
+  ) {
+    this.form = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      institution: ['', [Validators.required]],
+      diplomaProfession: ['', [Validators.required]],
+      skills: [[], [Validators.required]],
+      role: [[], [Validators.required]],
+      department: ['', [Validators.required]],
+      languages: [[], [Validators.required]],
+    });
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes['employeeById'] && changes['employeeById'].currentValue) {
       this.form.patchValue({
         firstName: this.employeeById.firstName,
@@ -68,20 +82,7 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      institution: ['', [Validators.required]],
-      diplomaProfession: ['', [Validators.required]],
-      skills: [[], [Validators.required]],
-      role: [[], [Validators.required]],
-      department: ['', [Validators.required]],
-      languages: [[], [Validators.required]],
-    });
-
+  public ngOnInit(): void {
     this.store.dispatch(GetSkillsList());
     this.store
       .select(selectSkills)
@@ -108,18 +109,18 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
         this.cdRef.markForCheck();
       });
   }
-  submit() {
+
+  public submit(): void {
     const employee: IEmployees = {
       ...this.form.getRawValue(),
       skills: this.form.get('skills').value.map((item: ISkills) => item.id),
       languages: this.form.get('languages').value.map((item: ILanguages) => item.id),
       role: this.form.get('role').value.id,
     };
-
     this.addEmployee.emit(employee);
-    this.form.reset();
   }
-  cancel() {
+
+  public cancel(): void {
     this.cancelEmployee.emit();
   }
 }

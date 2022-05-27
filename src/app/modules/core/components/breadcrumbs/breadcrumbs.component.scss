@@ -13,33 +13,22 @@
   top: 0px;
   margin-bottom: 20px;
   border: none;
-  .page-title {
-    font-size: 35px;
-    margin-bottom: 20px;
-    margin-left: 30px;
-    margin-top: 20px;
-  }
-  .page-description {
-    font-size: 15px;
-    font-weight: 400;
-    margin-left: 30px;
-  }
   .breadcrumb {
     display: flex;
     column-gap: 0px;
     margin: 10px;
-    .breadcrumb-link {
-      color: darkgrey;
-      cursor: pointer;
-    }
-    .breadcrumb-link:hover {
-      color: black;
-      text-decoration: none;
-    }
     .bradcrumbs-list {
       list-style: none;
       float: left;
       margin: 5px;
+      .breadcrumb-link {
+        color: darkgrey;
+        cursor: pointer;
+      }
+    }
+    .breadcrumb-link:hover {
+      color: black;
+      text-decoration: none;
     }
     .bradcrumbs-list:last-child .breadcrumb-link {
       color: black;
@@ -53,5 +42,16 @@
     .bradcrumbs-list:last-child::after {
       content: '';
     }
+  }
+  .page-title {
+    font-size: 35px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+  .page-description {
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 30px;
   }
 }

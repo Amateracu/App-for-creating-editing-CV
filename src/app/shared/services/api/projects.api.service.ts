@@ -19,22 +19,22 @@ export class ProjectsApiService {
   };
   constructor(private http: HttpClient) {}
 
-  getProjectsList(): Observable<IProject[]> {
+  public getProjectsList(): Observable<IProject[]> {
     const url = environment.apiUrl + this.endPoints.getProjectsList;
     return this.http.get<IProject[]>(url);
   }
 
-  createProject(project: IProject): Observable<IProject> {
+  public createProject(project: IProject): Observable<IProject> {
     const url = environment.apiUrl + this.endPoints.getProjectsList;
     return this.http.post<IProject>(url, project);
   }
 
-  editProject(project: IProject): Observable<IProject> {
+  public editProject(project: IProject): Observable<IProject> {
     const url = environment.apiUrl + this.endPoints.getProjectsList;
     return this.http.put<IProject>(url, project);
   }
 
-  getProjectById(projectId: string): Observable<IProject> {
+  public getProjectById(projectId: string): Observable<IProject> {
     const url = environment.apiUrl + this.endPoints.getProjectsList + `?id=${projectId}`;
     return this.http.get<IProject[]>(url).pipe(
       map((projects) => {
@@ -43,17 +43,17 @@ export class ProjectsApiService {
     );
   }
 
-  getSpecializations(): Observable<ISpecialization[]> {
+  public getSpecializations(): Observable<ISpecialization[]> {
     const url = environment.apiUrl + this.endPoints.getSpecializationsList;
     return this.http.get<ISpecialization[]>(url);
   }
 
-  getProjectRoles(): Observable<IProjectRoles[]> {
+  public getProjectRoles(): Observable<IProjectRoles[]> {
     const url = environment.apiUrl + this.endPoints.getProjectRolesList;
     return this.http.get<IProjectRoles[]>(url);
   }
 
-  getResponsibilities(): Observable<IResponsibility[]> {
+  public getResponsibilities(): Observable<IResponsibility[]> {
     const url = environment.apiUrl + this.endPoints.getResponsibilitiesList;
     return this.http.get<IResponsibility[]>(url);
   }

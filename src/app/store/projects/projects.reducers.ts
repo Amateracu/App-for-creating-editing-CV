@@ -8,7 +8,6 @@ import {
 import {
   AddProjectSuccess,
   EditProjectSuccess,
-  GetProjectById,
   GetProjectByIdSuccess,
   GetProjectRolesListSuccess,
   GetProjectsListSuccess,

@@ -20,30 +20,35 @@ export const PROJECT_BREADCRUMB: IBreadCrumb = {
   title: 'breadcrumbs-title.project-title',
   description: 'breadcrumbs-description.project-description',
 };
+
 export const PROJECT_CREATE_BREADCRUMB: IBreadCrumb = {
   label: 'breadcrumbs-label.create',
   url: PROJECTS_CREATE_ROUTE.path,
   title: 'breadcrumbs-title.project-title',
   description: 'breadcrumbs-description.create-description',
 };
+
 export const PROJECT_INFO_BREADCRUMB: IBreadCrumb = {
   label: 'Info',
   url: PROJECTS_INFO_ROUTE.path,
   title: 'breadcrumbs-title.project-title',
   description: 'Project info',
 };
+
 export const EMPLOYEES_BREADCRUMB: IBreadCrumb = {
   label: 'breadcrumbs-label.employees',
   url: EMPLOYEES_ROUTE.path,
   title: 'breadcrumbs-title.employees-title',
   description: 'breadcrumbs-description.employees-description',
 };
+
 export const EMPLOYEES_ADD_BREADCRUMB: IBreadCrumb = {
   label: 'breadcrumbs-label.employee-add',
   url: EMPLOYEES_ADD_ROUTE.path,
   title: 'breadcrumbs-title.employees-title',
   description: 'breadcrumbs-description.create-employee',
 };
+
 export const EMPLOYEES_PROFILE_BREADCRUMB: IBreadCrumb = {
   label: 'Info',
   url: EMPLOYEES_PROFILE_ROUTE.path,

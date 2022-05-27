@@ -34,52 +34,20 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsFormComponent implements OnInit {
-  @Input() userProjects: IProject[];
-  @Input() useBtn: boolean = true;
-  @Output() saveProject = new EventEmitter<IProject>();
-  @Output() submitCv = new EventEmitter<void>();
-
+  @Input() public userProjects: IProject[];
+  @Input() public useButton: boolean = true;
+  @Output() public saveProject = new EventEmitter<IProject>();
+  @Output() public submitCv = new EventEmitter<void>();
   public allSpecializations: ISpecialization[] = [];
   public allRoles: IRoles[] = [];
   public allResponsibilities: IResponsibility[] = [];
   public form: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,
     private cdRef: ChangeDetectorRef,
-  ) {}
-
-  setFormProject(project: IProject) {
-    this.form.patchValue({
-      name: project.name,
-      secondName: project.secondName,
-      startDate: project.startDate,
-      endDate: project.endDate,
-      teamSize: project.teamSize,
-      tasksPerformed: project.tasksPerformed,
-      description: project.description,
-      projectRoles: project.projectRoles,
-      specializations: project.specializations,
-      responsibilities: project.responsibilities,
-    });
-    this.saveProject.emit(project);
-  }
-  setFormProjectCv(projectCv: IProject) {
-    this.form.patchValue({
-      name: projectCv.name,
-      secondName: projectCv.secondName,
-      startDate: projectCv.startDate,
-      endDate: projectCv.endDate,
-      teamSize: projectCv.teamSize,
-      tasksPerformed: projectCv.tasksPerformed,
-      description: projectCv.description,
-      projectRoles: projectCv.projectRoles,
-      specializations: projectCv.specializations,
-      responsibilities: projectCv.responsibilities,
-    });
-  }
-
-  ngOnInit(): void {
+  ) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       secondName: ['', [Validators.required]],
@@ -92,6 +60,9 @@ export class ProjectsFormComponent implements OnInit {
       specializations: [[], [Validators.required]],
       responsibilities: [[], [Validators.required]],
     });
+  }
+
+  public ngOnInit(): void {
     this.store.dispatch(GetProjectRolesList());
     this.store
       .select(selectProjectRoles)
@@ -119,10 +90,42 @@ export class ProjectsFormComponent implements OnInit {
         this.cdRef.markForCheck();
       });
   }
-  submit() {
+
+  public setFormProject(project: IProject): void {
+    this.form.patchValue({
+      name: project.name,
+      secondName: project.secondName,
+      startDate: project.startDate,
+      endDate: project.endDate,
+      teamSize: project.teamSize,
+      tasksPerformed: project.tasksPerformed,
+      description: project.description,
+      projectRoles: project.projectRoles,
+      specializations: project.specializations,
+      responsibilities: project.responsibilities,
+    });
+    this.saveProject.emit(project);
+  }
+
+  public setFormProjectCv(projectCv: IProject): void {
+    this.form.patchValue({
+      name: projectCv.name,
+      secondName: projectCv.secondName,
+      startDate: projectCv.startDate,
+      endDate: projectCv.endDate,
+      teamSize: projectCv.teamSize,
+      tasksPerformed: projectCv.tasksPerformed,
+      description: projectCv.description,
+      projectRoles: projectCv.projectRoles,
+      specializations: projectCv.specializations,
+      responsibilities: projectCv.responsibilities,
+    });
+  }
+  public submit(): void {
     this.submitCv.emit();
   }
-  cancel() {
+
+  public cancel(): void {
     this.form.reset();
   }
 }

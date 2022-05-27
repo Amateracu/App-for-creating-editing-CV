@@ -8,11 +8,11 @@ import { AuthService } from '../services/api/auth.service';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService, private router: Router) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(this.addAuthToken(req));
   }
 
-  addAuthToken(req: HttpRequest<any>) {
+  public addAuthToken(req: HttpRequest<any>): HttpRequest<any> {
     const token = this.auth.getToken();
     if (!token) {
       return req;

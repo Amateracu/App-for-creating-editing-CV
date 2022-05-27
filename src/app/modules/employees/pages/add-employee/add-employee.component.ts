@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
   EMPLOYEES_ADD_BREADCRUMB,
@@ -24,20 +24,23 @@ export class AddEmployeeComponent implements OnInit {
     EMPLOYEES_BREADCRUMB,
     EMPLOYEES_ADD_BREADCRUMB,
   ];
+
   constructor(
     public breadcrumbsService: BreadcrumbsService,
     private store: Store,
     private router: Router,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
   }
-  addEmployee(employee: IEmployees) {
+
+  public addEmployee(employee: IEmployees): void {
     this.store.dispatch(AddEmployee({ employee }));
     this.router.navigate([EMPLOYEES_ROUTE.path]);
   }
-  cancelEmployee() {
+
+  public cancelEmployee(): void {
     this.router.navigate([EMPLOYEES_ROUTE.path]);
   }
 }

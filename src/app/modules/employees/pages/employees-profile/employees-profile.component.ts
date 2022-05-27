@@ -20,8 +20,10 @@ export class EmployeesProfileComponent implements OnInit {
     EMPLOYEES_BREADCRUMB,
     EMPLOYEES_PROFILE_BREADCRUMB,
   ];
+
   constructor(public breadcrumbsService: BreadcrumbsService) {}
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
     this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
   }
 }
