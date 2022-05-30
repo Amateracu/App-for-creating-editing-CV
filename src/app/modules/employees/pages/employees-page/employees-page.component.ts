@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { EMPLOYEES_COLUMNS } from 'src/app/modules/projects/pages/projects-page/constants/columns.const';
 import { IColumn } from 'src/app/shared/components/base-table/interfaces/column.interface';
 import {
   EMPLOYEES_BREADCRUMB,
@@ -15,6 +14,7 @@ import { IEmployees } from 'src/app/shared/interfaces/employees.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 import { GetEmployeesList } from 'src/app/store/employees/employees.actions';
 import { selectEmployees } from 'src/app/store/employees/employees.selectors';
+import { EMPLOYEES_COLUMNS } from './constans/columns.const';
 
 @UntilDestroy()
 @Component({
