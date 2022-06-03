@@ -16,8 +16,6 @@ import {
   EditEmployeeSuccess,
   GetCvList,
   GetCvListSuccess,
-  GetCvUserList,
-  GetCvUserListSuccess,
   GetEmployeeById,
   GetEmployeeByIdSuccess,
   GetEmployeesList,
@@ -28,6 +26,8 @@ import {
   GetRolesListSuccess,
   GetSkillsList,
   GetSkillsListSuccess,
+  GetVirtualCvList,
+  GetVirtualCvListSuccess,
 } from './employees.actions';
 
 @Injectable()
@@ -112,10 +112,10 @@ export class EmployeesEffect {
 
   public getCvList$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GetCvList),
+      ofType(GetVirtualCvList),
       switchMap((action) =>
         this.cvService.getCvByUserId(action.userId).pipe(
-          map((cvList) => GetCvListSuccess({ cvList })),
+          map((cvList) => GetVirtualCvListSuccess({ cvList })),
           catchError(() => EMPTY),
         ),
       ),
@@ -145,10 +145,10 @@ export class EmployeesEffect {
   });
   public getCvUserList$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GetCvUserList),
+      ofType(GetCvList),
       switchMap((action) =>
         this.cvService.getCvById(action.userId).pipe(
-          map((cvUser) => GetCvUserListSuccess({ cvUser })),
+          map((cvUser) => GetCvListSuccess({ cvUser })),
           catchError(() => EMPTY),
         ),
       ),

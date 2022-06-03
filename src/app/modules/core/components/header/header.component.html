@@ -6,11 +6,7 @@
     <span class="title">{{ 'header.title' | translate }}</span>
   </div>
   <div class="navbar">
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
+    <button mat-icon-button>
       <mat-icon>search</mat-icon>
     </button>
     <button
@@ -22,25 +18,13 @@
     >
       <mat-icon>assistant</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button mat-icon-button>
       <mat-icon>notifications_none</mat-icon>
     </button>
-    <button
-      [ngStyle]="{ 'margin-right': '43px' }"
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
-      (click)="logout()"
-    >
+    <button [ngStyle]="{ 'margin-right': '43px' }" mat-icon-button (click)="logout()">
       <mat-icon>account_circle</mat-icon>Serati Ma
     </button>
-    <button
-      mat-icon-button
-      class="example-icon"
-      matBadgePosition="above"
-      mat-button
-      [matMenuTriggerFor]="menu"
-    >
+    <button mat-icon-button matBadgePosition="above" mat-button [matMenuTriggerFor]="menu">
       <mat-icon>translate</mat-icon>
     </button>
     <mat-menu #menu="matMenu" yPosition="below">

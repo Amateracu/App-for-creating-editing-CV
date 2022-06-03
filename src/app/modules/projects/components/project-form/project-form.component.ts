@@ -38,12 +38,13 @@ import {
 })
 export class ProjectFormComponent implements OnInit, OnChanges {
   @Output() public addProject = new EventEmitter<IProject>();
-  @Output() public cancelProject = new EventEmitter<any>();
+  @Output() public cancelProject = new EventEmitter<void>();
   @Input() public projectById: IProject;
+
   public form!: FormGroup;
-  public allSpecializations: ISpecialization[] = [];
-  public allRoles: IProjectRoles[] = [];
-  public allResponsibilities: IResponsibility[] = [];
+  public allSpecializations: ISpecialization[];
+  public allRoles: IProjectRoles[];
+  public allResponsibilities: IResponsibility[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -66,22 +67,40 @@ export class ProjectFormComponent implements OnInit, OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['projectById'] && changes['projectById'].currentValue) {
-      this.form.setValue({
-        name: this.projectById.name,
-        secondName: this.projectById.secondName,
-        startDate: this.projectById.startDate,
-        endDate: this.projectById.endDate,
-        teamSize: this.projectById.teamSize,
-        tasksPerformed: this.projectById.tasksPerformed,
-        description: this.projectById.description,
-        projectRoles: this.projectById.projectRoles,
-        specializations: this.projectById.specializations,
-        responsibilities: this.projectById.responsibilities,
+      this.form.patchValue({
+        ...this.projectById,
       });
     }
   }
 
   public ngOnInit(): void {
+    this.initProject();
+  }
+
+  public submit(): void {
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+    const project: IProject = {
+      ...this.form.getRawValue(),
+      specializations: this.form
+        .get('specializations')
+        .value.map((item: ISpecialization) => item.id),
+      projectRoles: this.form.get('projectRoles').value.map((item: IProjectRoles) => item.id),
+      responsibilities: this.form
+        .get('responsibilities')
+        .value.map((item: IResponsibility) => item.id),
+      teamSize: Number(this.form.get('teamSize').value),
+    };
+    this.addProject.emit(project);
+    this.form.reset();
+  }
+
+  public cancel(): void {
+    this.cancelProject.emit();
+  }
+
+  public initProject(): void {
     this.store.dispatch(GetProjectRolesList());
     this.store
       .select(selectProjectRoles)
@@ -106,25 +125,5 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         this.allSpecializations = [...specializations];
         this.cdRef.markForCheck();
       });
-  }
-
-  public submit(): void {
-    const project: IProject = {
-      ...this.form.getRawValue(),
-      specializations: this.form
-        .get('specializations')
-        .value.map((item: ISpecialization) => item.id),
-      projectRoles: this.form.get('projectRoles').value.map((item: IProjectRoles) => item.id),
-      responsibilities: this.form
-        .get('responsibilities')
-        .value.map((item: IResponsibility) => item.id),
-      teamSize: Number(this.form.get('teamSize').value),
-    };
-    this.addProject.emit(project);
-    this.form.reset();
-  }
-
-  public cancel(): void {
-    this.cancelProject.emit();
   }
 }

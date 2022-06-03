@@ -14,17 +14,6 @@ export class LanguagesFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {}
 
-  public setFormLanguages(languages: ILanguages): void {
-    this.form.setValue({
-      name: languages.name,
-      everydayReadingLevel: languages.everydayReadingLevel,
-      everydayWritingLevel: languages.everydayWritingLevel,
-      everydaySpeakingLevel: languages.everydaySpeakingLevel,
-      professionalReadingLevel: languages.professionalReadingLevel,
-      professionalWritingLevel: languages.professionalWritingLevel,
-      professionalSpeakingLevel: languages.professionalSpeakingLevel,
-    });
-  }
   public ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -34,6 +23,12 @@ export class LanguagesFormComponent implements OnInit {
       professionalReadingLevel: ['', [Validators.required]],
       professionalWritingLevel: ['', [Validators.required]],
       professionalSpeakingLevel: ['', [Validators.required]],
+    });
+  }
+
+  public setFormLanguages(languages: ILanguages): void {
+    this.form.patchValue({
+      ...languages,
     });
   }
 }

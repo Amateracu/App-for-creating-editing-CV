@@ -9,7 +9,6 @@ import {
   PROJECT_INFO_BREADCRUMB,
 } from 'src/app/shared/constants/breadcrumbs.const';
 import { PROJECTS_ROUTE, PROJECT_PARAM } from 'src/app/shared/constants/routing-path.const';
-import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IProject } from 'src/app/shared/interfaces/project.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 import { EditProject, GetProjectById } from 'src/app/store/projects/projects.actions';
@@ -23,11 +22,6 @@ import { selectProjectById } from 'src/app/store/projects/projects.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectEditPageComponent implements OnInit {
-  public breadcrumbs: IBreadCrumb[] = [
-    HOME_BREADCRUMB,
-    PROJECT_BREADCRUMB,
-    PROJECT_INFO_BREADCRUMB,
-  ];
   public project: IProject;
   public projectId: string;
 
@@ -40,7 +34,21 @@ export class ProjectEditPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
+    this.breadcrumbsService.updateBreadcrumb([
+      HOME_BREADCRUMB,
+      PROJECT_BREADCRUMB,
+      PROJECT_INFO_BREADCRUMB,
+    ]);
+    this.initProject();
+  }
+
+  public editProject(project: IProject): void {
+    project.id = this.projectId;
+    this.store.dispatch(EditProject({ project }));
+    this.router.navigate([PROJECTS_ROUTE.path]);
+  }
+
+  public initProject(): void {
     this.projectId = this.route.snapshot.params[PROJECT_PARAM];
     if (this.projectId) {
       this.store.dispatch(GetProjectById({ projectId: this.projectId }));
@@ -49,7 +57,6 @@ export class ProjectEditPageComponent implements OnInit {
         .pipe(
           untilDestroyed(this),
           filter((project) => Boolean(project) && this.projectId === project.id),
-          filter((project) => Boolean(project)),
         )
         .subscribe((project) => {
           this.project = {
@@ -62,10 +69,5 @@ export class ProjectEditPageComponent implements OnInit {
           this.cdRef.markForCheck();
         });
     }
-  }
-  public editProject(project: IProject): void {
-    project.id = this.projectId;
-    this.store.dispatch(EditProject({ project }));
-    this.router.navigate([PROJECTS_ROUTE.path]);
   }
 }

@@ -10,6 +10,7 @@ import { IEducation } from 'src/app/shared/interfaces/virtual-cv.interface';
 })
 export class EducationFormComponent implements OnChanges {
   @Input() public education: IEducation;
+
   public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -22,8 +23,7 @@ export class EducationFormComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['education'] && changes['education'].currentValue) {
       this.form.patchValue({
-        establishment: this.education.establishment,
-        profession: this.education.profession,
+        ...this.education,
       });
     }
   }

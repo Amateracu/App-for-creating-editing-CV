@@ -1,52 +1,71 @@
-<div class="buttons-cv">
-  <div *ngFor="let cv of cvList; let index = index" class="button-cv">
-    <button mat-button type="button" (click)="clickedCv(index)">{{ cv.data.general.name }}</button>
-    <button mat-button type="button" (click)="deleteCv(index)"><mat-icon>delete</mat-icon></button>
-  </div>
-  <button class="add-new-cv" mat-button type="button" (click)="addNewCv()">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
-<div class="cv-page">
-  <app-general-form [general]="general"></app-general-form>
-  <app-education-form [education]="education"></app-education-form>
-  <app-languages-form [foreignLanguages]="languages"></app-languages-form>
-  <div>
-    <button mat-raised-button class="add-project" (click)="addProject()">
-      {{ 'buttons.add-project' | translate }}
-    </button>
-    <div *ngIf="addProj">
-      <app-projects-form
-        [userProjects]="allProjects"
-        (saveProject)="saveNewProject($event)"
-        (submitCv)="submit()"
-      ></app-projects-form>
-    </div>
-  </div>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title> {{ 'breadcrumbs-label.project' | translate }}</mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-projects-form
-      #projectEditForm
-      [useButton]="useButton"
-      [userProjects]="projectsVirtialCv"
-      class="cv-form"
-    ></app-projects-form>
-  </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-  </mat-expansion-panel>
-  <div class="cv-profile">
-    <div class="btn">
-      <div class="save">
-        <button mat-button type="submit" (click)="submitCv()">
-          {{ 'buttons.save' | translate }}
+<div class="cv-page-main">
+  <div class="buttons-cv">
+    <mat-selection-list #shoes [multiple]="false" class="button-cv">
+      <div
+        class="option"
+        [class.selected]="selectedCvIndex === index"
+        *ngFor="let cv of virtualCvList; let index = index"
+      >
+        <mat-list-option [value]="cv" mat-button type="button" (click)="clickedCv(index)">
+          {{ cv.data.general.name }}
+        </mat-list-option>
+        <button mat-icon-button (click)="downloadPDF()">
+          <mat-icon>image</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteCv(index)">
+          <mat-icon>delete</mat-icon>
         </button>
       </div>
-      <div class="cancel">
-        <button (click)="cancel()" mat-button type="button">
-          {{ 'buttons.cancel' | translate }}
-        </button>
+    </mat-selection-list>
+    <button class="add-new-cv" mat-button type="button" (click)="addNewCv()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div class="cv-page" #downloadPdf>
+    <app-general-form [general]="general"></app-general-form>
+    <app-education-form [education]="education"></app-education-form>
+    <app-languages-form [foreignLanguages]="languages"></app-languages-form>
+    <h2>{{ 'side-bar.projects' | translate }}</h2>
+    <div class="add-project">
+      <form class="form-group" [formGroup]="form">
+        <app-autocomplete-form
+          (option)="selectProject($event)"
+          [options]="allProjects"
+          formControlName="name"
+          [label]="'project-info.name' | translate"
+        ></app-autocomplete-form>
+      </form>
+      <button mat-raised-button class="add-project-button" (click)="addProject()">
+        {{ 'buttons.add-project' | translate }}
+      </button>
+    </div>
+    <div *ngFor="let project of projects; let idx = index" class="expansion-panel">
+      <mat-expansion-panel hideToggle (click)="open(idx)">
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            ><span class="material-icons">expand_more</span> {{ project.name }}</mat-panel-title
+          >
+        </mat-expansion-panel-header>
+        <app-projects-form
+          #projectEditForm
+          class="cv-form"
+          [project]="projectCv"
+          (saveProject)="submitProject($event)"
+        ></app-projects-form>
+      </mat-expansion-panel>
+    </div>
+    <div class="cv-profile">
+      <div class="btn">
+        <div class="save">
+          <button mat-button type="submit" (click)="submitCv()">
+            {{ 'buttons.save' | translate }}
+          </button>
+        </div>
+        <div class="cancel">
+          <button (click)="cancel()" mat-button type="button">
+            {{ 'buttons.cancel' | translate }}
+          </button>
+        </div>
       </div>
     </div>
   </div>

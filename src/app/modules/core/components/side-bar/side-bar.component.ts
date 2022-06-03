@@ -13,8 +13,8 @@ import {
 })
 export class SideBarComponent {
   @Input() public isToogle!: boolean;
-  public projectRoute = '/' + PROJECTS_ROUTE.path;
-  public dashboardRoute = '/' + DASHBOARD_ROUTE.path;
-  public employeesRoute = '/' + EMPLOYEES_ROUTE.path;
-  constructor() {}
+
+  public projectRoute = PROJECTS_ROUTE.fullPath;
+  public dashboardRoute = DASHBOARD_ROUTE.fullPath;
+  public employeesRoute = EMPLOYEES_ROUTE.fullPath;
 }

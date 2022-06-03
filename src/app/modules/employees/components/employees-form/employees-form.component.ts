@@ -42,6 +42,7 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
   @Input() public usedInputs: boolean = true;
   @Input() public useButton: boolean = true;
   @Input() public employeeById: IEmployees;
+
   public form: FormGroup;
   public allSkills: ISkills[] = [];
   public allLanguages: ILanguages[] = [];
@@ -69,20 +70,33 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['employeeById'] && changes['employeeById'].currentValue) {
       this.form.patchValue({
-        firstName: this.employeeById.firstName,
-        lastName: this.employeeById.lastName,
-        email: this.employeeById.email,
-        skills: this.employeeById.skills,
-        department: this.employeeById.department,
-        institution: this.employeeById.institution,
-        diplomaProfession: this.employeeById.diplomaProfession,
-        languages: this.employeeById.languages,
-        role: this.employeeById.role,
+        ...this.employeeById,
       });
     }
   }
 
   public ngOnInit(): void {
+    this.initEmployee();
+  }
+
+  public submit(): void {
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+    const employee: IEmployees = {
+      ...this.form.getRawValue(),
+      skills: this.form.get('skills').value.map((item: ISkills) => item.id),
+      languages: this.form.get('languages').value.map((item: ILanguages) => item.id),
+      role: this.form.get('role').value.id,
+    };
+    this.addEmployee.emit(employee);
+  }
+
+  public cancel(): void {
+    this.cancelEmployee.emit();
+  }
+
+  public initEmployee(): void {
     this.store.dispatch(GetSkillsList());
     this.store
       .select(selectSkills)
@@ -108,19 +122,5 @@ export class EmployeesFormComponent implements OnInit, OnChanges {
         this.allRoles = [...role];
         this.cdRef.markForCheck();
       });
-  }
-
-  public submit(): void {
-    const employee: IEmployees = {
-      ...this.form.getRawValue(),
-      skills: this.form.get('skills').value.map((item: ISkills) => item.id),
-      languages: this.form.get('languages').value.map((item: ILanguages) => item.id),
-      role: this.form.get('role').value.id,
-    };
-    this.addEmployee.emit(employee);
-  }
-
-  public cancel(): void {
-    this.cancelEmployee.emit();
   }
 }

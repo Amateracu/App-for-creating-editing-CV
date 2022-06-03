@@ -1,19 +1,23 @@
 :host {
   display: block;
 }
+
 .header {
   display: flex;
   justify-content: center;
 }
+
 .form-language {
   background-color: white;
   margin: 30px;
   padding: 30px;
+
   .form-group {
     display: flex;
     flex-wrap: wrap;
     gap: 30px 60px;
     align-content: space-between;
+
     .form-field {
       width: 200px;
     }

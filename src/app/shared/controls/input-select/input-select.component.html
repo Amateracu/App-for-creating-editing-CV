@@ -1,7 +1,7 @@
 <label class="title">{{ title }}</label>
 <mat-form-field appearance="fill">
   <mat-select [formControl]="control">
-    <mat-option *ngFor="let select of selects" [value]="select">
+    <mat-option *ngFor="let select of options" [value]="select">
       {{ select.name }}
     </mat-option>
   </mat-select>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
+  DASHBOARD_ROUTE,
   EMPLOYEES_ADD_ROUTE,
   EMPLOYEES_PROFILE_ROUTE,
 } from 'src/app/shared/constants/routing-path.const';
@@ -21,6 +22,7 @@ const routes: Routes = [
     path: EMPLOYEES_PROFILE_ROUTE.path,
     component: EmployeesProfileComponent,
   },
+  { path: '**', redirectTo: DASHBOARD_ROUTE.path },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 <div class="form-add">
-  <form class="info" [formGroup]="form" (ngSubmit)="submit()">
+  <form class="info" [formGroup]="form">
     <div class="form-group">
       <app-input
         class="form-field"
@@ -38,7 +38,7 @@
       <app-input-autocomplete
         class="form-field"
         formControlName="skills"
-        [allChips]="allSkills"
+        [options]="allSkills"
         [title]="'employee-form.skills' | translate"
       >
       </app-input-autocomplete>
@@ -46,7 +46,7 @@
         *ngIf="usedInputs"
         class="form-field"
         formControlName="role"
-        [selects]="allRoles"
+        [options]="allRoles"
         [title]="'employee-form.role' | translate"
       >
       </app-input-select>
@@ -59,14 +59,14 @@
         *ngIf="usedInputs"
         class="form-field"
         formControlName="languages"
-        [allChips]="allLanguages"
+        [options]="allLanguages"
         [title]="'employee-form.languages' | translate"
       >
       </app-input-autocomplete>
     </div>
-    <div *ngIf="useButton" class="btn">
+    <div *ngIf="useButton" class="buttons">
       <div class="save">
-        <button mat-button type="submit">
+        <button (click)="submit()" mat-button type="submit">
           {{ 'buttons.save' | translate }}
         </button>
       </div>

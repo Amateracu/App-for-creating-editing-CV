@@ -25,6 +25,7 @@ import { EmployeesPageComponent } from './pages/employees-page/employees-page.co
 import { EmployeesProfileComponent } from './pages/employees-profile/employees-profile.component';
 import { EmpoyeesProfileCvComponent } from './pages/empoyees-profile-cv/empoyees-profile-cv.component';
 import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empoyees-profile-info.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -57,8 +58,7 @@ import { EmpoyeesProfileInfoComponent } from './pages/empoyees-profile-info/empo
     MatTableModule,
     BaseTableModule,
     MatExpansionModule,
+    MatListModule,
   ],
-  exports: [],
-  providers: [],
 })
 export class EmployeeModule {}

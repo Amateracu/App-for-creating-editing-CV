@@ -17,9 +17,7 @@ export class HeaderComponent {
     private translate: TranslateService,
     private router: Router,
     private authService: AuthService,
-  ) {
-    this.translate.setDefaultLang('en');
-  }
+  ) {}
 
   public opened(): void {
     this.openedSideBar.emit();

@@ -1,15 +1,22 @@
+:host {
+  display: block;
+}
+
 .toolbar {
   display: flex;
   justify-content: space-between;
   color: #f0f2f5;
   background-color: #001529;
+
   .header {
     display: inline-block;
     align-items: center;
+
     .title {
       vertical-align: middle;
     }
   }
+
   .navbar {
     justify-content: end;
   }

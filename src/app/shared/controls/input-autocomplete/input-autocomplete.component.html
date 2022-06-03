@@ -15,7 +15,7 @@
     />
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let item of filteredChips" [value]="item">
+    <mat-option *ngFor="let item of options" [value]="item">
       {{ item.name }}
     </mat-option>
   </mat-autocomplete>

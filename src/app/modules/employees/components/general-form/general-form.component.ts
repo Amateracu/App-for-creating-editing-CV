@@ -10,6 +10,7 @@ import { IGeneral } from 'src/app/shared/interfaces/virtual-cv.interface';
 })
 export class GeneralFormComponent implements OnChanges {
   @Input() public general: IGeneral;
+
   public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -23,9 +24,7 @@ export class GeneralFormComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['general'] && changes['general'].currentValue) {
       this.form.patchValue({
-        firstName: this.general.firstName,
-        lastName: this.general.lastName,
-        name: this.general.name,
+        ...this.general,
       });
     }
   }

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewEncapsulation } from '@angular/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
   title = 'pet-project';
+}
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
 }

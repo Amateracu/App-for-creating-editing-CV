@@ -14,6 +14,7 @@ import { IColumn } from './interfaces/column.interface';
 export class BaseTableComponent implements OnInit, OnChanges {
   @Input() public data!: any[];
   @Input() public columns!: IColumn[];
+
   @Output() public clickedRow = new EventEmitter<any>();
   public columnsDef!: string[];
 

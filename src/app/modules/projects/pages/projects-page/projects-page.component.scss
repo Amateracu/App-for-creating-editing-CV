@@ -1,9 +1,13 @@
+:host {
+  display: block;
+}
+
 .project-list {
-  align-items: baseline;
   margin: 30px;
+
   .project-table {
-    padding-top: 40px;
     padding: 20px;
+    padding-top: 40px;
     background-color: white;
   }
 }

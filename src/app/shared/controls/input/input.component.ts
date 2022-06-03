@@ -10,5 +10,6 @@ import { Small } from '../../enums/small.enum';
 })
 export class InputComponent extends BaseControl {
   @Input() public type: string = 'text';
+
   public required: Small = Small.required;
 }

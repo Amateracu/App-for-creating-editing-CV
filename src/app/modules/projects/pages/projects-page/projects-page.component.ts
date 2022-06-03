@@ -9,7 +9,6 @@ import {
   PROJECT_INFO_BREADCRUMB,
 } from 'src/app/shared/constants/breadcrumbs.const';
 import { PROJECTS_CREATE_ROUTE, PROJECTS_ROUTE } from 'src/app/shared/constants/routing-path.const';
-import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IProject } from 'src/app/shared/interfaces/project.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 import { GetProjectsList } from 'src/app/store/projects/projects.actions';
@@ -24,8 +23,7 @@ import { PROJECT_COLUMNS } from './constants/columns.const';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsPageComponent implements OnInit {
-  public breadcrumbs: IBreadCrumb[] = [HOME_BREADCRUMB, PROJECT_BREADCRUMB];
-  public cvElements!: IProject[];
+  public projects!: IProject[];
   public columns: IColumn[] = PROJECT_COLUMNS;
 
   constructor(
@@ -33,18 +31,16 @@ export class ProjectsPageComponent implements OnInit {
     private breadcrumbsService: BreadcrumbsService,
     private store: Store,
     private cdRef: ChangeDetectorRef,
-  ) {
-    this.cvElements = [];
-  }
+  ) {}
 
   public ngOnInit(): void {
-    this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
+    this.breadcrumbsService.updateBreadcrumb([HOME_BREADCRUMB, PROJECT_BREADCRUMB]);
     this.store.dispatch(GetProjectsList());
     this.store
       .select(selectProjects)
       .pipe(untilDestroyed(this))
       .subscribe((projects) => {
-        this.cvElements = [...projects].map((project) => ({
+        this.projects = [...projects].map((project) => ({
           ...project,
           specializationsNames: project.specializations.map((item) => ' ' + item.name),
           responsibilitiesNames: project.responsibilities.map((item) => ' ' + item.name),
@@ -53,13 +49,13 @@ export class ProjectsPageComponent implements OnInit {
       });
   }
 
-  public openProjectInfo(row: IProject): void {
-    this.router.navigate([PROJECTS_ROUTE.path, row.id]);
-    PROJECT_INFO_BREADCRUMB.label = row.name;
-    PROJECT_INFO_BREADCRUMB.description = row.name;
+  public openProjectInfo(project: IProject): void {
+    this.router.navigate([PROJECTS_ROUTE.path, project.id]);
+    PROJECT_INFO_BREADCRUMB.label = project.name;
+    PROJECT_INFO_BREADCRUMB.description = project.name;
   }
 
-  public routeAddProject(): void {
+  public addProject(): void {
     this.router.navigate([PROJECTS_ROUTE.path, PROJECTS_CREATE_ROUTE.path]);
   }
 }

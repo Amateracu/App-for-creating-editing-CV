@@ -7,7 +7,6 @@ import {
   HOME_BREADCRUMB,
 } from 'src/app/shared/constants/breadcrumbs.const';
 import { EMPLOYEES_ROUTE } from 'src/app/shared/constants/routing-path.const';
-import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { IEmployees } from 'src/app/shared/interfaces/employees.interface';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrums.service';
 import { AddEmployee } from 'src/app/store/employees/employees.actions';
@@ -19,12 +18,6 @@ import { AddEmployee } from 'src/app/store/employees/employees.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddEmployeeComponent implements OnInit {
-  public breadcrumbs: IBreadCrumb[] = [
-    HOME_BREADCRUMB,
-    EMPLOYEES_BREADCRUMB,
-    EMPLOYEES_ADD_BREADCRUMB,
-  ];
-
   constructor(
     public breadcrumbsService: BreadcrumbsService,
     private store: Store,
@@ -32,7 +25,11 @@ export class AddEmployeeComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
+    this.breadcrumbsService.updateBreadcrumb([
+      HOME_BREADCRUMB,
+      EMPLOYEES_BREADCRUMB,
+      EMPLOYEES_ADD_BREADCRUMB,
+    ]);
   }
 
   public addEmployee(employee: IEmployees): void {

@@ -19,7 +19,7 @@ import { BaseControl } from '../../classes/base-control.class';
 export class AutocompleteFormComponent extends BaseControl implements OnInit {
   @Input() public options: any[];
   @Output() public option = new EventEmitter<any>();
-  @Output() public optionCv = new EventEmitter<any>();
+
   public item: any;
   public filteredOptions: Observable<any[]>;
 
@@ -34,7 +34,6 @@ export class AutocompleteFormComponent extends BaseControl implements OnInit {
   public selectOption(e: MatAutocompleteSelectedEvent): void {
     const obj = e.option.value;
     this.option.emit(obj);
-    this.optionCv.emit(obj);
   }
 
   private _filter(name: string): any[] {

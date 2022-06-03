@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
+  DASHBOARD_ROUTE,
   PROJECTS_CREATE_ROUTE,
   PROJECTS_INFO_ROUTE,
 } from 'src/app/shared/constants/routing-path.const';
@@ -21,6 +22,7 @@ const routes: Routes = [
     path: PROJECTS_INFO_ROUTE.path,
     component: ProjectEditPageComponent,
   },
+  { path: '**', redirectTo: DASHBOARD_ROUTE.path },
 ];
 
 @NgModule({

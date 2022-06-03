@@ -14,12 +14,12 @@ import {
   EditCvProjectSuccess,
   EditEmployeeSuccess,
   GetCvListSuccess,
-  GetCvUserListSuccess,
   GetEmployeeByIdSuccess,
   GetEmployeesListSuccess,
   GetLanguagesListSuccess,
   GetRolesListSuccess,
   GetSkillsListSuccess,
+  GetVirtualCvListSuccess,
 } from './employees.actions';
 
 export interface EmployeesState {
@@ -100,7 +100,7 @@ const employeesReducer = createReducer(
   ),
 
   on(
-    GetCvListSuccess,
+    GetVirtualCvListSuccess,
     (state, { cvList }): EmployeesState => ({
       ...state,
       cvList,
@@ -120,7 +120,7 @@ const employeesReducer = createReducer(
     }),
   ),
   on(
-    GetCvUserListSuccess,
+    GetCvListSuccess,
     (state, { cvUser }): EmployeesState => ({
       ...state,
       cvUser,

@@ -1,6 +1,6 @@
 <div class="form-list">
   <button mat-button class="button-archive">{{ 'project-info.archive' | translate }}</button>
-  <form class="info" [formGroup]="form" (ngSubmit)="submit()">
+  <form class="info" [formGroup]="form">
     <div class="form-group">
       <app-input
         class="form-field"
@@ -40,7 +40,7 @@
       <app-input-autocomplete
         class="form-field"
         formControlName="specializations"
-        [allChips]="allSpecializations"
+        [options]="allSpecializations"
         [title]="'project-page.specialization' | translate"
       >
       </app-input-autocomplete>
@@ -48,18 +48,18 @@
         class="form-field"
         formControlName="projectRoles"
         [title]="'project-info.roles' | translate"
-        [allChips]="allRoles"
+        [options]="allRoles"
       ></app-input-autocomplete>
       <app-input-autocomplete
         class="form-field"
         formControlName="responsibilities"
         [title]="'project-info.responsibilities' | translate"
-        [allChips]="allResponsibilities"
+        [options]="allResponsibilities"
       ></app-input-autocomplete>
     </div>
-    <div class="btn">
+    <div class="buttons">
       <div class="save">
-        <button mat-button type="submit">
+        <button (click)="submit()" mat-button type="submit">
           {{ 'buttons.save' | translate }}
         </button>
       </div>

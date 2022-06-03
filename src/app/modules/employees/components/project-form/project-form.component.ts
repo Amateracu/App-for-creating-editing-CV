@@ -4,8 +4,10 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -33,11 +35,11 @@ import {
   styleUrls: ['./project-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProjectsFormComponent implements OnInit {
-  @Input() public userProjects: IProject[];
-  @Input() public useButton: boolean = true;
+export class ProjectsFormComponent implements OnInit, OnChanges {
+  @Input() public addProject: boolean;
+  @Input() public project: IProject;
   @Output() public saveProject = new EventEmitter<IProject>();
-  @Output() public submitCv = new EventEmitter<void>();
+
   public allSpecializations: ISpecialization[] = [];
   public allRoles: IRoles[] = [];
   public allResponsibilities: IResponsibility[] = [];
@@ -62,7 +64,34 @@ export class ProjectsFormComponent implements OnInit {
     });
   }
 
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['project'] && changes['project'].currentValue) {
+      this.form.patchValue({
+        ...this.project,
+      });
+    }
+  }
+
   public ngOnInit(): void {
+    this.initProjects();
+  }
+
+  public submit(): void {
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+    const editProject = {
+      ...this.project,
+      ...this.form.getRawValue(),
+    };
+    this.saveProject.emit(editProject);
+  }
+
+  public cancel(): void {
+    this.form.reset();
+  }
+
+  public initProjects(): void {
     this.store.dispatch(GetProjectRolesList());
     this.store
       .select(selectProjectRoles)
@@ -89,43 +118,5 @@ export class ProjectsFormComponent implements OnInit {
         this.allSpecializations = [...specializations];
         this.cdRef.markForCheck();
       });
-  }
-
-  public setFormProject(project: IProject): void {
-    this.form.patchValue({
-      name: project.name,
-      secondName: project.secondName,
-      startDate: project.startDate,
-      endDate: project.endDate,
-      teamSize: project.teamSize,
-      tasksPerformed: project.tasksPerformed,
-      description: project.description,
-      projectRoles: project.projectRoles,
-      specializations: project.specializations,
-      responsibilities: project.responsibilities,
-    });
-    this.saveProject.emit(project);
-  }
-
-  public setFormProjectCv(projectCv: IProject): void {
-    this.form.patchValue({
-      name: projectCv.name,
-      secondName: projectCv.secondName,
-      startDate: projectCv.startDate,
-      endDate: projectCv.endDate,
-      teamSize: projectCv.teamSize,
-      tasksPerformed: projectCv.tasksPerformed,
-      description: projectCv.description,
-      projectRoles: projectCv.projectRoles,
-      specializations: projectCv.specializations,
-      responsibilities: projectCv.responsibilities,
-    });
-  }
-  public submit(): void {
-    this.submitCv.emit();
-  }
-
-  public cancel(): void {
-    this.form.reset();
   }
 }

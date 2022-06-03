@@ -1,11 +1,19 @@
 :host {
   display: block;
 }
+h2 {
+  display: flex;
+  justify-content: center;
+}
 :host::ng-deep {
   .cv-form {
     display: flex;
     justify-content: space-between;
   }
+  .mat-expanded .mat-expansion-panel-header-title .material-icons {
+    transform: rotate(180deg);
+  }
+
   .cv-profile {
     display: flex;
     justify-content: space-between;
@@ -15,32 +23,66 @@
     background-color: #f0f2f5;
     margin: 30px;
   }
+
   .mat-raised-button {
     display: block;
     background-color: #1890ff;
     color: white;
     margin-left: auto;
-    margin-bottom: 10px;
+  }
+  .expansion-panel {
+    border: ridge;
+  }
+  .mat-list-single-selected-option,
+  .mat-list-single-selected-option:hover,
+  .mat-list-single-selected-option:focus {
+    color: #1890ff;
+    background-color: unset;
   }
 }
+.cv-page-main {
+  display: flex;
+
+  .cv-page {
+    margin-top: 10px;
+  }
+}
+
 .buttons-cv {
   display: block;
+
   .button-cv {
     display: flex;
+    flex-direction: column;
     width: max-content;
-    background-color: #1890ff;
-    color: white;
-    margin: 20px;
     border-radius: 5px;
+    .option {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid grey;
+    }
+    .selected {
+      border-bottom: 1px solid #1890ff;
+      color: #1890ff;
+      .mat-list-option {
+        color: #1890ff;
+      }
+    }
   }
 }
+
 .btn {
   display: flex;
   justify-content: end;
   padding: 30px;
+
   .save {
     margin-right: 10px;
     background-color: #1890ff;
     color: white;
   }
+}
+.add-project {
+  display: flex;
+  align-items: center;
 }

@@ -24,8 +24,7 @@ import { EMPLOYEES_COLUMNS } from './constans/columns.const';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesPageComponent implements OnInit {
-  public breadcrumbs: IBreadCrumb[] = [HOME_BREADCRUMB, EMPLOYEES_BREADCRUMB];
-  public profileElements!: IEmployees[];
+  public employeeElements!: IEmployees[];
   public columns: IColumn[] = EMPLOYEES_COLUMNS;
 
   constructor(
@@ -33,27 +32,27 @@ export class EmployeesPageComponent implements OnInit {
     public breadcrumbsService: BreadcrumbsService,
     private store: Store,
     private cdRef: ChangeDetectorRef,
-  ) {
-    this.profileElements = [];
-  }
+  ) {}
 
   public ngOnInit(): void {
-    this.breadcrumbsService.updateBreadcrumb(this.breadcrumbs);
+    this.breadcrumbsService.updateBreadcrumb([HOME_BREADCRUMB, EMPLOYEES_BREADCRUMB]);
     this.store.dispatch(GetEmployeesList());
     this.store
       .select(selectEmployees)
       .pipe(untilDestroyed(this))
       .subscribe((employees) => {
-        this.profileElements = [...employees].map((employee) => ({
+        this.employeeElements = [...employees].map((employee) => ({
           ...employee,
           skillsNames: employee.skills.map((item) => ' ' + item.name),
         }));
         this.cdRef.markForCheck();
       });
   }
+
   public routeAddEmployee(): void {
     this.router.navigate([EMPLOYEES_ROUTE.path, EMPLOYEES_ADD_ROUTE.path]);
   }
+
   public openProfilePage(row: IEmployees): void {
     this.router.navigate([EMPLOYEES_ROUTE.path, row.id]);
     EMPLOYEES_PROFILE_BREADCRUMB.label = row.firstName;

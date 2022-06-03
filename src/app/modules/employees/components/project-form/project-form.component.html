@@ -1,14 +1,11 @@
 <div class="form-list">
-  <form class="info" [formGroup]="form" (ngSubmit)="submit()">
+  <form class="info" [formGroup]="form">
     <div class="form-group">
-      <app-autocomplete-form
-        (option)="setFormProject($event)"
-        (option)="setFormProjectCv($event)"
-        [options]="userProjects"
+      <app-input
         class="form-field"
         formControlName="name"
         [label]="'project-info.name' | translate"
-      ></app-autocomplete-form>
+      ></app-input>
       <app-input
         class="form-field"
         formControlName="secondName"
@@ -42,7 +39,7 @@
       <app-input-autocomplete
         class="form-field"
         formControlName="specializations"
-        [allChips]="allSpecializations"
+        [options]="allSpecializations"
         [title]="'project-page.specialization' | translate"
       >
       </app-input-autocomplete>
@@ -50,18 +47,18 @@
         class="form-field"
         formControlName="projectRoles"
         [title]="'project-info.roles' | translate"
-        [allChips]="allRoles"
+        [options]="allRoles"
       ></app-input-autocomplete>
       <app-input-autocomplete
         class="form-field"
         formControlName="responsibilities"
         [title]="'project-info.responsibilities' | translate"
-        [allChips]="allResponsibilities"
+        [options]="allResponsibilities"
       ></app-input-autocomplete>
     </div>
-    <div *ngIf="useButton" class="btn">
+    <div class="buttons">
       <div class="save">
-        <button mat-button type="submit">
+        <button (click)="submit()" mat-button type="submit">
           {{ 'buttons.save' | translate }}
         </button>
       </div>

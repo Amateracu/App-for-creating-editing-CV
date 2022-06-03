@@ -1,23 +1,27 @@
 :host {
   display: block;
 }
+
 .form-add {
   background-color: white;
   margin: 30px;
   padding: 30px;
+
   .form-group {
     display: flex;
     flex-wrap: wrap;
     gap: 30px 60px;
     align-content: space-between;
+
     .form-field {
       width: 200px;
     }
   }
-  .btn {
+  .buttons {
     display: flex;
     justify-content: end;
     padding: 30px;
+
     .save {
       margin-right: 10px;
       background-color: #1890ff;

@@ -67,12 +67,12 @@ export const GetRolesListSuccess = createAction(
 );
 export const GetRolesListError = createAction('[ROLES] GetRolesList Error');
 
-export const GetCvList = createAction('[CV] GetCvList', props<{ userId: string }>());
-export const GetCvListSuccess = createAction(
-  '[CV] GetCvList Success',
+export const GetVirtualCvList = createAction('[CV] GetVirtualCvList', props<{ userId: string }>());
+export const GetVirtualCvListSuccess = createAction(
+  '[CV] GetVirtualCvList Success',
   props<{ cvList: IVirtualCv[] }>(),
 );
-export const GetCvListError = createAction('[CV] GetCvList Error');
+export const GetVirtualCvListError = createAction('[CV] GetVirtualCvList Error');
 
 export const AddCv = createAction('[CV] AddCv', props<{ addCv: IaddCv }>());
 export const AddCvSuccess = createAction('[CV] AddCv Success', props<{ addCv: IVirtualCv }>());
@@ -85,12 +85,9 @@ export const EditCvProjectSuccess = createAction(
 );
 export const EditCvProjectError = createAction('[CV] EditCvProject Error');
 
-export const GetCvUserList = createAction('[CV] GetCvUserList', props<{ userId: string }>());
-export const GetCvUserListSuccess = createAction(
-  '[CV] GetUserCvList Success',
-  props<{ cvUser: ICv }>(),
-);
-export const GetCvUserListError = createAction('[CV] GetUserCvList Error');
+export const GetCvList = createAction('[CV] GetCvList', props<{ userId: string }>());
+export const GetCvListSuccess = createAction('[CV] GetCvList Success', props<{ cvUser: ICv }>());
+export const GetCvListError = createAction('[CV] GetCvList Error');
 
 export const DeleteVirtualCv = createAction('[CV] DeleteVirtualCV', props<{ id: string }>());
 export const DeleteVirtualCvSuccess = createAction(

@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +21,6 @@ import { CorePageComponent } from './pages/core-page/core-page.component';
   imports: [
     CommonModule,
     CoreRoutingModule,
-    HttpClientModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
@@ -34,7 +32,5 @@ import { CorePageComponent } from './pages/core-page/core-page.component';
     DatepickerModule,
     InputAutocompleteModule,
   ],
-  exports: [],
-  providers: [],
 })
 export class CoreModule {}

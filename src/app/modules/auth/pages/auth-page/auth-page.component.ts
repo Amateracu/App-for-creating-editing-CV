@@ -26,9 +26,7 @@ export class AuthPageComponent implements OnInit {
     private translate: TranslateService,
     private router: Router,
     private store: Store,
-  ) {
-    this.translate.setDefaultLang('en');
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -40,7 +38,7 @@ export class AuthPageComponent implements OnInit {
 
   public submit(): void {
     if (this.form.invalid) {
-      return;
+      return this.form.markAllAsTouched();
     }
     this.submitted = true;
     const auth: IAuth = {

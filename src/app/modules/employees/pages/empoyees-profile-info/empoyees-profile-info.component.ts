@@ -24,6 +24,7 @@ import { selectEmployeeById } from 'src/app/store/employees/employees.selectors'
 export class EmpoyeesProfileInfoComponent implements OnInit {
   @Input() public useButton = true;
   @Input() public useInput = false;
+
   public form!: FormGroup;
   public employee: IEmployees;
   public employeeId: string;
@@ -36,6 +37,16 @@ export class EmpoyeesProfileInfoComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.initEmployee();
+  }
+
+  public editEmployee(employee: IEmployees): void {
+    employee.id = this.employeeId;
+    this.store.dispatch(EditEmployee({ employee }));
+    this.router.navigate([EMPLOYEES_ROUTE.path]);
+  }
+
+  public initEmployee(): void {
     this.employeeId = this.route.snapshot.params[EMPLOYEES_PARAM];
     if (this.employeeId) {
       this.store.dispatch(GetEmployeeById({ employeeId: this.employeeId }));
@@ -55,11 +66,5 @@ export class EmpoyeesProfileInfoComponent implements OnInit {
           this.cdRef.markForCheck();
         });
     }
-  }
-
-  public editEmployee(employee: IEmployees): void {
-    employee.id = this.employeeId;
-    this.store.dispatch(EditEmployee({ employee }));
-    this.router.navigate([EMPLOYEES_ROUTE.path]);
   }
 }

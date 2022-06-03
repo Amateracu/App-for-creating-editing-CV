@@ -10,7 +10,7 @@ import { CorePageComponent } from './pages/core-page/core-page.component';
 
 const routes: Routes = [
   {
-    path: CORE_ROUTE.path,
+    path: '',
     component: CorePageComponent,
     children: [
       {

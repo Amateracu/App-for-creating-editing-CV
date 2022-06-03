@@ -24,7 +24,5 @@ import { MatButtonModule } from '@angular/material/button';
     InputModule,
     MatButtonModule,
   ],
-  exports: [],
-  providers: [],
 })
 export class AuthModule {}

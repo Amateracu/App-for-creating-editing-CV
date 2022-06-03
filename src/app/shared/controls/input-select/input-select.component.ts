@@ -10,5 +10,5 @@ import { ISelect } from '../../interfaces/employees.interface';
 })
 export class InputSelectComponent extends BaseControl {
   @Input() public title: string = '';
-  @Input() public selects: ISelect[] = [];
+  @Input() public options: ISelect[] = [];
 }

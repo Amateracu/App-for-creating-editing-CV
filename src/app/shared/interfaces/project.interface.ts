@@ -25,7 +25,3 @@ export interface IProjectRoles {
   name: string;
   id?: string;
 }
-export interface IChips {
-  name: string;
-  id?: string;
-}

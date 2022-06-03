@@ -1,48 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { EXP_TOKEN, TOKEN } from '../../constants/token.const';
 import { IAuth, IAuthResponse } from '../../interfaces/auth.interface';
+import { TokenService } from '../token.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient) {}
-
-  public getToken(): string | null {
-    return localStorage.getItem('cvGen-token');
-  }
-
-  public tokenIsExpired(): boolean {
-    const expDate = new Date(localStorage.getItem('cvGen-token-exp') as string);
-    const currentDate = new Date();
-    return currentDate > expDate;
-  }
+  public endPoints = {
+    authHttp: 'auth/login',
+  };
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   public login(user: IAuth): Observable<IAuthResponse> {
-    return this.http
-      .post<IAuthResponse>('https://innowise-cv-generator.herokuapp.com/auth/login', user)
-      .pipe(
-        tap((data: IAuthResponse) => {
-          this.setToken(data.accessToken, +data.expiresIn);
-        }),
-      );
+    const url = environment.apiUrl + this.endPoints.authHttp;
+    return this.http.post<IAuthResponse>(url, user).pipe(
+      tap((data: IAuthResponse) => {
+        this.tokenService.setToken(data.accessToken, +data.expiresIn);
+      }),
+    );
   }
 
   public logout(): void {
-    localStorage.removeItem('cvGen-token');
-    localStorage.removeItem('cvGen-token-exp');
-  }
-
-  public isAuthenticated(): boolean {
-    return !!this.getToken();
-  }
-
-  private setToken(token: string, expiresIn: number): void {
-    if (token) {
-      const expDate = new Date(new Date().getTime() + +expiresIn * 1);
-      localStorage.setItem('cvGen-token', token);
-      localStorage.setItem('cvGen-token-exp', expDate.toString());
-    } else {
-      localStorage.clear;
-    }
+    localStorage.removeItem(TOKEN);
+    localStorage.removeItem(EXP_TOKEN);
   }
 }
